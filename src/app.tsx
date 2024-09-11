@@ -1,4 +1,4 @@
-import RemoveMe from './components/remove-me';
+import RemoveMe from '@components/remove-me';
 
 function App() {
     return <RemoveMe />;
