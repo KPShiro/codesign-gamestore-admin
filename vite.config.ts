@@ -19,7 +19,7 @@ export default defineConfig({
             '@': path.resolve(__dirname, './src'),
             '@assets': path.resolve(__dirname, './src/assets'),
             '@components': path.resolve(__dirname, './src/components'),
-            '@utils': path.resolve(__dirname, './src/utils'),
+            '@features': path.resolve(__dirname, './src/features'),
             // Add more path aliases here, just remember to add them to the tsconfing as well...
         },
     },

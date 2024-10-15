@@ -11,7 +11,7 @@
             "@/*": ["./src/*"],
             "@assets/*": ["./src/assets/*"],
             "@components/*": ["./src/components/*"],
-            "@utils/*": ["./src/utils/*"]
+            "@features/*": ["./src/features/*"]
             // Add more paths here...
         },
 
