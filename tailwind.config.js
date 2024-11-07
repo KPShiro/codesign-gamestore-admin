@@ -37,13 +37,55 @@ export default {
             borderColor: {
                 DEFAULT: 'var(--color-border)',
             },
+            borderWidth: {
+                DEFAULT: 'var(--width-border)',
+            },
             borderRadius: {
                 DEFAULT: 'var(--radius)',
-                xl: 'calc(var(--radius) + 0.5rem)',
-                lg: 'calc(var(--radius) + 0.25rem)',
+                xl: 'calc(var(--radius) + 0.25rem)',
+                lg: 'calc(var(--radius) + 0.125rem)',
                 md: 'var(--radius)',
-                sm: 'calc(var(--radius) - 0.25rem)',
-                xs: 'calc(var(--radius) - 0.5rem)',
+                sm: 'calc(var(--radius) - 0.125rem)',
+                xs: 'calc(var(--radius) - 0.25rem)',
+            },
+            keyframes: {
+                'background-move': {
+                    '100%': {
+                        'background-position': '-100% 100%',
+                    },
+                },
+                'scale-fade-in': {
+                    '0%': {
+                        opacity: 0,
+                        transform: 'scale(0.8)',
+                    },
+                    '100%': {
+                        opacity: 1,
+                        transform: 'scale(1)',
+                    },
+                },
+                'slide-left': {
+                    '0%': {
+                        transform: 'translateX(100%)',
+                    },
+                    '100%': {
+                        transform: 'translateX(0)',
+                    },
+                },
+                'slide-right': {
+                    '0%': {
+                        transform: 'translateX(0)',
+                    },
+                    '100%': {
+                        transform: 'translateX(100%)',
+                    },
+                },
+            },
+            animation: {
+                'background-move': 'background-move 5s linear infinite',
+                'scale-fade-in': 'scale-fade-in 0.25s ease-in-out',
+                'slide-left': 'slide-left 0.25s ease-in-out',
+                'slide-right': 'slide-right 0.25s ease-in-out',
             },
         },
     },

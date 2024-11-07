@@ -38,6 +38,8 @@ export default tseslint.config(
             ...react.configs['jsx-runtime'].rules,
             'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
             '@typescript-eslint/no-confusing-void-expression': 'off',
+            '@typescript-eslint/no-misused-promises': 'off',
+            '@typescript-eslint/restrict-template-expressions': 'off',
         },
     }
 );

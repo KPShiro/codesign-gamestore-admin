@@ -1,13 +1,15 @@
-function App() {
+import DefaultLayout from '@components/default-layout';
+import ToastProvider from '@features/toast/components/toast-provider';
+import { Outlet } from 'react-router-dom';
+
+const App = () => {
     return (
-        <div className="container flex min-h-dvh flex-col items-center justify-center">
-            <div className="max-w-prose text-center">
-                Consectetur adipisicing elit. Ullam necessitatibus laboriosam quaerat aliquid
-                reprehenderit labore nisi vitae dolor voluptatum impedit! Cum est nisi quaerat
-                provident in iste error libero aliquam!
-            </div>
-        </div>
+        <ToastProvider>
+            <DefaultLayout>
+                <Outlet />
+            </DefaultLayout>
+        </ToastProvider>
     );
-}
+};
 
 export default App;
