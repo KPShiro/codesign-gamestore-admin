@@ -11,11 +11,11 @@ const GamesTable = ({ games }: GamesTableProps = { games: [] }) => {
             <thead>
                 <tr>
                     <th>Details</th>
-                    <th className="w-40">Status</th>
-                    <th className="w-40">Provider and Studio</th>
-                    <th className="w-24 text-right">RTP</th>
-                    <th className="w-24 text-right">Max. Win</th>
-                    <th className="w-40">Supported Coins</th>
+                    <th className="w-32 lg:w-40">Status</th>
+                    <th className="hidden w-40 lg:table-cell">Provider and Studio</th>
+                    <th className="hidden w-24 text-right lg:table-cell">RTP</th>
+                    <th className="hidden w-24 text-right lg:table-cell">Max. Win</th>
+                    <th className="hidden w-32 lg:table-cell">Coins</th>
                     <th className="w-20"></th>
                 </tr>
             </thead>

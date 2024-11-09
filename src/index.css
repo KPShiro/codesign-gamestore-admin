@@ -106,31 +106,25 @@
     }
 
     .animated-stripes {
-        @apply relative z-0;
+        @apply relative isolate z-0;
     }
 
     .animated-stripes::before {
-        --color-stripes: var(--color-warning);
-        --color-stripes-primary: hsla(var(--color-stripes) / 0.6);
-        --color-stripes-secondary: hsla(var(--color-stripes) / 0.3);
+        --strip-opacity: var(--stripes-opacity, 0.5);
 
-        @apply animate-background-move pointer-events-none absolute inset-0 -z-0 content-[''];
+        --strip-color: var(--color-warning);
+        --strip-color-primary: hsla(var(--strip-color) / var(--strip-opacity));
+        --strip-color-secondary: hsla(var(--strip-color) / calc(var(--strip-opacity) / 2));
+
+        @apply pointer-events-none absolute inset-0 -z-[1] animate-background-move content-[''];
 
         background: repeating-linear-gradient(
-            35deg,
-            var(--color-stripes-secondary),
-            var(--color-stripes-secondary) 10px,
-            var(--color-stripes-primary) 10px,
-            var(--color-stripes-primary) 20px
+            45deg,
+            var(--strip-color-secondary),
+            var(--strip-color-secondary) 10px,
+            var(--strip-color-primary) 10px,
+            var(--strip-color-primary) 20px
         );
-        mask-image: linear-gradient(
-            to right,
-            rgba(0, 0, 0, 0.8),
-            rgba(0, 0, 0, 0.5) 10%,
-            rgba(0, 0, 0, 0.1) 25%,
-            transparent 50%,
-            transparent
-        );
-        background-size: 200% 100%;
+        background-size: 400% 100%;
     }
 }

@@ -20,24 +20,26 @@ const GamesTableItem = ({ game }: GamesTableItemProps) => {
             <td>
                 <div className="flex items-center gap-4">
                     <GameTableItemThumbnail game={game} />
-                    <div className="flex flex-col gap-0.5">
-                        <div className="font-medium">{game.title}</div>
-                        <div className="text-xs text-muted-foreground">{game.id}</div>
+                    <div className="flex min-w-0 flex-col gap-0.5">
+                        <div className="truncate font-medium">{game.title}</div>
+                        <div className="truncate text-xs text-muted-foreground">{game.id}</div>
                     </div>
                 </div>
             </td>
             <td>
                 <GamePublishStatusWidget status={game.publishStatus} />
             </td>
-            <td>
+            <td className="hidden lg:table-cell">
                 <div className="flex flex-col gap-0.5">
                     <div className="truncate">{game.provider.name}</div>
                     <div className="truncate text-xs text-muted-foreground">{game.studio.name}</div>
                 </div>
             </td>
-            <td className="text-right">{percentFormatter.format(game.rtp)}</td>
-            <td className="text-right">{numberFormatter.format(game.win.max)}</td>
-            <td className="text-center">
+            <td className="hidden text-right lg:table-cell">{percentFormatter.format(game.rtp)}</td>
+            <td className="hidden text-right lg:table-cell">
+                {numberFormatter.format(game.win.max)}
+            </td>
+            <td className="hidden text-center lg:table-cell">
                 <GameTagsWidget tags={game.coins} />
             </td>
             <td className="text-center">
