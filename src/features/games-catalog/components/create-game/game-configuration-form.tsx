@@ -8,7 +8,7 @@ import {
 } from '@features/games-catalog/schemas/game-configuration';
 import { Stepper } from '@features/stepper';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 
 type GameConfigurationFormProps = {
     onSubmit: (data: GameConfigurationFormData) => void;
@@ -16,7 +16,7 @@ type GameConfigurationFormProps = {
 };
 
 const GameConfigurationForm = ({ onSubmit, values }: GameConfigurationFormProps) => {
-    const { formState, register, handleSubmit } = useForm<GameConfigurationFormData>({
+    const { control, formState, handleSubmit } = useForm<GameConfigurationFormData>({
         resolver: zodResolver(GameConfigurationFormSchema),
         mode: 'onChange',
         defaultValues: values,
@@ -26,16 +26,31 @@ const GameConfigurationForm = ({ onSubmit, values }: GameConfigurationFormProps)
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <FormField>
                 <FormField.Label>RTP</FormField.Label>
-                <Input
-                    {...register('rtp', { valueAsNumber: true })}
-                    type="number"
-                    min="0"
-                    max="100"
+                <Controller
+                    control={control}
+                    name="rtp"
+                    render={({ field }) => (
+                        <Input
+                            {...field}
+                            type="number"
+                            onChange={(e) => field.onChange(+e.target.value)}
+                        />
+                    )}
                 />
             </FormField>
             <FormField>
                 <FormField.Label>Max. Win</FormField.Label>
-                <Input {...register('maxWin', { valueAsNumber: true })} type="number" min="0" />
+                <Controller
+                    control={control}
+                    name="maxWin"
+                    render={({ field }) => (
+                        <Input
+                            {...field}
+                            type="number"
+                            onChange={(e) => field.onChange(+e.target.value)}
+                        />
+                    )}
+                />
             </FormField>
             <DialogFooter>
                 <Stepper.Prev text="Previous Step" />
