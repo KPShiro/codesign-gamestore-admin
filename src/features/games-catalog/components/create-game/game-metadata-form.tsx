@@ -1,8 +1,8 @@
 import { DialogFooter } from '@components/dialog';
+import TextInput from '@components/text-input';
 import Button from '@components/ui/button';
 import FileInput from '@components/ui/file-input';
 import FormField from '@components/ui/form';
-import Input from '@components/ui/input';
 import {
     GameMetadataFormData,
     GameMetadataFormSchema,
@@ -16,7 +16,7 @@ type GameMetadataFormProps = {
 };
 
 const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
-    const { control, formState, register, handleSubmit } = useForm<GameMetadataFormData>({
+    const { control, formState, handleSubmit } = useForm<GameMetadataFormData>({
         resolver: zodResolver(GameMetadataFormSchema),
         mode: 'onChange',
         defaultValues: values,
@@ -26,7 +26,17 @@ const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <FormField>
                 <FormField.Label>Title</FormField.Label>
-                <Input {...register('title')} placeholder="e.g. The Witcher 3" />
+                <Controller
+                    control={control}
+                    name="title"
+                    render={({ field }) => (
+                        <TextInput
+                            {...field}
+                            onValueChange={field.onChange}
+                            placeholder="e.g. The Witcher 3"
+                        />
+                    )}
+                />
             </FormField>
             <FormField>
                 <FormField.Label>Thumbnail</FormField.Label>
@@ -54,3 +64,4 @@ const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
 };
 
 export default GameMetadataForm;
+

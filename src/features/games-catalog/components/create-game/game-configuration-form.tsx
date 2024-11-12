@@ -1,7 +1,7 @@
+import NumberInput from '@/components/number-input';
 import { DialogFooter } from '@components/dialog';
 import Button from '@components/ui/button';
 import FormField from '@components/ui/form';
-import Input from '@components/ui/input';
 import {
     GameConfigurationFormData,
     GameConfigurationFormSchema,
@@ -30,11 +30,7 @@ const GameConfigurationForm = ({ onSubmit, values }: GameConfigurationFormProps)
                     control={control}
                     name="rtp"
                     render={({ field }) => (
-                        <Input
-                            {...field}
-                            type="number"
-                            onChange={(e) => field.onChange(+e.target.value)}
-                        />
+                        <NumberInput {...field} onValueChange={field.onChange} />
                     )}
                 />
             </FormField>
@@ -44,11 +40,7 @@ const GameConfigurationForm = ({ onSubmit, values }: GameConfigurationFormProps)
                     control={control}
                     name="maxWin"
                     render={({ field }) => (
-                        <Input
-                            {...field}
-                            type="number"
-                            onChange={(e) => field.onChange(+e.target.value)}
-                        />
+                        <NumberInput {...field} onValueChange={field.onChange} />
                     )}
                 />
             </FormField>
@@ -61,3 +53,4 @@ const GameConfigurationForm = ({ onSubmit, values }: GameConfigurationFormProps)
 };
 
 export default GameConfigurationForm;
+

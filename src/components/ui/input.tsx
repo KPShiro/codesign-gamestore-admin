@@ -1,11 +1,9 @@
 import { cn } from '@/utils';
-import { forwardRef, useState } from 'react';
+import { forwardRef } from 'react';
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 const Input = forwardRef<HTMLInputElement, InputProps>(({ className, ...props }, ref) => {
-    const [value, setValue] = useState<typeof props.value>(props.value ?? '');
-
     return (
         <input
             className={cn(
@@ -14,12 +12,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ className, ...props },
             )}
             ref={ref}
             {...props}
-            value={value}
-            onChange={(e) => {
-                setValue(e.target.value);
-                props.onChange?.(e);
-            }}
-            type={props.type ?? 'text'}
         />
     );
 });
@@ -27,3 +19,4 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ className, ...props },
 Input.displayName = 'Input';
 
 export default Input;
+
