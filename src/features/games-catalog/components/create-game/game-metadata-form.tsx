@@ -1,7 +1,7 @@
+import FileInput from '@/components/file-input';
 import { DialogFooter } from '@components/dialog';
 import TextInput from '@components/text-input';
 import Button from '@components/ui/button';
-import FileInput from '@components/ui/file-input';
 import FormField from '@components/ui/form';
 import {
     GameMetadataFormData,
@@ -64,4 +64,3 @@ const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
 };
 
 export default GameMetadataForm;
-

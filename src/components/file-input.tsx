@@ -1,9 +1,10 @@
 import { cn, isNotDefined } from '@/utils';
+import Card from '@components/card';
+import Button from '@components/ui/button';
 import { useToast } from '@features/toast';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { TrashIcon } from 'lucide-react';
 import { forwardRef, useImperativeHandle, useMemo, useRef, useState } from 'react';
-import Button from './button';
 
 type ImageInputProps = Pick<React.HTMLAttributes<HTMLDivElement>, 'className'> & {
     onChange?: (file: File | null) => void;
@@ -96,9 +97,9 @@ const FileInput = forwardRef<HTMLInputElement, ImageInputProps>(
                     )}
                 >
                     {file ? (
-                        <div
+                        <Card
                             key={file.name}
-                            className="flex h-full items-center justify-between gap-4 rounded-sm border bg-background p-4"
+                            className="h-full flex-row items-center justify-between rounded-sm p-4"
                         >
                             {isImageType && (
                                 <div className="aspect-square h-full overflow-clip rounded-sm border bg-black/10">
@@ -121,7 +122,7 @@ const FileInput = forwardRef<HTMLInputElement, ImageInputProps>(
                                 iconLeft={<TrashIcon size={14} />}
                                 onClick={handleOnClickRemove}
                             />
-                        </div>
+                        </Card>
                     ) : (
                         <div
                             className={cn(

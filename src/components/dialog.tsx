@@ -37,7 +37,7 @@ const DialogContent = React.forwardRef<
             )}
             {...props}
         >
-            <div className="animate-scale-fade-in grid gap-6 border bg-background p-6 shadow-lg sm:rounded-md">
+            <div className="bg-card grid animate-scale-fade-in gap-6 border p-6 shadow-lg sm:rounded-md">
                 {children}
                 <DialogPrimitive.Close className="focus:ring-ring absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none">
                     <X className="h-4 w-4" />
