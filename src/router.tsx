@@ -1,7 +1,7 @@
 import DefaultLayout from '@components/default-layout';
 import ErrorPage from '@components/error-page';
 import { GamesCatalog } from '@features/games-catalog';
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 export const router = createBrowserRouter(
     [
@@ -12,9 +12,17 @@ export const router = createBrowserRouter(
             children: [
                 {
                     index: true,
+                    element: <Navigate to="catalog" />,
+                },
+                {
+                    path: 'catalog',
                     element: <GamesCatalog />,
                 },
             ],
+        },
+        {
+            path: '*',
+            element: <Navigate to="/" />,
         },
     ],
     {
