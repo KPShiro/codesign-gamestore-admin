@@ -1,14 +1,14 @@
-import Footer from '@/components/footer';
-import Navbar from '@/components/navbar';
+import { Sidebar } from '@/components/sidebar';
 import { Outlet } from 'react-router-dom';
 
 const DefaultLayout = () => (
-    <div className="flex min-h-dvh flex-col">
-        <Navbar className="sticky top-0 z-10" />
-        <div className="container flex-1">
-            <Outlet />
+    <div className="flex h-dvh">
+        <Sidebar />
+        <div className="h-full flex-1 overflow-auto">
+            <div className="container">
+                <Outlet />
+            </div>
         </div>
-        <Footer />
     </div>
 );
 
