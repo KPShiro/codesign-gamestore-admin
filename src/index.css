@@ -11,10 +11,10 @@
 
         --color-border: 214 32% 91%;
 
-        --color-background: 0 0% 100%;
+        --color-background: 220 14% 96%;
         --color-foreground: 221 39% 11%;
 
-        --color-muted: 220 14% 96%;
+        --color-muted: 220 14% 93%;
         --color-muted-foreground: 220 14% 56%;
 
         --color-primary: 273 67% 39%;
@@ -28,8 +28,14 @@
 
         --color-danger: 0 63% 41%;
         --color-danger-foreground: 0 63% 95%;
+
+        --color-card-background: 0 0% 100%;
+
+        --color-input-default-background: 0 0% 100%;
+        --color-input-focused-background: 0 0% 100%;
     }
 
+    /* TODO: Find right colors for dark mode */
     .dark {
         --color-border: 215 28% 25%;
 
@@ -50,6 +56,11 @@
 
         --color-danger: 0 53% 35%;
         --color-danger-foreground: 0 63% 95%;
+
+        --color-card-background: 221 39% 11%;
+
+        --color-input-default-background: 0 0% 100%;
+        --color-input-focused-background: 0 0% 100%;
     }
 }
 
@@ -94,11 +105,11 @@
     }
 
     table tbody tr:nth-child(2n) td {
-        @apply bg-white/50;
+        @apply bg-card/50;
     }
 
     table tbody tr:nth-child(2n + 1) td {
-        @apply bg-white;
+        @apply bg-card;
     }
 
     table tbody tr:hover td {
