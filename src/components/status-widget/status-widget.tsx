@@ -13,7 +13,7 @@ const StatusWidget = ({ variant, text, className, ...props }: StatusWidgetProps)
         <div
             {...props}
             className={cn(
-                'inline-flex max-w-full cursor-default select-none items-center gap-2 rounded-full border bg-background px-2.5 py-1',
+                'bg-card inline-flex max-w-full cursor-default select-none items-center gap-2 rounded-full border px-2.5 py-1',
                 className
             )}
         >
