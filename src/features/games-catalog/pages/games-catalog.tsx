@@ -10,8 +10,8 @@ const GamesCatalog = () => {
 
     if (isNotDefined(games) || isLoading) {
         return (
-            <div className="flex flex-col gap-6 py-6">
-                <Skeleton className="h-7 max-w-48" />
+            <div className="flex flex-col gap-6 p-6">
+                <Skeleton className="h-5 max-w-48" />
                 <div className="flex justify-between gap-4">
                     <Skeleton className="h-10 w-full min-w-56 max-w-96" />
                     <Skeleton className="h-10 w-24" />
@@ -22,9 +22,9 @@ const GamesCatalog = () => {
     }
 
     return (
-        <div className="flex flex-col gap-6 py-6">
+        <div className="flex flex-col gap-6 p-6">
             <div className="flex flex-col gap-2">
-                <h1 className="text-xl font-medium">Games Catalog</h1>
+                <h1 className="text-xl/none font-medium">Games Catalog</h1>
             </div>
             <div className="flex justify-between gap-4">
                 <div className="inline-flex flex-1 gap-2">
