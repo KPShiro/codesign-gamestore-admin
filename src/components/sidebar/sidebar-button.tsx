@@ -1,37 +1,27 @@
 import { cn } from '@/utils';
+import Icon, { IconName } from '@components/icon';
 import { NavLink } from 'react-router-dom';
 
 type SidebarButtonProps = Pick<React.ComponentProps<typeof NavLink>, 'to'> & {
-    icon: React.ReactNode;
+    icon: IconName;
     text: string;
-    disabled?: boolean;
 };
 
-const SidebarButton = ({ to, icon, text, disabled = false }: SidebarButtonProps) => {
-    const handleClick: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
-        if (disabled) e.preventDefault();
-    };
-
+const SidebarButton = ({ to, icon, text }: SidebarButtonProps) => {
     return (
         <NavLink
             to={to}
-            onClick={handleClick}
-            className={cn(disabled && 'cursor-default opacity-25')}
+            className={({ isActive }) =>
+                cn(
+                    'flex size-10 items-center justify-center gap-3 rounded border',
+                    isActive
+                        ? 'bg-card text-foreground'
+                        : 'text-muted-foreground hover:border-foreground/15 hover:text-foreground'
+                )
+            }
+            title={text}
         >
-            {({ isActive }) => (
-                <div
-                    data-disabled={disabled}
-                    className={cn(
-                        'flex h-10 items-center gap-3 rounded px-3',
-                        isActive
-                            ? 'bg-primary/10 text-primary'
-                            : 'text-foreground data-[disabled=false]:hover:bg-muted'
-                    )}
-                >
-                    {icon}
-                    <div className="text-sm font-medium">{text}</div>
-                </div>
-            )}
+            <Icon name={icon} size={16} absoluteStrokeWidth strokeWidth={1.5} />
         </NavLink>
     );
 };
