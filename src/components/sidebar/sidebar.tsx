@@ -1,4 +1,5 @@
 import { cn } from '@/utils';
+import Input from '@components/ui/input';
 import {
     BoxIcon,
     ChevronsUpDownIcon,
@@ -8,23 +9,18 @@ import {
     PiggyBankIcon,
     SettingsIcon,
 } from 'lucide-react';
-import { useState } from 'react';
-import Input from '../ui/input';
 import SidebarButton from './sidebar-button';
 
-const Sidebar = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
-    const ICON_SIZE: number = 16;
+type SidebarProps = React.HTMLAttributes<HTMLDivElement>;
 
-    // TODO: Get company info from logged in user
-    const [company] = useState({
-        name: 'Codesign Ltd.',
-    });
+const Sidebar = ({ className, ...props }: SidebarProps) => {
+    const ICON_SIZE: number = 16;
 
     return (
         <nav {...props} className={cn('flex w-72 flex-col justify-between gap-6 p-6', className)}>
             <div className="flex flex-col gap-4">
                 <div className="flex h-10 cursor-default select-none items-center justify-between gap-2 rounded border bg-muted px-3 text-foreground">
-                    <span className="flex-1 truncate text-sm font-medium">{company.name}</span>
+                    <span className="flex-1 truncate text-sm font-medium">Codesign Ltd.</span>
                     <ChevronsUpDownIcon size={12} />
                 </div>
                 <Input type="search" placeholder="Search..." />
