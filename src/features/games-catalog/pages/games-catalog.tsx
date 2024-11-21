@@ -1,12 +1,27 @@
 import { Skeleton } from '@/components/skeleton';
-import Input from '@/components/ui/input';
 import { isNotDefined } from '@/utils';
-import CreateGameButton from '../components/create-game/create-game-button';
-import GamesTable from '../components/games-table';
-import { useGames } from '../hooks/use-games';
+import CreateGameButton from '@features/games-catalog/components/create-game/create-game-button';
+import GamesFilters from '@features/games-catalog/components/games-filters';
+import GamesTable from '@features/games-catalog/components/games-table';
+import { useGames } from '@features/games-catalog/hooks/use-games';
+import { useGamesFilters } from '@features/games-catalog/hooks/use-games-filters';
+import { useMemo } from 'react';
 
 const GamesCatalog = () => {
-    const { data: games, isLoading } = useGames();
+    const { data, isLoading } = useGames();
+    const { filters } = useGamesFilters();
+
+    const games = useMemo(() => {
+        if (isNotDefined(data)) {
+            return [];
+        }
+
+        return data.filter(
+            (game) =>
+                game.title.toLocaleLowerCase().includes(filters.search.toLocaleLowerCase()) ||
+                game.id.toLocaleLowerCase().includes(filters.search.toLocaleLowerCase())
+        );
+    }, [data, filters]);
 
     if (isNotDefined(games) || isLoading) {
         return (
@@ -28,11 +43,7 @@ const GamesCatalog = () => {
             </div>
             <div className="flex justify-between gap-4">
                 <div className="inline-flex flex-1 gap-2">
-                    <Input
-                        type="search"
-                        placeholder="Search by game title or ID..."
-                        className="w-full min-w-56 max-w-96"
-                    />
+                    <GamesFilters />
                 </div>
                 <div className="inline-flex gap-2">
                     <CreateGameButton />

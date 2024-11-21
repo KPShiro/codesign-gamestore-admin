@@ -1,6 +1,7 @@
 import DefaultLayout from '@components/default-layout';
 import ErrorPage from '@components/error-page';
 import { GamesCatalog } from '@features/games-catalog';
+import GamesFiltersProvider from '@features/games-catalog/providers/games-filters';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 export const router = createBrowserRouter(
@@ -16,7 +17,11 @@ export const router = createBrowserRouter(
                 },
                 {
                     path: 'catalog',
-                    element: <GamesCatalog />,
+                    element: (
+                        <GamesFiltersProvider>
+                            <GamesCatalog />
+                        </GamesFiltersProvider>
+                    ),
                 },
             ],
         },

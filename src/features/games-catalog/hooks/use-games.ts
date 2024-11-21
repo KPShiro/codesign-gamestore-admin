@@ -1,10 +1,9 @@
-import { Maybe } from '@/models/maybe';
+import { Game } from '@features/games-catalog/models/game';
+import { randomizeGameData } from '@features/games-catalog/utils';
 import { useEffect, useState } from 'react';
-import { Game } from '../models/game';
-import { randomizeGameData } from '../utils';
 
 export const useGames = (limit: number = 5) => {
-    const [games, setGames] = useState<Maybe<Game[]>>(null);
+    const [games, setGames] = useState<Game[] | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
