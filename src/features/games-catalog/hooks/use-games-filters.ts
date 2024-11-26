@@ -1,8 +1,10 @@
 import { isNotDefined } from '@/utils';
+import { GamePublishStatus } from '@features/games-catalog/models/game-publish-status';
 import { createContext, useContext } from 'react';
 
 type GamesFilters = {
     search: string;
+    publishStatus: GamePublishStatus | 'ANY';
 };
 
 type GamesFiltersContext = {

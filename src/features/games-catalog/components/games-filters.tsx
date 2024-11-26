@@ -1,22 +1,43 @@
 import Input from '@components/ui/input';
+import Select from '@components/ui/select';
 import { useGamesFilters } from '@features/games-catalog/hooks/use-games-filters';
+import {
+    GamePublishStatus,
+    GamePublishStatuses,
+} from '@features/games-catalog/models/game-publish-status';
 
 const GamesFilters = () => {
-    const gamesFilters = useGamesFilters();
+    const { filters, updateFilters } = useGamesFilters();
 
     return (
         <div className="inline-flex w-full gap-2">
             <Input
                 type="search"
                 placeholder="Search by game title or ID..."
-                className="w-full min-w-56 max-w-96"
-                value={gamesFilters.filters.search}
+                className="w-full min-w-56 max-w-64"
+                value={filters.search}
                 onChange={(e) => {
-                    gamesFilters.updateFilters({
+                    updateFilters({
                         search: e.target.value,
                     });
                 }}
             />
+            <Select
+                value={filters.publishStatus}
+                onValueChange={(value: GamePublishStatus) =>
+                    updateFilters({ publishStatus: value })
+                }
+            >
+                <Select.Trigger className="w-32" />
+                <Select.Content>
+                    <Select.Item value="ANY">Any</Select.Item>
+                    {GamePublishStatuses.map((item) => (
+                        <Select.Item key={item} value={item}>
+                            <span className="capitalize">{item.toLocaleLowerCase()}</span>
+                        </Select.Item>
+                    ))}
+                </Select.Content>
+            </Select>
         </div>
     );
 };
