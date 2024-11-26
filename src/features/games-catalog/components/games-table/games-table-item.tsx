@@ -31,15 +31,17 @@ const GamesTableItem = ({ game }: GamesTableItemProps) => {
             <td>
                 <GamePublishStatusWidget status={game.publishStatus} />
             </td>
-            <td className="hidden lg:table-cell">
+            <td className="hidden md:table-cell">
                 <div className="flex flex-col gap-0.5">
                     <div className="truncate">{game.provider.name}</div>
                     <div className="truncate text-xs text-muted-foreground">{game.studio.name}</div>
                 </div>
             </td>
-            <td className="hidden text-right lg:table-cell">{percentFormatter.format(game.rtp)}</td>
-            <td className="hidden text-right tabular-nums lg:table-cell">
-                {numberFormatter.format(game.win.max)}
+            <td className="hidden text-right xl:table-cell">
+                <span className="tabular-nums">{percentFormatter.format(game.rtp)}</span>
+            </td>
+            <td className="hidden text-right xl:table-cell">
+                <span className="tabular-nums">{numberFormatter.format(game.win.max)}</span>
             </td>
             <td className="hidden text-center tabular-nums lg:table-cell">
                 <GameTagsWidget tags={game.coins} />

@@ -6,7 +6,7 @@ const Trigger = ({ className, ...props }: React.ComponentProps<typeof RadixSelec
     return (
         <RadixSelect.Trigger
             className={cn(
-                'inline-flex h-10 items-center justify-between gap-3 rounded border px-3 text-sm',
+                'inline-flex h-10 flex-shrink-0 flex-grow-0 items-center justify-between gap-3 rounded border px-3 text-sm',
                 className
             )}
         >

@@ -14,7 +14,7 @@ const GamesFilters = () => {
             <Input
                 type="search"
                 placeholder="Search by game title or ID..."
-                className="w-full min-w-56 max-w-64"
+                className="w-full max-w-64"
                 value={filters.search}
                 onChange={(e) => {
                     updateFilters({
