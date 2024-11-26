@@ -1,9 +1,10 @@
 import { cn } from '@/utils';
-import Icon, { IconName } from '@components/ui/icon';
+import Icon from '@components/ui/icon';
+import { LucideProps } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
 type SidebarButtonProps = Pick<React.ComponentProps<typeof NavLink>, 'to'> & {
-    icon: IconName;
+    icon: React.ElementType<LucideProps>;
     text: string;
 };
 
@@ -21,7 +22,7 @@ const SidebarButton = ({ to, icon, text }: SidebarButtonProps) => {
             }
             title={text}
         >
-            <Icon name={icon} size={16} absoluteStrokeWidth strokeWidth={1.5} />
+            <Icon icon={icon} />
         </NavLink>
     );
 };

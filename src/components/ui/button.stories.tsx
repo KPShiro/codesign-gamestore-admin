@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
+import { PlusIcon } from 'lucide-react';
 import Button from './button';
 
 const meta = {
@@ -20,6 +21,9 @@ const meta = {
         icon: {
             control: 'select',
             options: [undefined, 'plus'],
+            mapping: {
+                plus: PlusIcon,
+            },
         },
         disabled: {
             control: 'boolean',

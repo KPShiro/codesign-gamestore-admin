@@ -4,6 +4,7 @@ import Button from '@components/ui/button';
 import GamePublishStatusWidget from '@features/games-catalog/components/game-publish-status-widget';
 import GameTagsWidget from '@features/games-catalog/components/game-tags-widget';
 import { Game } from '@features/games-catalog/models/game';
+import { EllipsisIcon } from 'lucide-react';
 import GameTableItemThumbnail from './games-table-item-thumbnail';
 
 type GamesTableItemProps = {
@@ -44,7 +45,7 @@ const GamesTableItem = ({ game }: GamesTableItemProps) => {
                 <GameTagsWidget tags={game.coins} />
             </td>
             <td className="text-center">
-                <Button variant="text" size="sm" icon="ellipsis" />
+                <Button variant="text" size="sm" icon={EllipsisIcon} />
             </td>
         </tr>
     );
