@@ -2,9 +2,14 @@ import { cn } from '@/utils';
 import * as RadixSelect from '@radix-ui/react-select';
 import { CheckIcon, ChevronsUpDownIcon } from 'lucide-react';
 
-const Trigger = ({ ...props }: React.ComponentProps<typeof RadixSelect.Value>) => {
+const Trigger = ({ className, ...props }: React.ComponentProps<typeof RadixSelect.Value>) => {
     return (
-        <RadixSelect.Trigger className="inline-flex h-10 items-center justify-between gap-3 rounded border px-3 text-sm">
+        <RadixSelect.Trigger
+            className={cn(
+                'inline-flex h-10 items-center justify-between gap-3 rounded border px-3 text-sm',
+                className
+            )}
+        >
             <RadixSelect.Value {...props} placeholder={props.placeholder ?? 'Select item'} />
             <RadixSelect.Icon asChild>
                 <ChevronsUpDownIcon size={12} className="stroke-foreground" />
@@ -60,7 +65,7 @@ const Content = ({ children, ...props }: React.ComponentProps<typeof RadixSelect
                 position={props.position ?? 'popper'}
                 sideOffset={props.sideOffset ?? 4}
                 className={cn(
-                    'z-50 rounded border bg-background p-0.5 shadow-lg',
+                    'z-50 min-w-fit rounded border bg-card p-0.5 shadow-lg',
                     'w-[var(--radix-select-trigger-width)]',
                     'max-h-[var(--radix-select-content-available-height)]',
                     props.className
