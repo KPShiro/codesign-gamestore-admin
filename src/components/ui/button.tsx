@@ -36,7 +36,15 @@ type ButtonProps = React.ComponentPropsWithoutRef<'button'> &
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     (
-        { text, icon, variant = 'filled', size = 'md', className, loading = false, ...props },
+        {
+            text,
+            icon = undefined,
+            variant = 'filled',
+            size = 'md',
+            className,
+            loading = false,
+            ...props
+        },
         ref
     ) => (
         <button
@@ -51,6 +59,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                     <Icon
                         name="loader-circle"
                         size={16}
+                        strokeWidth={1.5}
                         absoluteStrokeWidth
                         className="animate-spin"
                     />
@@ -60,6 +69,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 <Icon
                     name={icon}
                     size={14}
+                    strokeWidth={1.25}
                     absoluteStrokeWidth
                     className={cn(loading && 'opacity-0')}
                 />

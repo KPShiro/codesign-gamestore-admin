@@ -1,4 +1,3 @@
-import { BellIcon, LogOutIcon, SettingsIcon } from 'lucide-react';
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from './sidebar';
 import Button from './ui/button';
@@ -12,24 +11,9 @@ const DefaultLayout = () => {
                     <div className="text-muted-foreground">Gamestore</div>
                 </div>
                 <div className="flex items-center gap-2">
-                    <Button
-                        type="button"
-                        variant="outlined"
-                        shape="square"
-                        iconLeft={<BellIcon size={14} />}
-                    />
-                    <Button
-                        type="button"
-                        variant="outlined"
-                        shape="square"
-                        iconLeft={<SettingsIcon size={14} />}
-                    />
-                    <Button
-                        type="button"
-                        variant="outlined"
-                        shape="square"
-                        iconLeft={<LogOutIcon size={14} />}
-                    />
+                    <Button type="button" variant="outlined" icon="bell" />
+                    <Button type="button" variant="outlined" icon="settings" />
+                    <Button type="button" variant="outlined" icon="log-out" />
                 </div>
             </div>
             <div className="flex min-h-0 flex-1 overflow-clip rounded-lg border bg-card">

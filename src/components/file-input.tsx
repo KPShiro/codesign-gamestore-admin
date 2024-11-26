@@ -3,7 +3,6 @@ import Card from '@components/card';
 import Button from '@components/ui/button';
 import { useToast } from '@features/toast';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
-import { TrashIcon } from 'lucide-react';
 import { forwardRef, useImperativeHandle, useMemo, useRef, useState } from 'react';
 
 type ImageInputProps = Pick<React.HTMLAttributes<HTMLDivElement>, 'className'> & {
@@ -118,8 +117,7 @@ const FileInput = forwardRef<HTMLInputElement, ImageInputProps>(
                             <Button
                                 variant="outlined"
                                 size="sm"
-                                shape="square"
-                                iconLeft={<TrashIcon size={14} />}
+                                icon="trash"
                                 onClick={handleOnClickRemove}
                             />
                         </Card>

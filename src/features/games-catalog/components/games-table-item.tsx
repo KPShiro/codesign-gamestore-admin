@@ -1,7 +1,6 @@
 import Button from '@/components/ui/button';
 import { useNumberFormatter } from '@/hooks/use-number-formatter';
 import { usePercentFormatter } from '@/hooks/use-percent-formatter';
-import { EllipsisIcon } from 'lucide-react';
 import { Game } from '../models/game';
 import GamePublishStatusWidget from './game-publish-status-widget';
 import GameTagsWidget from './game-tags-widget';
@@ -45,12 +44,7 @@ const GamesTableItem = ({ game }: GamesTableItemProps) => {
                 <GameTagsWidget tags={game.coins} />
             </td>
             <td className="text-center">
-                <Button
-                    variant="text"
-                    shape="square"
-                    size="sm"
-                    iconLeft={<EllipsisIcon size={16} />}
-                />
+                <Button variant="text" size="sm" icon="ellipsis" />
             </td>
         </tr>
     );
