@@ -7,10 +7,18 @@ export const useGames = (limit: number = 5) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        const games: Game[] = [];
         setIsLoading(true);
+        const games: Game[] = [
+            randomizeGameData({
+                publishStatus: 'PUBLISHED',
+            }),
+            randomizeGameData({
+                publishStatus: 'TESTING',
+            }),
+        ];
 
-        for (let i = 0; i < limit; i++) {
+        const gamesCount = limit - games.length;
+        for (let i = 0; i < gamesCount; i++) {
             games.push(randomizeGameData());
         }
 

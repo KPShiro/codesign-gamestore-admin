@@ -1,9 +1,8 @@
 import Tag from '@/components/ui/tag';
 import { useMemo } from 'react';
-import { Game } from '../models/game';
 
 type GameTagsWidgetProps = {
-    tags: Game['tags'];
+    tags: string[];
     maxCount?: number;
 };
 

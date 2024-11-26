@@ -1,7 +1,6 @@
-import StatusWidget, { StatusWidgetProps } from '@/components/status-widget/status-widget';
-import { cn } from '@/utils';
+import StatusWidget, { StatusWidgetProps } from '@components/status-widget/status-widget';
+import { Game } from '@features/games-catalog/models/game';
 import { useMemo } from 'react';
-import { Game } from '../models/game';
 
 type GamePublishStatusWidgetProps = {
     status: Game['publishStatus'];
@@ -36,16 +35,7 @@ const GamePublishStatusWidget = ({ status }: GamePublishStatusWidgetProps) => {
         }
     }, [status]);
 
-    return (
-        <StatusWidget
-            variant={variant}
-            text={text}
-            className={cn(
-                status === 'TESTING' &&
-                    'animated-stripes animated-stripes-opacity-full overflow-clip'
-            )}
-        />
-    );
+    return <StatusWidget variant={variant} text={text} />;
 };
 
 export default GamePublishStatusWidget;

@@ -1,5 +1,5 @@
-import Icon from '@components/icon';
 import Thumbnail from '@components/thumbnail';
+import Icon from '@components/ui/icon';
 import { Game } from '@features/games-catalog/models/game';
 
 type GameThumbnailProps = {

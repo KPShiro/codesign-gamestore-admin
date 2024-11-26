@@ -1,5 +1,5 @@
 import { cn } from '@/utils';
-import Icon, { IconName } from '@components/icon';
+import Icon, { IconName } from '@components/ui/icon';
 import { NavLink } from 'react-router-dom';
 
 type SidebarButtonProps = Pick<React.ComponentProps<typeof NavLink>, 'to'> & {

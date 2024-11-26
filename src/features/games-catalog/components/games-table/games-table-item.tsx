@@ -1,9 +1,9 @@
-import Button from '@/components/ui/button';
 import { useNumberFormatter } from '@/hooks/use-number-formatter';
 import { usePercentFormatter } from '@/hooks/use-percent-formatter';
-import { Game } from '../models/game';
-import GamePublishStatusWidget from './game-publish-status-widget';
-import GameTagsWidget from './game-tags-widget';
+import Button from '@components/ui/button';
+import GamePublishStatusWidget from '@features/games-catalog/components/game-publish-status-widget';
+import GameTagsWidget from '@features/games-catalog/components/game-tags-widget';
+import { Game } from '@features/games-catalog/models/game';
 import GameTableItemThumbnail from './games-table-item-thumbnail';
 
 type GamesTableItemProps = {
@@ -37,10 +37,10 @@ const GamesTableItem = ({ game }: GamesTableItemProps) => {
                 </div>
             </td>
             <td className="hidden text-right lg:table-cell">{percentFormatter.format(game.rtp)}</td>
-            <td className="hidden text-right lg:table-cell">
+            <td className="hidden text-right tabular-nums lg:table-cell">
                 {numberFormatter.format(game.win.max)}
             </td>
-            <td className="hidden text-center lg:table-cell">
+            <td className="hidden text-center tabular-nums lg:table-cell">
                 <GameTagsWidget tags={game.coins} />
             </td>
             <td className="text-center">

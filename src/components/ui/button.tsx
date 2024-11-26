@@ -1,5 +1,5 @@
 import { cn } from '@/utils';
-import Icon, { IconName } from '@components/icon';
+import Icon, { IconName } from '@components/ui/icon';
 import { cva, VariantProps } from 'class-variance-authority';
 import React from 'react';
 

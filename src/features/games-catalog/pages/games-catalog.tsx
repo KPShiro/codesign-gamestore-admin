@@ -1,8 +1,8 @@
-import { Skeleton } from '@/components/skeleton';
 import { isNotDefined } from '@/utils';
+import { Skeleton } from '@components/skeleton';
 import CreateGameButton from '@features/games-catalog/components/create-game/create-game-button';
 import GamesFilters from '@features/games-catalog/components/games-filters';
-import GamesTable from '@features/games-catalog/components/games-table';
+import GamesTable from '@features/games-catalog/components/games-table/games-table';
 import { useGames } from '@features/games-catalog/hooks/use-games';
 import { useGamesFilters } from '@features/games-catalog/hooks/use-games-filters';
 import { useMemo } from 'react';

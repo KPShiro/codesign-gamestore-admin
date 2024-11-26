@@ -1,4 +1,4 @@
-import { Game } from '../models/game';
+import { Game } from '@features/games-catalog/models/game';
 import GamesTableItem from './games-table-item';
 
 type GamesTableProps = {

@@ -1,6 +1,6 @@
 import { LucideProps } from 'lucide-react';
 import dynamicIconImports from 'lucide-react/dynamicIconImports';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useMemo } from 'react';
 
 const fallback = <div style={{ background: '#ddd', width: 24, height: 24 }} />;
 
@@ -11,7 +11,8 @@ type IconProps = Omit<LucideProps, 'ref'> & {
 };
 
 const Icon = ({ name, ...props }: IconProps) => {
-    const LucideIcon = lazy(dynamicIconImports[name]);
+    const iconName = useMemo(() => name, [name]);
+    const LucideIcon = lazy(dynamicIconImports[iconName]);
 
     return (
         <Suspense fallback={fallback}>
