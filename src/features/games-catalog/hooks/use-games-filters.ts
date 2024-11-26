@@ -10,6 +10,7 @@ type GamesFilters = {
 type GamesFiltersContext = {
     filters: GamesFilters;
     updateFilters: (filters: Partial<GamesFilters>) => void;
+    resetFilters: () => void;
 };
 
 const GamesFiltersContext = createContext<GamesFiltersContext | null>(null);

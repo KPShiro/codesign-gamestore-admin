@@ -37,10 +37,15 @@ const GamesFiltersProvider = ({ children }: PropsWithChildren) => {
         }));
     }, []);
 
+    const resetFilters = useCallback(() => {
+        setFilters(() => DEFAULT_FILTERS);
+    }, []);
+
     const value = useMemo(
         () => ({
             filters,
             updateFilters,
+            resetFilters,
         }),
         [filters, updateFilters]
     );
