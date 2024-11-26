@@ -14,6 +14,7 @@ export default tseslint.config(
             },
         },
         extends: [
+            'plugin:storybook/recommended',
             js.configs.recommended,
             ...tseslint.configs.recommendedTypeChecked,
             ...tseslint.configs.strictTypeChecked,
