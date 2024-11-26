@@ -1,5 +1,5 @@
-import DefaultLayout from '@components/default-layout';
 import ErrorPage from '@components/error-page';
+import DefaultLayout from '@components/layouts/default-layout';
 import { GamesCatalog } from '@features/games-catalog';
 import GamesFiltersProvider from '@features/games-catalog/providers/games-filters';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
