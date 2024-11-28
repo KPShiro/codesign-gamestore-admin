@@ -6,7 +6,7 @@ const Trigger = ({ className, ...props }: React.ComponentProps<typeof RadixSelec
     return (
         <RadixSelect.Trigger
             className={cn(
-                'inline-flex h-10 flex-shrink-0 flex-grow-0 items-center justify-between gap-3 rounded border px-3 text-sm',
+                'disabled:opacity-disabled flex h-10 items-center justify-between rounded border bg-input px-3 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none',
                 className
             )}
         >
@@ -23,7 +23,7 @@ const Item = ({ children, ...props }: React.ComponentProps<typeof RadixSelect.It
         <RadixSelect.Item
             {...props}
             className={cn(
-                'flex h-10 cursor-pointer select-none items-center justify-between gap-3 rounded-sm px-3 text-sm hover:bg-muted data-[disabled]:cursor-default data-[state=checked]:bg-primary/10 data-[state=checked]:text-primary data-[disabled]:opacity-25 data-[disabled]:hover:bg-transparent',
+                'data-[disabled]:opacity-disabled flex h-10 cursor-pointer select-none items-center justify-between gap-3 rounded-sm border-2 border-transparent px-3 text-sm ring-offset-background hover:bg-foreground/5 focus-visible:bg-foreground/5 focus-visible:outline-none data-[disabled]:cursor-default data-[state=checked]:bg-primary/10 data-[state=checked]:text-primary data-[disabled]:hover:bg-transparent',
                 props.className
             )}
         >

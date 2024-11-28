@@ -8,3 +8,39 @@ export function cn(...inputs: ClassValue[]) {
 export function isNotDefined(value: unknown): value is null | undefined {
     return value === null || value === undefined;
 }
+
+export function isDefined<T = unknown>(value: T | null | undefined): value is T {
+    return value !== null && value !== undefined;
+}
+
+export function containsSearchString(source: string, search: string) {
+    const trimmedSourceString = source.trim();
+    const trimmedSearchString = search.trim();
+
+    return new RegExp(trimmedSearchString, 'i').test(trimmedSourceString);
+}
+
+export function getBrowserLocale(): string {
+    return navigator.language ?? 'en-US';
+}
+
+export function formatNumber(value: number): string {
+    const browserLocale = getBrowserLocale();
+    const formatter = new Intl.NumberFormat(browserLocale, {
+        style: 'decimal',
+        maximumFractionDigits: 2,
+    });
+
+    return formatter.format(value);
+}
+
+export function formatPercent(value: number): string {
+    const browserLocale = getBrowserLocale();
+    const formatter = new Intl.NumberFormat(browserLocale, {
+        style: 'percent',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    });
+
+    return formatter.format(value);
+}

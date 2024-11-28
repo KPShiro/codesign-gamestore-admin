@@ -5,7 +5,7 @@ import { LoaderCircleIcon, LucideProps } from 'lucide-react';
 import React from 'react';
 
 const variants = cva(
-    'relative inline-flex gap-2 min-w-fit flex-shrink-0 items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 select-none disabled:opacity-45 disabled:bg-muted-foreground/15 disabled:text-muted-foreground disabled:pointer-events-none ring-offset-background overflow-hidden border border-transparent',
+    'relative inline-flex gap-2 min-w-fit flex-shrink-0 items-center justify-center font-medium  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 select-none   disabled:opacity-disabled disabled:pointer-events-none ring-offset-background overflow-hidden border border-transparent',
     {
         variants: {
             variant: {
@@ -71,4 +71,3 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = 'Button';
 
 export default Button;
-

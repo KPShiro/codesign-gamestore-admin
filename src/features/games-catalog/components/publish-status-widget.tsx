@@ -1,39 +1,37 @@
-import StatusWidget from '@/components/status-widget/status-widget';
+import StatusWidget from '@/components/ui/status-widget';
 import { Game } from '@features/games-catalog/models/game';
 import { useEffect, useState } from 'react';
 
-type GamePublishStatusWidgetProps = {
+type PublishStatusWidgetProps = {
     status: Game['publishStatus'];
 };
 
-const GamePublishStatusWidget = ({ status }: GamePublishStatusWidgetProps) => {
+const PublishStatusWidget = ({ status }: PublishStatusWidgetProps) => {
     const [text, setText] = useState<string>('Unknown');
-    const [variant, setVariant] =
-        useState<React.ComponentProps<typeof StatusWidget>['variant']>('muted');
+    const [color, setColor] = useState<React.ComponentProps<typeof StatusWidget>['color']>('muted');
 
     useEffect(() => {
         switch (status) {
             case 'NOT_PUBLISHED':
-                setVariant('muted');
+                setColor('muted');
                 setText('Not Published');
                 break;
             case 'TESTING':
-                setVariant('warning');
+                setColor('warning');
                 setText('Testing');
                 break;
             case 'PUBLISHED':
-                setVariant('success');
+                setColor('success');
                 setText('Published');
                 break;
             default:
-                setVariant('muted');
+                setColor('muted');
                 setText('Unknown');
                 break;
         }
     }, [status]);
 
-    return <StatusWidget variant={variant} text={text} />;
+    return <StatusWidget variant={'outlined'} color={color} text={text} />;
 };
 
-export default GamePublishStatusWidget;
-
+export default PublishStatusWidget;

@@ -9,6 +9,10 @@
 
         /* --------------------------------------- */
 
+        --opacity-disabled: 0.42;
+
+        /* --------------------------------------- */
+
         --color-border: 214 32% 91%;
 
         --color-background: 220 14% 96%;
@@ -18,50 +22,23 @@
         --color-muted-foreground: 220 14% 56%;
 
         --color-primary: 273 67% 39%;
-        --color-primary-foreground: 273 37% 95%;
+        --color-primary-foreground: 287 80% 90%;
 
-        --color-success: 142 72% 39%;
-        --color-success-foreground: 142 40% 95%;
+        --color-success: 116 69% 29%;
+        --color-success-foreground: 95 75% 89%;
 
-        --color-warning: 48 96% 43%;
-        --color-warning-foreground: 48 96% 20%;
+        --color-warning: 39 97% 50%;
+        --color-warning-foreground: 48 96% 90%;
 
-        --color-danger: 0 63% 41%;
-        --color-danger-foreground: 0 63% 95%;
+        --color-danger: 7 77% 47%;
+        --color-danger-foreground: 26 88% 90%;
 
         --color-card-background: 0 0% 100%;
-
-        --color-input-default-background: 0 0% 100%;
-        --color-input-focused-background: 0 0% 100%;
     }
 
-    /* TODO: Find right colors for dark mode */
-    .dark {
-        --color-border: 215 28% 25%;
-
-        --color-background: 221 39% 11%;
-        --color-foreground: 221 19% 95%;
-
-        --color-muted: 215 28% 17%;
-        --color-muted-foreground: 215 28% 70%;
-
-        --color-primary: 273 67% 39%;
-        --color-primary-foreground: 273 67% 99%;
-
-        --color-success: 142 52% 29%;
-        --color-success-foreground: 142 40% 95%;
-
-        --color-warning: 48 66% 53%;
-        --color-warning-foreground: 48 96% 15%;
-
-        --color-danger: 0 53% 35%;
-        --color-danger-foreground: 0 63% 95%;
-
-        --color-card-background: 221 39% 11%;
-
-        --color-input-default-background: 0 0% 100%;
-        --color-input-focused-background: 0 0% 100%;
-    }
+    /* .dark {
+        TODO: Find right colors for dark mode
+    } */
 }
 
 @layer base {
@@ -91,28 +68,4 @@
     table tbody tr:hover td {
         @apply bg-background/50;
     }
-
-    .animated-stripes {
-        @apply relative isolate z-0;
-    }
-
-    .animated-stripes::before {
-        --strip-opacity: var(--stripes-opacity, 0.5);
-
-        --strip-color: var(--color-warning);
-        --strip-color-primary: hsla(var(--strip-color) / var(--strip-opacity));
-        --strip-color-secondary: hsla(var(--strip-color) / calc(var(--strip-opacity) / 2));
-
-        @apply pointer-events-none absolute inset-0 -z-[1] animate-background-move content-[''];
-
-        background: repeating-linear-gradient(
-            45deg,
-            var(--strip-color-secondary),
-            var(--strip-color-secondary) 10px,
-            var(--strip-color-primary) 10px,
-            var(--strip-color-primary) 20px
-        );
-        background-size: 400% 100%;
-    }
 }
-

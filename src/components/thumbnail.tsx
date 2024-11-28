@@ -5,9 +5,9 @@ import React from 'react';
 const variants = cva('object-cover', {
     variants: {
         size: {
-            sm: 'size-10',
-            md: 'size-16',
-            lg: 'size-24',
+            sm: 'size-10 rounded-sm',
+            md: 'size-16 rounded-md',
+            lg: 'size-24 rounded-lg',
             full: 'size-full',
         },
     },

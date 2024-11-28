@@ -1,59 +1,26 @@
-import { isNotDefined } from '@/utils';
 import LayoutPage from '@components/layouts/layout-page';
-import { Skeleton } from '@components/skeleton';
 import Button from '@components/ui/button';
+import Icon from '@components/ui/icon';
 import CreateGameButton from '@features/games-catalog/components/create-game/create-game-button';
-import GamesFilters from '@features/games-catalog/components/games-filters';
+import GamesFilters from '@features/games-catalog/components/games-table-filters/games-filters';
 import GamesTable from '@features/games-catalog/components/games-table/games-table';
-import { useGames } from '@features/games-catalog/hooks/use-games';
+import { useFilteredGames } from '@features/games-catalog/hooks/use-filtered-games';
 import { useGamesFilters } from '@features/games-catalog/hooks/use-games-filters';
-import { Game } from '@features/games-catalog/models/game';
-import { useLayoutEffect, useState } from 'react';
+import { Loader2Icon, SearchIcon } from 'lucide-react';
 
 const GamesCatalog = () => {
-    const [games, setGames] = useState<Game[]>([]);
+    const { games, isLoading } = useFilteredGames();
+    const { isFiltering, resetFilters } = useGamesFilters();
 
-    const { data, isLoading } = useGames();
-    const { filters, resetFilters } = useGamesFilters();
-
-    useLayoutEffect(() => {
-        if (isNotDefined(data)) {
-            return;
-        }
-
-        let filteredGames = [...data];
-
-        filteredGames = filteredGames.filter(
-            (game) =>
-                game.title.toLocaleLowerCase().includes(filters.search.toLocaleLowerCase()) ||
-                game.id.toLocaleLowerCase().includes(filters.search.toLocaleLowerCase())
-        );
-
-        filteredGames = filteredGames.filter((game) =>
-            filters.publishStatus !== 'ANY' ? game.publishStatus === filters.publishStatus : game
-        );
-
-        setGames(filteredGames);
-    }, [data, filters]);
-
-    if (isNotDefined(data) || isLoading) {
+    if (isLoading) {
         return (
-            <LayoutPage>
-                <Skeleton className="h-5 max-w-48" />
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_auto]">
-                    <div className="flex gap-2">
-                        <Skeleton className="h-10 w-full md:max-w-64" />
-                        <Skeleton className="h-10 w-32" />
-                    </div>
-                    <Skeleton className="h-10 md:w-24" />
-                </div>
-                <div className="flex flex-col gap-1">
-                    {Array(7)
-                        .fill(0)
-                        .map((_, index) => (
-                            <Skeleton key={index} className="h-20" />
-                        ))}
-                </div>
+            <LayoutPage className="items-center justify-center">
+                <Icon
+                    icon={Loader2Icon}
+                    size={24}
+                    strokeWidth={2}
+                    className="animate-spin text-muted-foreground"
+                />
             </LayoutPage>
         );
     }
@@ -67,25 +34,33 @@ const GamesCatalog = () => {
                 <GamesFilters />
                 <CreateGameButton />
             </div>
-            {games.length > 0 ? (
-                <GamesTable games={games} />
-            ) : (
-                <div className="flex items-center justify-between gap-4 rounded bg-primary/5 p-6">
-                    <div className="flex max-w-sm flex-col gap-1">
-                        <h1 className="text-sm font-semibold uppercase">Results not found</h1>
-                        <p className="text-sm text-muted-foreground">
-                            We couldn't find items matching your criteria. Please update filters or
-                            make sure they have correct values.
+            {games.length > 0 ? <GamesTable games={games} /> : null}
+            {games.length === 0 && isFiltering ? (
+                <div className="flex h-80 flex-col items-center justify-center gap-6 border">
+                    <div className="flex items-center justify-center rounded">
+                        <Icon
+                            icon={SearchIcon}
+                            size={42}
+                            strokeWidth={4}
+                            className="text-muted-foreground"
+                        />
+                    </div>
+                    <div className="flex max-w-sm flex-col items-center gap-2 text-center text-muted-foreground">
+                        <h1 className="font-semibold">No results found</h1>
+                        <p className="text-sm">
+                            It seems we can’t find any results based on your search.
                         </p>
                     </div>
-                    <div>
-                        <Button variant={'tonal'} text="Clear Filters" onClick={resetFilters} />
-                    </div>
+                    <Button
+                        variant={'outlined'}
+                        size={'xs'}
+                        text="Reset filters"
+                        onClick={resetFilters}
+                    />
                 </div>
-            )}
+            ) : null}
         </LayoutPage>
     );
 };
 
 export default GamesCatalog;
-

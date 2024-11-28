@@ -34,13 +34,12 @@ export default {
                     foreground: 'hsl(var(--color-muted-foreground))',
                 },
             },
+            opacity: {
+                disabled: 'var(--opacity-disabled)',
+            },
             backgroundColor: {
                 card: {
                     DEFAULT: 'hsl(var(--color-card-background))',
-                },
-                input: {
-                    DEFAULT: 'hsl(var(--color-input-default-background))',
-                    focused: 'hsl(var(--color-input-focused-background))',
                 },
             },
             borderColor: {

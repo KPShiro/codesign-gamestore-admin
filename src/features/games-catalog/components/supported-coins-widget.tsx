@@ -1,6 +1,6 @@
 import { cn } from '@/utils';
 import { Game } from '@features/games-catalog/models/game';
-import { GameCoins, GameCoinsLabels } from '../models/game-coin';
+import { GameCoins, GameCoinsLabels } from '@features/games-catalog/models/game-coin';
 
 type SupportedCoinsWidgetProps = {
     coins: Game['coins'];
@@ -25,4 +25,3 @@ const SupportedCoinsWidget = ({ coins }: SupportedCoinsWidgetProps) => {
 };
 
 export default SupportedCoinsWidget;
-

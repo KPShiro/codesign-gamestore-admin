@@ -3,12 +3,13 @@ import { GamePublishStatus } from '@features/games-catalog/models/game-publish-s
 import { createContext, useContext } from 'react';
 
 type GamesFilters = {
-    search: string;
-    publishStatus: GamePublishStatus | 'ANY';
+    search: string | undefined;
+    publishStatus: GamePublishStatus | undefined;
 };
 
 type GamesFiltersContext = {
     filters: GamesFilters;
+    isFiltering: boolean;
     updateFilters: (filters: Partial<GamesFilters>) => void;
     resetFilters: () => void;
 };

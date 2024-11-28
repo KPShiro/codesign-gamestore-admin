@@ -8,10 +8,12 @@ import {
 import Button from '@components/ui/button';
 import { CreateGameFormData } from '@features/games-catalog/schemas/create-game';
 import { useToast } from '@features/toast';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import CreateGameForm from './create-game-form';
 
-const CreateGameButton = () => {
+type CreateGameButtonProps = Pick<React.ComponentProps<typeof Button>, 'disabled'>;
+
+const CreateGameButton = (props: CreateGameButtonProps) => {
     const [opened, setOpened] = useState<boolean>(false);
     const toast = useToast();
 
@@ -32,7 +34,7 @@ const CreateGameButton = () => {
     return (
         <Dialog open={opened} onOpenChange={setOpened}>
             <DialogTrigger asChild>
-                <Button text="Add Game" />
+                <Button {...props} text="Add Game" />
             </DialogTrigger>
             <DialogContent aria-describedby={undefined}>
                 <DialogHeader>

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import { PlusIcon } from 'lucide-react';
+import { PlusIcon, SparklesIcon } from 'lucide-react';
 import Button from './button';
 
 const meta = {
@@ -41,30 +41,15 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Filled: Story = {
-    args: {
-        variant: 'filled',
-        text: 'Button',
-    },
-};
-
-export const Tonal: Story = {
-    args: {
-        variant: 'tonal',
-        text: 'Button',
-    },
-};
-
-export const Outlined: Story = {
-    args: {
-        variant: 'outlined',
-        text: 'Button',
-    },
-};
-
 export const Text: Story = {
     args: {
-        variant: 'text',
+        text: 'Button',
+    },
+};
+
+export const Icon: Story = {
+    args: {
+        icon: SparklesIcon,
         text: 'Button',
     },
 };
