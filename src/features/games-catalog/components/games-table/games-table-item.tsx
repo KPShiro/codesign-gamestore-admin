@@ -2,7 +2,7 @@ import { useNumberFormatter } from '@/hooks/use-number-formatter';
 import { usePercentFormatter } from '@/hooks/use-percent-formatter';
 import Button from '@components/ui/button';
 import GamePublishStatusWidget from '@features/games-catalog/components/game-publish-status-widget';
-import GameTagsWidget from '@features/games-catalog/components/game-tags-widget';
+import SupportedCoinsWidget from '@features/games-catalog/components/supported-coins-widget';
 import { Game } from '@features/games-catalog/models/game';
 import { EllipsisIcon } from 'lucide-react';
 import GameTableItemThumbnail from './games-table-item-thumbnail';
@@ -28,10 +28,10 @@ const GamesTableItem = ({ game }: GamesTableItemProps) => {
                     </div>
                 </div>
             </td>
-            <td>
+            <td className="hidden md:table-cell">
                 <GamePublishStatusWidget status={game.publishStatus} />
             </td>
-            <td className="hidden md:table-cell">
+            <td className="hidden lg:table-cell">
                 <div className="flex flex-col gap-0.5">
                     <div className="truncate">{game.provider.name}</div>
                     <div className="truncate text-xs text-muted-foreground">{game.studio.name}</div>
@@ -43,10 +43,10 @@ const GamesTableItem = ({ game }: GamesTableItemProps) => {
             <td className="hidden text-right xl:table-cell">
                 <span className="tabular-nums">{numberFormatter.format(game.win.max)}</span>
             </td>
-            <td className="hidden text-center tabular-nums lg:table-cell">
-                <GameTagsWidget tags={game.coins} />
+            <td className="hidden text-center xl:table-cell">
+                <SupportedCoinsWidget coins={game.coins} />
             </td>
-            <td className="text-center">
+            <td className="text-right">
                 <Button variant="text" size="sm" icon={EllipsisIcon} />
             </td>
         </tr>
@@ -54,3 +54,4 @@ const GamesTableItem = ({ game }: GamesTableItemProps) => {
 };
 
 export default GamesTableItem;
+

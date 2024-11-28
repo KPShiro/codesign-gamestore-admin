@@ -10,11 +10,11 @@ const GamesFilters = () => {
     const { filters, updateFilters } = useGamesFilters();
 
     return (
-        <div className="inline-flex w-full gap-2">
+        <div className="flex gap-2">
             <Input
                 type="search"
                 placeholder="Search by game title or ID..."
-                className="w-full max-w-64"
+                className="w-full md:max-w-64"
                 value={filters.search}
                 onChange={(e) => {
                     updateFilters({
@@ -43,3 +43,4 @@ const GamesFilters = () => {
 };
 
 export default GamesFilters;
+

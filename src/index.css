@@ -23,7 +23,7 @@
         --color-success: 142 72% 39%;
         --color-success-foreground: 142 40% 95%;
 
-        --color-warning: 48 96% 53%;
+        --color-warning: 48 96% 43%;
         --color-warning-foreground: 48 96% 20%;
 
         --color-danger: 0 63% 41%;
@@ -76,44 +76,20 @@
             'calt' 1;
     }
 
-    table {
-        @apply rounded bg-muted outline outline-[1px] -outline-offset-1 outline-border;
-    }
-
     table th {
-        @apply h-10 border-b bg-muted px-4 text-left text-xs font-medium text-muted-foreground;
+        @apply h-8 bg-background px-4 text-left text-xs font-normal text-muted-foreground;
     }
 
     table td {
-        @apply px-4 py-3 text-sm;
-    }
-
-    table tr:first-child th:first-child {
-        @apply rounded-tl;
-    }
-
-    table tr:first-child th:last-child {
-        @apply rounded-tr;
-    }
-
-    table tr:last-child td:first-child {
-        @apply rounded-bl;
-    }
-
-    table tr:last-child td:last-child {
-        @apply rounded-br;
+        @apply border-t px-4 py-3 text-sm;
     }
 
     table tbody tr:nth-child(2n) td {
-        @apply bg-card/50;
-    }
-
-    table tbody tr:nth-child(2n + 1) td {
-        @apply bg-card;
+        @apply bg-background/25;
     }
 
     table tbody tr:hover td {
-        @apply bg-muted;
+        @apply bg-background/50;
     }
 
     .animated-stripes {
@@ -139,3 +115,4 @@
         background-size: 400% 100%;
     }
 }
+

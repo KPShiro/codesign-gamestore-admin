@@ -10,13 +10,13 @@ const GamesTable = ({ games }: GamesTableProps = { games: [] }) => {
         <table className="w-full table-fixed">
             <thead>
                 <tr>
-                    <th>Details</th>
-                    <th className="w-32">Status</th>
-                    <th className="hidden w-40 md:table-cell">Provider and Studio</th>
-                    <th className="hidden w-24 text-right xl:table-cell">RTP</th>
-                    <th className="hidden w-24 text-right xl:table-cell">Max. Win</th>
-                    <th className="hidden w-32 lg:table-cell">Coins</th>
-                    <th className="w-20"></th>
+                    <th className="w-72">Game</th>
+                    <th className="hidden w-40 md:table-cell">Publish Status</th>
+                    <th className="hidden w-44 lg:table-cell">Provider and Studio</th>
+                    <th className="hidden w-28 text-right xl:table-cell">RTP</th>
+                    <th className="hidden w-28 text-right xl:table-cell">Max. Win</th>
+                    <th className="hidden w-48 xl:table-cell">Supported Coins</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -29,3 +29,4 @@ const GamesTable = ({ games }: GamesTableProps = { games: [] }) => {
 };
 
 export default GamesTable;
+

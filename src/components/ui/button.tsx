@@ -13,7 +13,7 @@ const variants = cva(
                 tonal: 'bg-primary/15 text-primary hover:bg-primary/20 active:bg-primary/25',
                 outlined:
                     'border-border hover:text-primary hover:bg-primary/15 disabled:bg-transparent hover:border-primary/25 active:bg-primary/20',
-                text: 'text-primary hover:bg-primary/15 disabled:bg-transparent active:bg-primary/20',
+                text: 'text-foreground hover:text-primary hover:bg-primary/15 disabled:bg-transparent active:bg-primary/20',
             },
             size: {
                 xs: 'h-8 px-3 text-xs rounded-sm',
@@ -71,3 +71,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = 'Button';
 
 export default Button;
+

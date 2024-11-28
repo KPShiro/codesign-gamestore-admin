@@ -1,37 +1,34 @@
-import StatusWidget, { StatusWidgetProps } from '@components/status-widget/status-widget';
+import StatusWidget from '@/components/status-widget/status-widget';
 import { Game } from '@features/games-catalog/models/game';
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 
 type GamePublishStatusWidgetProps = {
     status: Game['publishStatus'];
 };
 
 const GamePublishStatusWidget = ({ status }: GamePublishStatusWidgetProps) => {
-    const variant: StatusWidgetProps['variant'] = useMemo(() => {
-        switch (status) {
-            case 'NEW':
-                return 'primary';
-            case 'TESTING':
-                return 'warning';
-            case 'PUBLISHED':
-                return 'success';
-            default:
-                return 'muted';
-        }
-    }, [status]);
+    const [text, setText] = useState<string>('Unknown');
+    const [variant, setVariant] =
+        useState<React.ComponentProps<typeof StatusWidget>['variant']>('muted');
 
-    const text: string = useMemo(() => {
+    useEffect(() => {
         switch (status) {
-            case 'NEW':
-                return 'New';
-            case 'ARCHIVED':
-                return 'Archived';
+            case 'NOT_PUBLISHED':
+                setVariant('muted');
+                setText('Not Published');
+                break;
             case 'TESTING':
-                return 'Testing';
+                setVariant('warning');
+                setText('Testing');
+                break;
             case 'PUBLISHED':
-                return 'Published';
+                setVariant('success');
+                setText('Published');
+                break;
             default:
-                return 'UNKNOWN';
+                setVariant('muted');
+                setText('Unknown');
+                break;
         }
     }, [status]);
 
@@ -39,3 +36,4 @@ const GamePublishStatusWidget = ({ status }: GamePublishStatusWidgetProps) => {
 };
 
 export default GamePublishStatusWidget;
+
