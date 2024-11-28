@@ -7,10 +7,10 @@ type GamesTableProps = {
 
 const GamesTable = ({ games }: GamesTableProps = { games: [] }) => {
     return (
-        <table className="w-full table-fixed">
-            <thead>
+        <table className="card-table">
+            <thead className="hidden md:table-header-group">
                 <tr>
-                    <th className="w-72">Game</th>
+                    <th className="hidden w-72 md:table-cell">Game</th>
                     <th className="hidden w-40 md:table-cell">Publish Status</th>
                     <th className="hidden w-44 lg:table-cell">Provider and Studio</th>
                     <th className="hidden w-28 text-right xl:table-cell">RTP</th>
@@ -29,4 +29,3 @@ const GamesTable = ({ games }: GamesTableProps = { games: [] }) => {
 };
 
 export default GamesTable;
-

@@ -53,19 +53,37 @@
             'calt' 1;
     }
 
-    table th {
-        @apply h-8 bg-background px-4 text-left text-xs font-normal text-muted-foreground;
+    table.card-table {
+        @apply border-separate border-spacing-y-2;
     }
 
-    table td {
-        @apply border-t px-4 py-3 text-sm;
+    table.card-table th {
+        @apply h-8 px-4 text-left text-xs font-normal text-muted-foreground;
     }
 
-    table tbody tr:nth-child(2n) td {
-        @apply bg-background/25;
+    table.card-table td {
+        @apply px-4 py-3 text-sm;
     }
 
-    table tbody tr:hover td {
-        @apply bg-background/50;
+    table.card-table thead tr {
+        @apply bg-foreground/5;
+    }
+
+    table.card-table tr {
+        @apply rounded-md ring-1 ring-border;
+    }
+
+    table.card-table tr th:first-of-type,
+    table.card-table tr td:first-of-type {
+        @apply rounded-l-md;
+    }
+
+    table.card-table tr th:last-of-type,
+    table.card-table tr td:last-of-type {
+        @apply rounded-r-md;
+    }
+
+    table.card-table tbody tr {
+        @apply bg-card transition-all duration-300 hover:bg-foreground/5;
     }
 }

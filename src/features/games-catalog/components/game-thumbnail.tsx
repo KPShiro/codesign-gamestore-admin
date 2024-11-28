@@ -15,7 +15,7 @@ const GameThumbnail = ({ id, thumbnail, size = 'sm' }: GameThumbnailProps) => {
 
     return (
         <button
-            className="group relative isolate flex flex-shrink-0 flex-grow-0 cursor-pointer select-none items-center justify-center rounded-sm text-muted-foreground"
+            className="group relative isolate flex flex-shrink-0 flex-grow-0 cursor-pointer select-none items-center justify-center rounded-sm border text-muted-foreground"
             onClick={() => navigate(`/casino/${id}`)}
         >
             <div className="absolute inset-0 z-10 flex items-center justify-center rounded-sm bg-foreground/25 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 group-active:bg-foreground/50">
