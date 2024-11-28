@@ -5,7 +5,7 @@ import { cva, VariantProps } from 'class-variance-authority';
 import { ShowToastConfig } from '../hooks/use-toast-context';
 
 const variants = cva(
-    'flex flex-col gap-4 border border-l-[5px] rounded transition-all bg-background p-4 pr-6 shadow-xl animate-slide-left',
+    'flex flex-col gap-4 border border-l-4 rounded transition-all bg-card p-4 pr-6 shadow-xl animate-slide-left',
     {
         variants: {
             variant: {

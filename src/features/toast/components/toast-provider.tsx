@@ -19,7 +19,7 @@ const ToastProvider = ({ children, ...props }: ToastProviderProps) => {
                 {toasts.map((toast, index) => (
                     <Toast key={index} config={toast} />
                 ))}
-                <RadixToast.Viewport className="fixed bottom-0 right-0 z-[9999] flex max-w-sm flex-col gap-2 p-6" />
+                <RadixToast.Viewport className="fixed bottom-6 right-6 z-[9999] flex max-w-sm flex-col gap-2" />
             </ToastContext.Provider>
         </RadixToast.Provider>
     );

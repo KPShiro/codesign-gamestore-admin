@@ -16,7 +16,7 @@ const CreateGameForm = ({ onSubmit }: CreateGameFormProps) => {
     const form = useForm<CreateGameFormData>({
         resolver: zodResolver(CreateGameFormSchema),
         defaultValues: {
-            status: 'NEW',
+            status: 'NOT_PUBLISHED',
             rtp: 90,
             maxWin: 1000,
         },
