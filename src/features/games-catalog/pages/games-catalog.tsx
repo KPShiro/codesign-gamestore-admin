@@ -2,7 +2,7 @@ import LayoutPage from '@components/layouts/layout-page';
 import Button from '@components/ui/button';
 import Icon from '@components/ui/icon';
 import CreateGameButton from '@features/games-catalog/components/create-game/create-game-button';
-import GamesFilters from '@features/games-catalog/components/games-table-filters/games-filters';
+import GamesTableFilters from '@features/games-catalog/components/games-table-filters';
 import GamesTable from '@features/games-catalog/components/games-table/games-table';
 import { useFilteredGames } from '@features/games-catalog/hooks/use-filtered-games';
 import { useGamesFilters } from '@features/games-catalog/hooks/use-games-filters';
@@ -31,7 +31,7 @@ const GamesCatalog = () => {
                 <h1 className="text-xl/none font-medium">Games Catalog</h1>
             </div>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_auto]">
-                <GamesFilters />
+                <GamesTableFilters />
                 <CreateGameButton />
             </div>
             {games.length > 0 ? <GamesTable games={games} /> : null}
