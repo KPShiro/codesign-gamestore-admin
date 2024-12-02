@@ -61,3 +61,14 @@ export function formatDateTime(date?: Date | number): string {
     return formatter.format(date);
 }
 
+export function getInitials(text: string, separator: string = ' '): string {
+    const parts = text.split(separator, 2);
+
+    if (parts.length === 1) {
+        return getInitials(parts[0], '');
+    }
+
+    return parts.reduce((prev, curr) => {
+        return prev + curr[0].toUpperCase();
+    }, '');
+}

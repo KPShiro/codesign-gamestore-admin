@@ -11,7 +11,7 @@ const NotificationsProvider = ({ children }: React.PropsWithChildren) => {
     const [notifications, setNotifications] = useState<Notification[]>([
         {
             id: randomizeId(),
-            author: 'Peter Parker',
+            author: 'Peter',
             timestamp: new Date('2024-11-29T09:00:00').getTime(),
             isRead: true,
             title: (
@@ -85,4 +85,3 @@ const NotificationsProvider = ({ children }: React.PropsWithChildren) => {
 };
 
 export default NotificationsProvider;
-
