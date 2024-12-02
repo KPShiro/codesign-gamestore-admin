@@ -1,21 +1,28 @@
 import NotificationCard from '@features/notifications/components/notification-card';
-import { AppNotification } from '@features/notifications/hooks/use-notifications-context';
+import { Notification } from '@features/notifications/hooks/use-notifications-context';
+import { useMemo } from 'react';
 
 type NotificationsListProps = {
-    notifications: AppNotification[];
+    notifications: Notification[];
 };
 
 const NotificationsList = ({ notifications }: NotificationsListProps) => {
+    const sortedNotifications = useMemo(() => {
+        return [...notifications].sort((a, b) => {
+            return a.timestamp >= b.timestamp ? -1 : 1;
+        });
+    }, [notifications]);
+
     return (
-        <div className="flex flex-col gap-2 p-1">
-            {notifications.length === 0 ? (
-                <div className="p-4 text-center">
+        <div className="flex flex-col gap-1 p-1">
+            {sortedNotifications.length === 0 ? (
+                <div className="flex h-40 items-center justify-center text-center">
                     <span className="text-sm text-muted-foreground">
                         All notifications were read
                     </span>
                 </div>
             ) : null}
-            {notifications.map((notification) => (
+            {sortedNotifications.map((notification) => (
                 <NotificationCard key={notification.id} notification={notification} />
             ))}
         </div>
@@ -23,3 +30,4 @@ const NotificationsList = ({ notifications }: NotificationsListProps) => {
 };
 
 export default NotificationsList;
+

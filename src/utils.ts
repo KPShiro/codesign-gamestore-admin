@@ -54,9 +54,10 @@ export function formatPercent(value: number): string {
 export function formatDateTime(date?: Date | number): string {
     const browserLocale = getBrowserLocale();
     const formatter = new Intl.DateTimeFormat(browserLocale, {
-        dateStyle: 'full',
+        dateStyle: 'medium',
         timeStyle: 'short',
     });
 
     return formatter.format(date);
 }
+

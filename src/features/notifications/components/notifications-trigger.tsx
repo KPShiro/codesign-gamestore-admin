@@ -1,30 +1,24 @@
-import Icon from '@/components/ui/icon';
-import { cn } from '@/utils';
 import Button from '@components/ui/button';
 import Popover from '@components/ui/popover';
 import { useNotificationsContext } from '@features/notifications/hooks/use-notifications-context';
-import { InboxIcon } from 'lucide-react';
+import { BellDotIcon, BellIcon } from 'lucide-react';
+import { useState } from 'react';
 import NotificationsList from './notifications-list';
 
 const NotificationsTrigger = () => {
+    const [opened, setOpened] = useState<boolean>(false);
     const { notifications, markAllAsRead } = useNotificationsContext();
-    const hasNotifications = notifications.length > 0;
     const unreadNotifications = notifications.filter((notification) => !notification.isRead);
+    const hasNotifications = unreadNotifications.length > 0;
 
     return (
-        <Popover>
-            <Popover.Trigger
-                className={cn(
-                    'disabled:opacity-disabled flex h-10 items-center justify-center gap-2 rounded border',
-                    hasNotifications ? 'px-4' : 'aspect-square'
-                )}
-            >
-                <Icon icon={InboxIcon} />
-                {hasNotifications ? (
-                    <span className="text-sm font-semibold">
-                        {unreadNotifications.length} unread
-                    </span>
-                ) : null}
+        <Popover onOpenChange={setOpened}>
+            <Popover.Trigger asChild>
+                <Button
+                    variant={hasNotifications ? 'tonal' : 'outlined'}
+                    icon={hasNotifications ? BellDotIcon : BellIcon}
+                    ping={hasNotifications && !opened}
+                />
             </Popover.Trigger>
             <Popover.Content className="w-96 select-none">
                 <div className="flex items-center justify-between border-b p-4">
@@ -33,14 +27,15 @@ const NotificationsTrigger = () => {
                         variant={'outlined'}
                         size={'xs'}
                         text="Mark all as read"
-                        disabled={notifications.length === 0}
+                        disabled={!hasNotifications}
                         onClick={markAllAsRead}
                     />
                 </div>
-                <NotificationsList notifications={unreadNotifications} />
+                <NotificationsList notifications={notifications} />
             </Popover.Content>
         </Popover>
     );
 };
 
 export default NotificationsTrigger;
+

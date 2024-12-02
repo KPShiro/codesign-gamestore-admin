@@ -5,7 +5,7 @@ import { LoaderCircleIcon, LucideProps } from 'lucide-react';
 import React from 'react';
 
 const variants = cva(
-    'relative inline-flex gap-2 min-w-fit flex-shrink-0 items-center justify-center font-medium  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 select-none   disabled:opacity-disabled disabled:pointer-events-none ring-offset-background overflow-hidden border border-transparent',
+    'relative inline-flex gap-2 min-w-fit flex-shrink-0 items-center justify-center font-medium  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 select-none disabled:opacity-disabled disabled:pointer-events-none ring-offset-background border border-transparent',
     {
         variants: {
             variant: {
@@ -31,6 +31,7 @@ const variants = cva(
 type ButtonProps = React.ComponentPropsWithoutRef<'button'> &
     VariantProps<typeof variants> & {
         loading?: boolean;
+        ping?: boolean;
         icon?: React.ElementType<LucideProps>;
         text?: string;
     };
@@ -44,6 +45,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             size = 'md',
             className,
             loading = false,
+            ping = false,
             ...props
         },
         ref
@@ -52,10 +54,17 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             <button
                 {...props}
                 disabled={props.disabled}
-                className={cn(variants({ variant, size, className }), icon && 'aspect-square px-0')}
+                className={cn(
+                    variants({ variant, size, className }),
+                    icon && 'aspect-square px-0',
+                    'relative'
+                )}
                 ref={ref}
                 title={text ?? props.title}
             >
+                {ping ? (
+                    <div className="animate-ping-ring absolute inset-0 rounded-[inherit]"></div>
+                ) : null}
                 {loading ? (
                     <div className="absolute inset-0 flex items-center justify-center">
                         <Icon icon={LoaderCircleIcon} className="animate-spin" />
@@ -71,3 +80,4 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = 'Button';
 
 export default Button;
+

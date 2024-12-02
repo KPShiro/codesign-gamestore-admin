@@ -2,17 +2,20 @@ import { isNotDefined } from '@/utils';
 import { createContext, ReactNode, useContext } from 'react';
 
 type AppNotification = {
+    title: ReactNode | string;
+    description?: ReactNode | string;
+};
+
+type Notification = AppNotification & {
     id: string;
     author: string;
-    title: ReactNode;
-    description?: ReactNode;
     timestamp: number;
     isRead: boolean;
 };
 
 type NotificationsContextType = {
-    notifications: AppNotification[];
-    add: (notification: Omit<AppNotification, 'id' | 'timestamp' | 'isRead'>) => void;
+    notifications: Notification[];
+    add: (notification: AppNotification) => void;
     markAllAsRead: () => void;
 };
 
@@ -32,5 +35,7 @@ export {
     NotificationsContext,
     useNotificationsContext,
     type AppNotification,
+    type Notification,
     type NotificationsContextType,
 };
+

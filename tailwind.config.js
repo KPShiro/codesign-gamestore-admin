@@ -107,6 +107,14 @@ export default {
                         transform: 'translateX(0)',
                     },
                 },
+                'ping-ring': {
+                    '0%': {
+                        'box-shadow': '0 0 0 0 hsla(var(--color-primary) / 50%)',
+                    },
+                    '75%, 100%': {
+                        'box-shadow': '0 0 0 8px hsla(var(--color-primary) / 0%)',
+                    },
+                },
             },
             animation: {
                 'scale-fade-in': 'scale-fade-in 0.25s ease-in-out',
@@ -114,8 +122,10 @@ export default {
                 'slide-right': 'slide-right 0.25s ease-in-out',
                 'slide-down': 'slide-down 0.25s ease-in-out',
                 'slide-left': 'slide-left 0.25s ease-in-out',
+                'ping-ring': 'ping-ring 2s cubic-bezier(0, 0, 0.2, 1) infinite',
             },
         },
     },
     plugins: [],
 };
+
