@@ -16,8 +16,8 @@ const variants = cva(
                 text: 'text-foreground hover:text-primary hover:bg-primary/15 disabled:bg-transparent active:bg-primary/20',
             },
             size: {
-                xs: 'h-8 px-3 text-xs rounded-sm',
-                sm: 'h-9 px-3.5 text-sm rounded-sm',
+                xs: 'h-6 px-1.5 text-xs rounded-sm',
+                sm: 'h-8 px-3 text-xs rounded-sm',
                 md: 'h-10 px-4 text-sm rounded-md',
             },
         },
@@ -63,7 +63,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 title={text ?? props.title}
             >
                 {ping ? (
-                    <div className="animate-ping-ring absolute inset-0 rounded-[inherit]"></div>
+                    <div className="absolute inset-0 animate-ping-ring rounded-[inherit]"></div>
                 ) : null}
                 {loading ? (
                     <div className="absolute inset-0 flex items-center justify-center">
@@ -80,4 +80,3 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = 'Button';
 
 export default Button;
-
