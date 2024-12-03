@@ -53,6 +53,10 @@
             'calt' 1;
     }
 
+    a {
+        @apply font-medium text-primary hover:underline;
+    }
+
     table.card-table {
         @apply border-separate border-spacing-y-2;
     }

@@ -20,6 +20,12 @@ export function containsSearchString(source: string, search: string) {
     return new RegExp(trimmedSearchString, 'i').test(trimmedSourceString);
 }
 
+export const randomizeId = (length: number = 16) => {
+    return Math.random()
+        .toString(36)
+        .slice(2, 2 + length);
+};
+
 export function getBrowserLocale(): string {
     return navigator.language ?? 'en-US';
 }
@@ -43,4 +49,14 @@ export function formatPercent(value: number): string {
     });
 
     return formatter.format(value);
+}
+
+export function formatDateTime(date?: Date | number): string {
+    const browserLocale = getBrowserLocale();
+    const formatter = new Intl.DateTimeFormat(browserLocale, {
+        dateStyle: 'medium',
+        timeStyle: 'short',
+    });
+
+    return formatter.format(date);
 }

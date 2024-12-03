@@ -1,6 +1,7 @@
+import { NotificationsTrigger } from '@/features/notifications';
 import { Sidebar } from '@components/sidebar';
 import Button from '@components/ui/button';
-import { BellIcon, LogOutIcon, SettingsIcon } from 'lucide-react';
+import { LogOutIcon, SettingsIcon } from 'lucide-react';
 import { Outlet } from 'react-router-dom';
 
 const DefaultLayout = () => {
@@ -12,7 +13,7 @@ const DefaultLayout = () => {
                     <div className="text-muted-foreground">Gamestore</div>
                 </div>
                 <div className="flex items-center gap-2">
-                    <Button type="button" variant="outlined" icon={BellIcon} />
+                    <NotificationsTrigger />
                     <Button type="button" variant="outlined" icon={SettingsIcon} />
                     <Button type="button" variant="outlined" icon={LogOutIcon} />
                 </div>
@@ -28,4 +29,3 @@ const DefaultLayout = () => {
 };
 
 export default DefaultLayout;
-
