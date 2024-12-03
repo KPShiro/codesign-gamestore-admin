@@ -1,8 +1,11 @@
-import FileInput from '@/components/file-input';
 import { DialogFooter } from '@components/dialog';
+import FileInput from '@components/file-input';
 import TextInput from '@components/text-input';
 import Button from '@components/ui/button';
 import FormField from '@components/ui/form';
+import Select from '@components/ui/select';
+import { useGamesProviders } from '@features/games-catalog/hooks/use-games-providers';
+import { useGamesStudios } from '@features/games-catalog/hooks/use-games-studios';
 import {
     GameMetadataFormData,
     GameMetadataFormSchema,
@@ -21,6 +24,9 @@ const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
         mode: 'onChange',
         defaultValues: values,
     });
+
+    const { data: providers } = useGamesProviders();
+    const { data: studios } = useGamesStudios();
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -53,6 +59,44 @@ const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
                             onChange={field.onChange}
                             value={field.value}
                         />
+                    )}
+                />
+            </FormField>
+            <FormField className="">
+                <FormField.Label>Provider</FormField.Label>
+                <Controller
+                    control={control}
+                    name="providerId"
+                    render={({ field }) => (
+                        <Select value={field.value} onValueChange={field.onChange}>
+                            <Select.Trigger className="min-w-40" placeholder="Select provider" />
+                            <Select.Content>
+                                {providers.map((provider) => (
+                                    <Select.Item key={provider.id} value={provider.id}>
+                                        {provider.name}
+                                    </Select.Item>
+                                ))}
+                            </Select.Content>
+                        </Select>
+                    )}
+                />
+            </FormField>
+            <FormField>
+                <FormField.Label>Studio</FormField.Label>
+                <Controller
+                    control={control}
+                    name="studioId"
+                    render={({ field }) => (
+                        <Select value={field.value} onValueChange={field.onChange}>
+                            <Select.Trigger className="min-w-40" placeholder="Select provider" />
+                            <Select.Content>
+                                {studios.map((studio) => (
+                                    <Select.Item key={studio.id} value={studio.id}>
+                                        {studio.name}
+                                    </Select.Item>
+                                ))}
+                            </Select.Content>
+                        </Select>
                     )}
                 />
             </FormField>
