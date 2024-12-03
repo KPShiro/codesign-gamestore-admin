@@ -70,7 +70,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                         <Icon icon={LoaderCircleIcon} className="animate-spin" />
                     </div>
                 ) : null}
-                {icon ? <Icon icon={icon} className={cn(loading && 'opacity-0')} /> : null}
+                {icon ? (
+                    <Icon
+                        icon={icon}
+                        size={size === 'xs' ? 12 : 16}
+                        strokeWidth={size === 'xs' ? 1.25 : 1.5}
+                        className={cn(loading && 'opacity-0')}
+                    />
+                ) : null}
                 {text && !icon ? <div className={cn(loading && 'opacity-0')}>{text}</div> : null}
             </button>
         );

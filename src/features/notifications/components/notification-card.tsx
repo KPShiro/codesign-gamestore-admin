@@ -1,30 +1,37 @@
-import { cn, formatDateTime, getInitials } from '@/utils';
+import Button from '@/components/ui/button';
+import { cn, formatDateTime } from '@/utils';
+import { useNotifications } from '@features/notifications/hooks/use-notifications';
 import { Notification } from '@features/notifications/hooks/use-notifications-context';
+import { CheckIcon } from 'lucide-react';
 
 type NotificationProps = {
     notification: Notification;
 };
 
 const NotificationCard = ({ notification }: NotificationProps) => {
-    const authorInitials = getInitials(notification.author);
+    const { markAsRead } = useNotifications();
 
     return (
         <div
             className={cn(
-                'relative flex cursor-default gap-4 rounded-sm border border-transparent p-3 text-xs',
-                notification.isRead ? 'hover:bg-foreground/5' : 'border-primary/5 bg-primary/5'
+                'group relative isolate flex cursor-default gap-4 rounded-sm border border-transparent p-3 text-sm',
+                notification.isRead ? 'hover:bg-foreground/5' : 'bg-primary/5'
             )}
         >
-            <div
-                title={notification.author}
-                className="flex size-9 flex-shrink-0 flex-grow-0 items-center justify-center rounded-full border bg-foreground/5"
-            >
-                <span className="text-xs font-medium text-muted-foreground">{authorInitials}</span>
+            <div className="absolute -top-4 right-3 z-10 hidden space-x-0.5 rounded-sm border bg-card p-0.5 shadow group-hover:block">
+                <Button
+                    size={'xs'}
+                    variant={'text'}
+                    icon={CheckIcon}
+                    title="Mark as read"
+                    onClick={() => markAsRead(notification.id)}
+                    disabled={notification.isRead}
+                />
             </div>
             <div className="flex flex-col gap-3">
                 <div className="space-y-1">
                     <h5>{notification.title}</h5>
-                    <h6 className="text-muted-foreground">
+                    <h6 className="text-xs text-muted-foreground">
                         {formatDateTime(notification.timestamp)}
                     </h6>
                 </div>

@@ -8,46 +8,7 @@ import {
 import { useCallback, useMemo, useState } from 'react';
 
 const NotificationsProvider = ({ children }: React.PropsWithChildren) => {
-    const [notifications, setNotifications] = useState<Notification[]>([
-        {
-            id: randomizeId(),
-            author: 'Peter',
-            timestamp: new Date('2024-11-29T09:00:00').getTime(),
-            isRead: true,
-            title: (
-                <>
-                    <span className="font-bold text-foreground">The Witcher 3</span> was added to
-                    the games catalog
-                </>
-            ),
-        },
-        {
-            id: randomizeId(),
-            author: 'Peter Parker',
-            timestamp: new Date('2024-11-29T08:42:00').getTime(),
-            isRead: true,
-            title: (
-                <>
-                    <span className="font-bold text-foreground">The Witcher 3</span> was added to
-                    the games catalog
-                </>
-            ),
-        },
-        {
-            id: randomizeId(),
-            author: 'Peter Parker',
-            timestamp: new Date('2024-11-29T10:00:00').getTime(),
-            isRead: false,
-            title: (
-                <>
-                    <span className="font-bold text-foreground">The Sims</span> was added to the
-                    games catalog
-                </>
-            ),
-            description:
-                'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor totam temporibus, consectetur quis eum commodi cum eaque earum. Optio iusto beatae a, provident voluptatibus magni magnam ex? Praesentium, suscipit molestias?',
-        },
-    ]);
+    const [notifications, setNotifications] = useState<Notification[]>([]);
 
     const add = useCallback((notification: AppNotification) => {
         setNotifications((currentNotifications) => [
@@ -60,6 +21,27 @@ const NotificationsProvider = ({ children }: React.PropsWithChildren) => {
                 isRead: false,
                 ...notification,
             },
+        ]);
+    }, []);
+
+    const remove = useCallback((id: Notification['id']) => {
+        setNotifications((notifications) => [
+            ...notifications.filter((notification) => notification.id !== id),
+        ]);
+    }, []);
+
+    const markAsRead = useCallback((id: Notification['id']) => {
+        setNotifications((notifications) => [
+            ...notifications.map((notification) => {
+                if (notification.id !== id) {
+                    return notification;
+                }
+
+                return {
+                    ...notification,
+                    isRead: true,
+                };
+            }),
         ]);
     }, []);
 
@@ -76,6 +58,8 @@ const NotificationsProvider = ({ children }: React.PropsWithChildren) => {
         () => ({
             notifications,
             add,
+            remove,
+            markAsRead,
             markAllAsRead,
         }),
         [notifications]

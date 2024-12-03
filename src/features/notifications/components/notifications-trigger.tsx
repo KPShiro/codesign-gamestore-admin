@@ -25,7 +25,7 @@ const NotificationsTrigger = () => {
                     <h4 className="text-sm font-medium">Notifications</h4>
                     <Button
                         variant={'outlined'}
-                        size={'xs'}
+                        size={'sm'}
                         text="Mark all as read"
                         disabled={!hasNotifications}
                         onClick={markAllAsRead}
@@ -38,4 +38,3 @@ const NotificationsTrigger = () => {
 };
 
 export default NotificationsTrigger;
-

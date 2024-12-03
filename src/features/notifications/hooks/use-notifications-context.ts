@@ -16,6 +16,8 @@ type Notification = AppNotification & {
 type NotificationsContextType = {
     notifications: Notification[];
     add: (notification: AppNotification) => void;
+    remove: (id: Notification['id']) => void;
+    markAsRead: (id: Notification['id']) => void;
     markAllAsRead: () => void;
 };
 
@@ -38,4 +40,3 @@ export {
     type Notification,
     type NotificationsContextType,
 };
-
