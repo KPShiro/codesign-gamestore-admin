@@ -22,7 +22,7 @@
         --color-muted-foreground: 220 14% 56%;
 
         --color-primary: 273 67% 39%;
-        --color-primary-foreground: 287 80% 90%;
+        --color-primary-foreground: 286 65% 93%;
 
         --color-success: 116 69% 29%;
         --color-success-foreground: 95 75% 89%;
@@ -91,3 +91,4 @@
         @apply bg-card transition-all duration-300 hover:bg-foreground/5;
     }
 }
+
