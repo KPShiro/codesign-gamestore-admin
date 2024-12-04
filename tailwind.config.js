@@ -57,7 +57,23 @@ export default {
                 xs: 'calc(var(--radius) - 0.25rem)',
             },
             keyframes: {
-                'scale-fade-in': {
+                'fade-in': {
+                    '0%': {
+                        opacity: 0,
+                    },
+                    '100%': {
+                        opacity: 1,
+                    },
+                },
+                'fade-out': {
+                    '0%': {
+                        opacity: 1,
+                    },
+                    '100%': {
+                        opacity: 0,
+                    },
+                },
+                'scale-in': {
                     '0%': {
                         opacity: 0,
                         transform: 'scale(0.8)',
@@ -65,6 +81,16 @@ export default {
                     '100%': {
                         opacity: 1,
                         transform: 'scale(1)',
+                    },
+                },
+                'scale-out': {
+                    '0%': {
+                        opacity: 1,
+                        transform: 'scale(1)',
+                    },
+                    '100%': {
+                        opacity: 0,
+                        transform: 'scale(0.8)',
                     },
                 },
                 'slide-up': {
@@ -117,11 +143,14 @@ export default {
                 },
             },
             animation: {
-                'scale-fade-in': 'scale-fade-in 0.25s ease-in-out',
-                'slide-up': 'slide-down 0.25s ease-in-out',
-                'slide-right': 'slide-right 0.25s ease-in-out',
-                'slide-down': 'slide-down 0.25s ease-in-out',
-                'slide-left': 'slide-left 0.25s ease-in-out',
+                'fade-in': 'fade-in 0.3s cubic-bezier(0, 0, 0.2, 1)',
+                'fade-out': 'fade-out 0.3s cubic-bezier(0, 0, 0.2, 1)',
+                'scale-in': 'scale-in 0.3s cubic-bezier(0, 0, 0.2, 1)',
+                'scale-out': 'scale-out 0.3s cubic-bezier(0, 0, 0.2, 1)',
+                'slide-up': 'slide-down 0.3s cubic-bezier(0, 0, 0.2, 1)',
+                'slide-right': 'slide-right 0.3s cubic-bezier(0, 0, 0.2, 1)',
+                'slide-down': 'slide-down 0.3s cubic-bezier(0, 0, 0.2, 1)',
+                'slide-left': 'slide-left 0.3s cubic-bezier(0, 0, 0.2, 1)',
                 'ping-ring': 'ping-ring 2s cubic-bezier(0, 0, 0.2, 1) infinite',
             },
         },
