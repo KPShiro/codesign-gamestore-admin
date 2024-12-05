@@ -1,7 +1,7 @@
-import { DialogFooter } from '@components/dialog';
 import FileInput from '@components/file-input';
 import TextInput from '@components/text-input';
 import Button from '@components/ui/button';
+import { DialogFooter } from '@components/ui/dialog';
 import FormField from '@components/ui/form';
 import Select from '@components/ui/select';
 import { useGamesProviders } from '@features/games-catalog/hooks/use-games-providers';

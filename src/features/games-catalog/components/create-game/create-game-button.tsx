@@ -1,11 +1,11 @@
+import Button from '@components/ui/button';
 import {
     Dialog,
     DialogContent,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from '@components/dialog';
-import Button from '@components/ui/button';
+} from '@components/ui/dialog';
 import { CreateGameFormData } from '@features/games-catalog/schemas/create-game';
 import { useNotifications } from '@features/notifications';
 import React, { useState } from 'react';

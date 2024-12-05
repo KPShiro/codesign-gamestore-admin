@@ -1,6 +1,6 @@
-import NumberInput from '@/components/number-input';
-import { DialogFooter } from '@components/dialog';
+import NumberInput from '@components/number-input';
 import Button from '@components/ui/button';
+import { DialogFooter } from '@components/ui/dialog';
 import FormField from '@components/ui/form';
 import {
     GameConfigurationFormData,
@@ -53,4 +53,3 @@ const GameConfigurationForm = ({ onSubmit, values }: GameConfigurationFormProps)
 };
 
 export default GameConfigurationForm;
-
