@@ -93,7 +93,7 @@ export default {
                         transform: 'scale(0.8)',
                     },
                 },
-                'slide-up': {
+                'slide-in-up': {
                     '0%': {
                         opacity: 0,
                         transform: 'translateY(10%)',
@@ -103,17 +103,17 @@ export default {
                         transform: 'translateY(0)',
                     },
                 },
-                'slide-right': {
+                'slide-in-right': {
                     '0%': {
                         opacity: 0,
-                        transform: 'translateX(0)',
+                        transform: 'translateX(-10%)',
                     },
                     '100%': {
                         opacity: 1,
-                        transform: 'translateX(100%)',
+                        transform: 'translateX(0)',
                     },
                 },
-                'slide-down': {
+                'slide-in-down': {
                     '0%': {
                         opacity: 0,
                         transform: 'translateY(-10%)',
@@ -123,14 +123,54 @@ export default {
                         transform: 'translateY(0)',
                     },
                 },
-                'slide-left': {
+                'slide-in-left': {
                     '0%': {
                         opacity: 0,
-                        transform: 'translateX(100%)',
+                        transform: 'translateX(10%)',
                     },
                     '100%': {
                         opacity: 1,
                         transform: 'translateX(0)',
+                    },
+                },
+                'slide-out-up': {
+                    '0%': {
+                        opacity: 1,
+                        transform: 'translateY(0)',
+                    },
+                    '100%': {
+                        opacity: 0,
+                        transform: 'translateY(-10%)',
+                    },
+                },
+                'slide-out-right': {
+                    '0%': {
+                        opacity: 1,
+                        transform: 'translateX(0)',
+                    },
+                    '100%': {
+                        opacity: 0,
+                        transform: 'translateX(10%)',
+                    },
+                },
+                'slide-out-down': {
+                    '0%': {
+                        opacity: 1,
+                        transform: 'translateY(0)',
+                    },
+                    '100%': {
+                        opacity: 0,
+                        transform: 'translateY(10%)',
+                    },
+                },
+                'slide-out-left': {
+                    '0%': {
+                        opacity: 1,
+                        transform: 'translateX(0)',
+                    },
+                    '100%': {
+                        opacity: 0,
+                        transform: 'translateX(-10%)',
                     },
                 },
                 'ping-ring': {
@@ -147,14 +187,17 @@ export default {
                 'fade-out': 'fade-out 0.3s cubic-bezier(0, 0, 0.2, 1)',
                 'scale-in': 'scale-in 0.3s cubic-bezier(0, 0, 0.2, 1)',
                 'scale-out': 'scale-out 0.3s cubic-bezier(0, 0, 0.2, 1)',
-                'slide-up': 'slide-down 0.3s cubic-bezier(0, 0, 0.2, 1)',
-                'slide-right': 'slide-right 0.3s cubic-bezier(0, 0, 0.2, 1)',
-                'slide-down': 'slide-down 0.3s cubic-bezier(0, 0, 0.2, 1)',
-                'slide-left': 'slide-left 0.3s cubic-bezier(0, 0, 0.2, 1)',
+                'slide-in-up': 'slide-in-up 0.3s cubic-bezier(0, 0, 0.2, 1)',
+                'slide-in-right': 'slide-in-right 0.3s cubic-bezier(0, 0, 0.2, 1)',
+                'slide-in-down': 'slide-in-down 0.3s cubic-bezier(0, 0, 0.2, 1)',
+                'slide-in-left': 'slide-in-left 0.3s cubic-bezier(0, 0, 0.2, 1)',
+                'slide-out-up': 'slide-out-up 0.3s cubic-bezier(0, 0, 0.2, 1)',
+                'slide-out-right': 'slide-out-right 0.3s cubic-bezier(0, 0, 0.2, 1)',
+                'slide-out-down': 'slide-out-down 0.3s cubic-bezier(0, 0, 0.2, 1)',
+                'slide-out-left': 'slide-out-left 0.3s cubic-bezier(0, 0, 0.2, 1)',
                 'ping-ring': 'ping-ring 2s cubic-bezier(0, 0, 0.2, 1) infinite',
             },
         },
     },
     plugins: [],
 };
-

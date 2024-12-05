@@ -9,7 +9,7 @@ const App = () => {
 
     return (
         <NotificationsProvider>
-            <ToastProvider>
+            <ToastProvider duration={3000}>
                 <RouterProvider router={appRouter} future={{ v7_startTransition: true }} />
             </ToastProvider>
         </NotificationsProvider>

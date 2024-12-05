@@ -1,11 +1,11 @@
-import Button from '@/components/ui/button';
 import { cn } from '@/utils';
+import Button from '@components/ui/button';
+import { ShowToastConfig } from '@features/toast/hooks/use-toast-context';
 import * as RadixToast from '@radix-ui/react-toast';
 import { cva, VariantProps } from 'class-variance-authority';
-import { ShowToastConfig } from '../hooks/use-toast-context';
 
 const variants = cva(
-    'flex flex-col gap-4 border border-l-4 rounded transition-all bg-card p-4 pr-6 shadow-xl animate-slide-left',
+    'flex flex-col gap-4 border border-l-4 rounded transition-all bg-card p-4 pr-6 shadow-xl data-[state=closed]:animate-slide-out-right data-[state=open]:animate-slide-in-left',
     {
         variants: {
             variant: {
