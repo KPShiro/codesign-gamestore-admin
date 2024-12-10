@@ -73,7 +73,7 @@ type PopoverMenuOptionsProps = Pick<React.ComponentProps<typeof Popover.Content>
 
 const PopoverMenuOptions = ({ children, ...props }: PopoverMenuOptionsProps) => {
     return (
-        <Popover.Content {...props} className="min-w-32 max-w-64 overflow-scroll py-2">
+        <Popover.Content {...props} className="min-w-32 max-w-64 py-2">
             {children}
         </Popover.Content>
     );
@@ -107,4 +107,3 @@ PopoverMenu.Group = PopoverMenuGroup;
 PopoverMenu.Option = PopoverMenuOption;
 
 export default PopoverMenu;
-
