@@ -1,10 +1,9 @@
 import { formatNumber, formatPercent } from '@/utils';
-import Button from '@components/ui/button';
 import GameThumbnail from '@features/games-catalog/components/game-thumbnail';
 import PublishStatusWidget from '@features/games-catalog/components/publish-status-widget';
 import SupportedCoinsWidget from '@features/games-catalog/components/supported-coins-widget';
 import { Game } from '@features/games-catalog/models/game';
-import { EllipsisIcon } from 'lucide-react';
+import GamesTableItemMenu from './games-table-item-menu';
 
 type GamesTableItemProps = {
     game: Game;
@@ -12,7 +11,7 @@ type GamesTableItemProps = {
 
 const GamesTableItem = ({ game }: GamesTableItemProps) => {
     return (
-        <tr key={game.id}>
+        <tr>
             <td>
                 <div className="flex items-center gap-4">
                     <GameThumbnail id={game.id} thumbnail={game.thumbnail} size={'sm'} />
@@ -43,10 +42,11 @@ const GamesTableItem = ({ game }: GamesTableItemProps) => {
                 <SupportedCoinsWidget coins={game.coins} />
             </td>
             <td className="text-right">
-                <Button variant="text" size="sm" icon={EllipsisIcon} />
+                <GamesTableItemMenu />
             </td>
         </tr>
     );
 };
 
 export default GamesTableItem;
+
