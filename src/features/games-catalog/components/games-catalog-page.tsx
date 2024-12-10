@@ -51,12 +51,7 @@ const GamesCatalogPage = () => {
                             It seems we can’t find any results based on your search.
                         </p>
                     </div>
-                    <Button
-                        variant={'outlined'}
-                        size={'xs'}
-                        text="Reset filters"
-                        onClick={resetFilters}
-                    />
+                    <Button variant={'outlined'} text="Reset filters" onClick={resetFilters} />
                 </div>
             ) : null}
         </LayoutPage>
