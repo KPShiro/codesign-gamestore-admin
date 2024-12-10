@@ -42,11 +42,10 @@ const GamesTableItem = ({ game }: GamesTableItemProps) => {
                 <SupportedCoinsWidget coins={game.coins} />
             </td>
             <td className="text-right">
-                <GamesTableItemMenu />
+                <GamesTableItemMenu id={game.id} />
             </td>
         </tr>
     );
 };
 
 export default GamesTableItem;
-

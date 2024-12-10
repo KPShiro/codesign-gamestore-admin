@@ -1,73 +1,31 @@
+import { Action } from '@/hooks/use-action';
 import PopoverMenu from '@components/popover-menu';
 import Button from '@components/ui/button';
-import { EditIcon, EllipsisIcon, EyeIcon, LucideProps, PlayIcon, TrashIcon } from 'lucide-react';
-
-type ActionMenuItem = {
-    icon?: React.ElementType<LucideProps>;
-    label: string;
-    isHidden: boolean;
-    isDisabled: boolean;
-    isProcessing: boolean;
-    callback: () => Promise<void> | void;
-};
+import { useDeleteGameAction } from '@features/games-catalog/actions/use-delete-game';
+import { useEditGameAction } from '@features/games-catalog/actions/use-edit-game';
+import { usePlayNowAction } from '@features/games-catalog/actions/use-play-now';
+import { useViewGameAction } from '@features/games-catalog/actions/use-view-game';
+import { Game } from '@features/games-catalog/models/game';
+import { EllipsisIcon } from 'lucide-react';
 
 type ActionMenuItemGroup = {
-    options: ActionMenuItem[];
+    options: Action[];
 };
 
-const GamesTableItemMenu = () => {
+type GamesTableItemMenuProps = {
+    id: Game['id'];
+};
+
+const GamesTableItemMenu = ({ id }: GamesTableItemMenuProps) => {
     const groups: ActionMenuItemGroup[] = [
         {
-            options: [
-                {
-                    icon: PlayIcon,
-                    label: 'Play Now',
-                    isHidden: false,
-                    isDisabled: false,
-                    isProcessing: false,
-                    callback: () => {
-                        throw new Error('Not implemented!');
-                    },
-                },
-            ],
+            options: [usePlayNowAction(id)],
         },
         {
-            options: [
-                {
-                    icon: EyeIcon,
-                    label: 'View details',
-                    isHidden: false,
-                    isDisabled: false,
-                    isProcessing: false,
-                    callback: () => {
-                        throw new Error('Not implemented!');
-                    },
-                },
-                {
-                    icon: EditIcon,
-                    label: 'Edit details',
-                    isHidden: false,
-                    isDisabled: true,
-                    isProcessing: false,
-                    callback: () => {
-                        throw new Error('Not implemented!');
-                    },
-                },
-            ],
+            options: [useViewGameAction(id), useEditGameAction(id)],
         },
         {
-            options: [
-                {
-                    icon: TrashIcon,
-                    label: 'Remove',
-                    isHidden: false,
-                    isDisabled: true,
-                    isProcessing: false,
-                    callback: () => {
-                        throw new Error('Not implemented!');
-                    },
-                },
-            ],
+            options: [useDeleteGameAction(id)],
         },
     ];
 
@@ -102,7 +60,7 @@ const GamesTableItemMenu = () => {
                                 key={`option-${index}`}
                                 icon={option.icon}
                                 label={option.label}
-                                callback={option.callback}
+                                callback={option.execute}
                                 isDisabled={option.isDisabled || option.isProcessing}
                                 isProcessing={option.isProcessing}
                             />
@@ -115,4 +73,3 @@ const GamesTableItemMenu = () => {
 };
 
 export default GamesTableItemMenu;
-
