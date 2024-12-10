@@ -8,7 +8,7 @@ import { useFilteredGames } from '@features/games-catalog/hooks/use-filtered-gam
 import { useGamesFilters } from '@features/games-catalog/hooks/use-games-filters';
 import { Loader2Icon, SearchIcon } from 'lucide-react';
 
-const GamesCatalog = () => {
+const GamesCatalogPage = () => {
     const { games, isLoading } = useFilteredGames();
     const { isFiltering, resetFilters } = useGamesFilters();
 
@@ -63,4 +63,4 @@ const GamesCatalog = () => {
     );
 };
 
-export default GamesCatalog;
+export default GamesCatalogPage;
