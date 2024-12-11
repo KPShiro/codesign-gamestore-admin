@@ -8,7 +8,7 @@ import { useFilteredGames } from '@features/games-catalog/hooks/use-filtered-gam
 import { useGamesFilters } from '@features/games-catalog/hooks/use-games-filters';
 import { Loader2Icon, SearchIcon } from 'lucide-react';
 
-const GamesCatalog = () => {
+const GamesCatalogPage = () => {
     const { games, isLoading } = useFilteredGames();
     const { isFiltering, resetFilters } = useGamesFilters();
 
@@ -51,16 +51,11 @@ const GamesCatalog = () => {
                             It seems we can’t find any results based on your search.
                         </p>
                     </div>
-                    <Button
-                        variant={'outlined'}
-                        size={'xs'}
-                        text="Reset filters"
-                        onClick={resetFilters}
-                    />
+                    <Button variant={'outlined'} text="Reset filters" onClick={resetFilters} />
                 </div>
             ) : null}
         </LayoutPage>
     );
 };
 
-export default GamesCatalog;
+export default GamesCatalogPage;

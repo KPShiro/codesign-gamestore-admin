@@ -1,3 +1,4 @@
+import { usePermissions } from '@/hooks/use-permissions';
 import Button from '@components/ui/button';
 import {
     Dialog,
@@ -16,6 +17,7 @@ type CreateGameButtonProps = Pick<React.ComponentProps<typeof Button>, 'disabled
 
 const CreateGameButton = (props: CreateGameButtonProps) => {
     const [opened, setOpened] = useState<boolean>(false);
+    const { hasPermissions } = usePermissions();
     const notifications = useNotifications();
 
     const handleOnSubmit = async (value: CreateGameFormData) => {
@@ -34,7 +36,7 @@ const CreateGameButton = (props: CreateGameButtonProps) => {
     return (
         <Dialog open={opened} onOpenChange={setOpened}>
             <DialogTrigger asChild>
-                <Button {...props} text="Add Game" />
+                <Button {...props} text="Add Game" disabled={!hasPermissions(['Game.Create'])} />
             </DialogTrigger>
             <DialogContent aria-describedby={undefined}>
                 <DialogHeader>

@@ -77,6 +77,10 @@ const FileInput = forwardRef<HTMLInputElement, ImageInputProps>(
         const handleOnClickRemove: React.MouseEventHandler<HTMLButtonElement> = () => {
             props.onChange?.(null);
             setFile(null);
+
+            if (inputRef.current) {
+                inputRef.current.value = '';
+            }
         };
 
         return (
@@ -99,7 +103,7 @@ const FileInput = forwardRef<HTMLInputElement, ImageInputProps>(
                     {file ? (
                         <Card
                             key={file.name}
-                            className="h-full flex-row items-center justify-between rounded-sm p-4"
+                            className="h-full flex-row items-center justify-between rounded-sm p-3 pr-5"
                         >
                             {isImageType && (
                                 <div className="aspect-square h-full overflow-clip rounded-sm border bg-black/10">
@@ -109,15 +113,14 @@ const FileInput = forwardRef<HTMLInputElement, ImageInputProps>(
                                     />
                                 </div>
                             )}
-                            <div className="min-w-0 flex-1 space-y-1">
-                                <div className="truncate text-xs">{file.name}</div>
+                            <div className="min-w-0 flex-1">
+                                <div className="truncate text-sm">{file.name}</div>
                                 <div className="truncate text-xs text-muted-foreground">
                                     {file.type}
                                 </div>
                             </div>
                             <Button
                                 variant="outlined"
-                                size="sm"
                                 icon={TrashIcon}
                                 onClick={handleOnClickRemove}
                             />

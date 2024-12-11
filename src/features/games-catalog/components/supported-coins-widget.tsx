@@ -13,7 +13,7 @@ const SupportedCoinsWidget = ({ coins }: SupportedCoinsWidgetProps) => {
                 <div
                     key={coin}
                     className={cn(
-                        'flex h-full flex-1 items-center justify-center text-xs text-muted-foreground first-of-type:rounded-l-sm last-of-type:rounded-r-sm',
+                        'flex h-full flex-1 cursor-default select-none items-center justify-center text-xs text-muted-foreground first-of-type:rounded-l-sm last-of-type:rounded-r-sm',
                         coins.find((item) => item === coin) && 'bg-primary/10 text-primary'
                     )}
                 >

@@ -1,3 +1,3 @@
-import GamesCatalog from './pages/games-catalog';
+import GamesCatalogPage from './components/games-catalog-page';
 
-export { GamesCatalog };
+export { GamesCatalogPage };
