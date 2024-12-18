@@ -18,7 +18,7 @@ const DialogOverlay = React.forwardRef<
         ref={ref}
         className={cn(
             'fixed inset-0 z-50 bg-black/60 backdrop-blur-sm',
-            'data-[state=open]:animate-fade-in data-[state=closed]:animate-fade-out',
+            'data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in',
             className
         )}
         {...props}
@@ -37,12 +37,12 @@ const DialogContent = React.forwardRef<
             ref={ref}
             className={cn(
                 'fixed inset-0 z-50 m-auto h-fit w-fit',
-                'data-[state=open]:animate-scale-in data-[state=closed]:animate-scale-out',
+                'data-[state=closed]:animate-scale-out data-[state=open]:animate-scale-in',
                 className
             )}
             {...props}
         >
-            <div className="relative grid w-screen max-w-lg gap-6 rounded-md border bg-card p-6 shadow-lg">
+            <div className="relative grid w-screen max-w-lg gap-6 rounded-md border bg-background p-6 shadow-lg">
                 {children}
                 <DialogPrimitive.Close className="focus:ring-ring absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none">
                     <X className="h-4 w-4" />
@@ -107,4 +107,3 @@ export {
     DialogTitle,
     DialogTrigger,
 };
-

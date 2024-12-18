@@ -37,11 +37,6 @@ export default {
             opacity: {
                 disabled: 'var(--opacity-disabled)',
             },
-            backgroundColor: {
-                card: {
-                    DEFAULT: 'hsl(var(--color-card-background))',
-                },
-            },
             borderColor: {
                 DEFAULT: 'hsl(var(--color-border))',
             },

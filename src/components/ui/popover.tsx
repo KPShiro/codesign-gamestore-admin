@@ -18,7 +18,7 @@ const PopoverContent = ({
                 sideOffset={props.sideOffset ?? 4}
                 align={props.align ?? 'end'}
                 className={cn(
-                    'max-w-lg rounded border bg-card shadow data-[state=closed]:animate-slide-out-down data-[state=open]:animate-slide-in-up',
+                    'max-w-lg rounded border bg-background shadow data-[state=closed]:animate-slide-out-down data-[state=open]:animate-slide-in-up',
                     className
                 )}
             >

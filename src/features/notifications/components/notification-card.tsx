@@ -18,7 +18,7 @@ const NotificationCard = ({ notification }: NotificationProps) => {
                 notification.isRead ? 'hover:bg-foreground/5' : 'bg-primary/5'
             )}
         >
-            <div className="absolute -top-4 right-3 z-10 hidden space-x-0.5 rounded-sm border bg-card p-0.5 shadow group-hover:block">
+            <div className="absolute -top-4 right-3 z-10 hidden space-x-0.5 rounded-sm border bg-background p-0.5 shadow group-hover:block">
                 <Button
                     size={'xs'}
                     variant={'text'}
@@ -36,7 +36,7 @@ const NotificationCard = ({ notification }: NotificationProps) => {
                     </h6>
                 </div>
                 {notification.description ? (
-                    <div className="rounded-sm border border-dashed bg-card p-4 text-muted-foreground">
+                    <div className="rounded-sm border border-dashed bg-background p-4 text-muted-foreground">
                         <p className="line-clamp-2">{notification.description}</p>
                     </div>
                 ) : null}

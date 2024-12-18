@@ -16,7 +16,7 @@ const SidebarButton = ({ to, icon, text }: SidebarButtonProps) => {
                 cn(
                     'flex size-10 items-center justify-center gap-3 rounded border',
                     isActive
-                        ? 'bg-card text-foreground'
+                        ? 'bg-muted text-foreground'
                         : 'text-muted-foreground hover:border-foreground/15 hover:text-foreground'
                 )
             }

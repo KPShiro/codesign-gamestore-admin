@@ -6,7 +6,7 @@ const Trigger = ({ className, ...props }: React.ComponentProps<typeof RadixSelec
     return (
         <RadixSelect.Trigger
             className={cn(
-                'disabled:opacity-disabled flex h-10 items-center justify-between rounded border bg-input px-3 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none',
+                'flex h-10 items-center justify-between rounded border bg-background px-3 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-disabled',
                 className
             )}
         >
@@ -23,7 +23,7 @@ const Item = ({ children, ...props }: React.ComponentProps<typeof RadixSelect.It
         <RadixSelect.Item
             {...props}
             className={cn(
-                'data-[disabled]:opacity-disabled flex h-10 cursor-pointer select-none items-center justify-between gap-3 rounded-sm border-2 border-transparent px-3 text-sm ring-offset-background hover:bg-foreground/5 focus-visible:bg-foreground/5 focus-visible:outline-none data-[disabled]:cursor-default data-[state=checked]:bg-primary/10 data-[state=checked]:text-primary data-[disabled]:hover:bg-transparent',
+                'flex h-10 cursor-pointer select-none items-center justify-between gap-3 rounded-sm border-2 border-transparent px-3 text-sm ring-offset-background hover:bg-foreground/5 focus-visible:bg-foreground/5 focus-visible:outline-none data-[disabled]:cursor-default data-[state=checked]:bg-primary/15 data-[state=checked]:text-primary data-[disabled]:opacity-disabled data-[disabled]:hover:bg-transparent',
                 props.className
             )}
         >
@@ -65,7 +65,7 @@ const Content = ({ children, ...props }: React.ComponentProps<typeof RadixSelect
                 position={props.position ?? 'popper'}
                 sideOffset={props.sideOffset ?? 4}
                 className={cn(
-                    'z-50 min-w-fit rounded border bg-card p-0.5 shadow-lg',
+                    'z-50 min-w-fit rounded border bg-background p-0.5 shadow-lg',
                     'w-[var(--radix-select-trigger-width)]',
                     'max-h-[var(--radix-select-content-available-height)]',
                     props.className
