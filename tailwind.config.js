@@ -4,10 +4,6 @@ export default {
     darkMode: ['class'],
     content: ['./src/**/*.{js,jsx,ts,tsx}'],
     theme: {
-        container: {
-            center: true,
-            padding: '2rem',
-        },
         extend: {
             colors: {
                 border: 'hsl(var(--color-border))',

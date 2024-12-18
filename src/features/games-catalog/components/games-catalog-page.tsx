@@ -1,4 +1,5 @@
-import LayoutPage from '@components/layouts/layout-page';
+import PageWrapper from '@/components/page-wrapper';
+import { Skeleton } from '@/components/skeleton';
 import Button from '@components/ui/button';
 import Icon from '@components/ui/icon';
 import CreateGameButton from '@features/games-catalog/components/create-game/create-game-button';
@@ -6,7 +7,7 @@ import GamesTableFilters from '@features/games-catalog/components/games-table-fi
 import GamesTable from '@features/games-catalog/components/games-table/games-table';
 import { useFilteredGames } from '@features/games-catalog/hooks/use-filtered-games';
 import { useGamesFilters } from '@features/games-catalog/hooks/use-games-filters';
-import { Loader2Icon, SearchIcon } from 'lucide-react';
+import { SearchIcon } from 'lucide-react';
 
 const GamesCatalogPage = () => {
     const { games, isLoading } = useFilteredGames();
@@ -14,23 +15,28 @@ const GamesCatalogPage = () => {
 
     if (isLoading) {
         return (
-            <LayoutPage className="items-center justify-center">
-                <Icon
-                    icon={Loader2Icon}
-                    size={24}
-                    strokeWidth={2}
-                    className="animate-spin text-muted-foreground"
-                />
-            </LayoutPage>
+            <PageWrapper>
+                <Skeleton className="h-7 max-w-56" />
+                <div className="flex items-center justify-between md:flex-row">
+                    <Skeleton className="h-10 w-full max-w-96" />
+                    <Skeleton className="h-10 w-full max-w-24" />
+                </div>
+                <div className="space-y-2">
+                    <Skeleton className="h-8" />
+                    <Skeleton className="h-24" />
+                    <Skeleton className="h-24" />
+                    <Skeleton className="h-24" />
+                </div>
+            </PageWrapper>
         );
     }
 
     return (
-        <LayoutPage>
+        <PageWrapper>
             <div className="flex flex-col gap-2">
-                <h1 className="text-xl/none font-medium">Games Catalog</h1>
+                <h1 className="text-xl font-medium">Games Catalog</h1>
             </div>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_auto]">
+            <div className="grid gap-4 md:grid-cols-[1fr_auto]">
                 <GamesTableFilters />
                 <CreateGameButton />
             </div>
@@ -54,7 +60,7 @@ const GamesCatalogPage = () => {
                     <Button variant={'outlined'} text="Reset filters" onClick={resetFilters} />
                 </div>
             ) : null}
-        </LayoutPage>
+        </PageWrapper>
     );
 };
 

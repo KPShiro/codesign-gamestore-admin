@@ -4,11 +4,11 @@ import { Outlet } from 'react-router-dom';
 
 const DefaultLayout = () => {
     return (
-        <div className="grid h-dvh grid-rows-[auto_1fr] gap-4 p-4">
+        <div className="grid h-dvh w-dvw grid-rows-[auto_1fr_auto]">
             <Navbar />
-            <div className="mx-auto flex min-h-0 w-full max-w-[2000px] flex-1 overflow-clip rounded-lg border bg-background">
+            <div className="grid min-h-0 grid-cols-[auto_1fr]">
                 <Sidebar />
-                <div className="inline-flex flex-1 flex-col overflow-auto">
+                <div className="overflow-y-auto overflow-x-clip">
                     <Outlet />
                 </div>
             </div>

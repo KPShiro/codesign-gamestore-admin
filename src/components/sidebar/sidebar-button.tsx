@@ -14,10 +14,10 @@ const SidebarButton = ({ to, icon, text }: SidebarButtonProps) => {
             to={to}
             className={({ isActive }) =>
                 cn(
-                    'flex size-10 items-center justify-center gap-3 rounded border',
+                    'flex size-10 items-center justify-center gap-3 rounded border border-foreground/10',
                     isActive
-                        ? 'bg-muted text-foreground'
-                        : 'text-muted-foreground hover:border-foreground/15 hover:text-foreground'
+                        ? 'border-primary/15 bg-primary/15 text-primary'
+                        : 'bg-transparent text-foreground hover:bg-foreground/5'
                 )
             }
             title={text}
