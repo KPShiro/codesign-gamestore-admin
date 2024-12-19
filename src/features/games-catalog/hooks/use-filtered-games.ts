@@ -1,14 +1,14 @@
 import { containsSearchString, isDefined, isNotDefined } from '@/utils';
+import { useGames } from '@features/games-catalog/hooks/use-games';
+import { useGamesFilters } from '@features/games-catalog/hooks/use-games-filters';
+import { Game } from '@features/games-catalog/models/game';
 import { useEffect, useState } from 'react';
-import { Game } from '../models/game';
-import { useGames } from './use-games';
-import { useGamesFilters } from './use-games-filters';
 
 export const useFilteredGames = () => {
-    const [games, setGames] = useState<Game[]>([]);
+    const [games, setGames] = useState<Game[] | null>(null);
 
     const { data, ...useGamesValues } = useGames();
-    const { filters } = useGamesFilters();
+    const filters = useGamesFilters();
 
     useEffect(() => {
         if (isNotDefined(data)) {
@@ -16,7 +16,7 @@ export const useFilteredGames = () => {
         }
 
         let filteredGames = [...data];
-        const { search, publishStatus } = filters;
+        const { search, publishStatus } = filters.filters;
 
         if (isDefined(search)) {
             filteredGames = filteredGames.filter(
@@ -31,7 +31,12 @@ export const useFilteredGames = () => {
         }
 
         setGames(filteredGames);
-    }, [data, filters]);
+    }, [data, filters.filters]);
 
-    return { games, ...useGamesValues };
+    return {
+        games,
+        ...useGamesValues,
+        isFiltering: filters.isFiltering,
+        clearFilters: filters.clear,
+    };
 };

@@ -1,19 +1,16 @@
 import PageWrapper from '@/components/page-wrapper';
 import { Skeleton } from '@/components/skeleton';
-import Button from '@components/ui/button';
-import Icon from '@components/ui/icon';
+import Button from '@/components/ui/button';
+import { isNotDefined } from '@/utils';
 import CreateGameButton from '@features/games-catalog/components/create-game/create-game-button';
-import GamesTableFilters from '@features/games-catalog/components/games-table-filters';
+import { PublishStatusFilter, SearchFilter } from '@features/games-catalog/components/filters';
 import GamesTable from '@features/games-catalog/components/games-table/games-table';
 import { useFilteredGames } from '@features/games-catalog/hooks/use-filtered-games';
-import { useGamesFilters } from '@features/games-catalog/hooks/use-games-filters';
-import { SearchIcon } from 'lucide-react';
 
 const GamesCatalogPage = () => {
-    const { games, isLoading } = useFilteredGames();
-    const { isFiltering, resetFilters } = useGamesFilters();
+    const { games, isLoading, clearFilters } = useFilteredGames();
 
-    if (isLoading) {
+    if (isNotDefined(games) || isLoading) {
         return (
             <PageWrapper>
                 <Skeleton className="h-7 max-w-56" />
@@ -33,33 +30,28 @@ const GamesCatalogPage = () => {
 
     return (
         <PageWrapper>
-            <div className="flex flex-col gap-2">
-                <h1 className="text-xl font-medium">Games Catalog</h1>
-            </div>
-            <div className="grid gap-4 md:grid-cols-[1fr_auto]">
-                <GamesTableFilters />
+            <h1 className="text-xl font-semibold">Games Catalog</h1>
+            <div className="flex flex-col justify-between gap-2 sm:flex-row">
+                <div className="flex max-w-md flex-1 gap-2">
+                    <SearchFilter />
+                    <PublishStatusFilter />
+                </div>
                 <CreateGameButton />
             </div>
-            {games.length > 0 ? <GamesTable games={games} /> : null}
-            {games.length === 0 && isFiltering ? (
-                <div className="flex h-80 flex-col items-center justify-center gap-6 border">
-                    <div className="flex items-center justify-center rounded">
-                        <Icon
-                            icon={SearchIcon}
-                            size={42}
-                            strokeWidth={4}
-                            className="text-muted-foreground"
-                        />
-                    </div>
-                    <div className="flex max-w-sm flex-col items-center gap-2 text-center text-muted-foreground">
-                        <h1 className="font-semibold">No results found</h1>
-                        <p className="text-sm">
-                            It seems we can’t find any results based on your search.
+            {games.length ? (
+                <GamesTable games={games} />
+            ) : (
+                <div className="flex flex-col items-center gap-6 rounded border p-20">
+                    <div className="max-w-prose space-y-2 text-center text-sm">
+                        <h5 className="font-semibold uppercase">No Results Found</h5>
+                        <p className="text-muted-foreground">
+                            Minus veniam nesciunt, esse ullam quidem quae aperiam necessitatibus
+                            neque. Ad hic, a libero nam sunt voluptate necessitatibus veritatis.
                         </p>
                     </div>
-                    <Button variant={'outlined'} text="Reset filters" onClick={resetFilters} />
+                    <Button variant={'outlined'} text="Clear filters" onClick={clearFilters} />
                 </div>
-            ) : null}
+            )}
         </PageWrapper>
     );
 };

@@ -8,14 +8,7 @@ export const useGames = (limit: number = 5) => {
 
     useEffect(() => {
         setIsLoading(true);
-        const games: Game[] = [
-            randomizeGameData({
-                publishStatus: 'PUBLISHED',
-            }),
-            randomizeGameData({
-                publishStatus: 'TESTING',
-            }),
-        ];
+        const games: Game[] = [];
 
         const gamesCount = limit - games.length;
         for (let i = 0; i < gamesCount; i++) {
@@ -25,7 +18,7 @@ export const useGames = (limit: number = 5) => {
         setTimeout(() => {
             setGames([...games.sort((a, b) => a.title.localeCompare(b.title))]);
             setIsLoading(false);
-        }, 500);
+        }, 250);
     }, [limit]);
 
     return { data: games, isLoading };
