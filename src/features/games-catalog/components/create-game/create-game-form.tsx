@@ -6,13 +6,14 @@ import {
 } from '@features/games-catalog/schemas/create-game';
 import { Stepper, StepperItem } from '@features/stepper';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 
 type CreateGameFormProps = {
-    onSubmit: (data: CreateGameFormData) => void;
+    onSuccess: SubmitHandler<CreateGameFormData>;
+    onError?: SubmitErrorHandler<CreateGameFormData>;
 };
 
-const CreateGameForm = ({ onSubmit }: CreateGameFormProps) => {
+const CreateGameForm = ({ onSuccess, onError }: CreateGameFormProps) => {
     const form = useForm<CreateGameFormData>({
         resolver: zodResolver(CreateGameFormSchema),
         defaultValues: {
@@ -44,7 +45,7 @@ const CreateGameForm = ({ onSubmit }: CreateGameFormProps) => {
                     values={form.getValues()}
                     onSubmit={async (data) => {
                         form.reset((values) => ({ ...values, ...data }));
-                        await form.handleSubmit(onSubmit)();
+                        await form.handleSubmit(onSuccess, onError)();
                     }}
                 />
             ),

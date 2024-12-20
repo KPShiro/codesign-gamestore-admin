@@ -1,7 +1,7 @@
 import NumberInput from '@components/number-input';
 import Button from '@components/ui/button';
-import { DialogFooter } from '@components/ui/dialog';
 import FormField from '@components/ui/form';
+import { Dialog } from '@features/dialog';
 import {
     GameConfigurationFormData,
     GameConfigurationFormSchema,
@@ -44,10 +44,10 @@ const GameConfigurationForm = ({ onSubmit, values }: GameConfigurationFormProps)
                     )}
                 />
             </FormField>
-            <DialogFooter>
+            <Dialog.Footer>
                 <Stepper.Prev text="Previous Step" />
                 <Button type="submit" text="Complete and Save" disabled={!formState.isValid} />
-            </DialogFooter>
+            </Dialog.Footer>
         </form>
     );
 };

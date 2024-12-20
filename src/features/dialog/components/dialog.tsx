@@ -5,7 +5,10 @@ import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
 import React from 'react';
 
-const Dialog = DialogPrimitive.Root;
+const Dialog = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Root>) => {
+    return <DialogPrimitive.Root {...props} />;
+};
+
 const DialogTrigger = DialogPrimitive.Trigger;
 const DialogPortal = DialogPrimitive.Portal;
 const DialogClose = DialogPrimitive.Close;
@@ -95,15 +98,12 @@ const DialogDescription = React.forwardRef<
 
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
-export {
-    Dialog,
-    DialogClose,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogOverlay,
-    DialogPortal,
-    DialogTitle,
-    DialogTrigger,
-};
+Dialog.Close = DialogClose;
+Dialog.Content = DialogContent;
+Dialog.Description = DialogDescription;
+Dialog.Footer = DialogFooter;
+Dialog.Header = DialogHeader;
+Dialog.Title = DialogTitle;
+Dialog.Trigger = DialogTrigger;
+
+export default Dialog;

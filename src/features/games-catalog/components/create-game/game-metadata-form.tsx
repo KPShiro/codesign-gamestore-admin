@@ -1,9 +1,9 @@
 import FileInput from '@components/file-input';
 import TextInput from '@components/text-input';
 import Button from '@components/ui/button';
-import { DialogFooter } from '@components/ui/dialog';
 import FormField from '@components/ui/form';
 import Select from '@components/ui/select';
+import { Dialog } from '@features/dialog';
 import { useGamesProviders } from '@features/games-catalog/hooks/use-games-providers';
 import { useGamesStudios } from '@features/games-catalog/hooks/use-games-studios';
 import {
@@ -100,9 +100,9 @@ const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
                     )}
                 />
             </FormField>
-            <DialogFooter>
+            <Dialog.Footer>
                 <Button type="submit" text="Continue" disabled={!formState.isValid} />
-            </DialogFooter>
+            </Dialog.Footer>
         </form>
     );
 };

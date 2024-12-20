@@ -1,3 +1,4 @@
+import { DialogProvider } from '@features/dialog';
 import ToastProvider from '@features/toast/components/toast-provider';
 import { useMemo } from 'react';
 import { RouterProvider } from 'react-router-dom';
@@ -10,7 +11,9 @@ const App = () => {
     return (
         <NotificationsProvider>
             <ToastProvider duration={3000}>
-                <RouterProvider router={appRouter} future={{ v7_startTransition: true }} />
+                <DialogProvider>
+                    <RouterProvider router={appRouter} future={{ v7_startTransition: true }} />
+                </DialogProvider>
             </ToastProvider>
         </NotificationsProvider>
     );
