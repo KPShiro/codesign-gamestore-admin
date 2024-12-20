@@ -96,7 +96,10 @@ const FileInput = forwardRef<HTMLInputElement, ImageInputProps>(
                 </VisuallyHidden>
                 <div
                     className={cn(
-                        'h-20 select-none rounded border border-dashed bg-muted p-0.5',
+                        'h-20 select-none rounded border p-1',
+                        file
+                            ? 'bg-muted'
+                            : 'bg-[radial-gradient(hsl(var(--color-foreground)_/_0.15)_1px,_transparent_0)] bg-[length:12px_12px] bg-[center_center]',
                         className
                     )}
                 >
@@ -119,20 +122,16 @@ const FileInput = forwardRef<HTMLInputElement, ImageInputProps>(
                                     {file.type}
                                 </div>
                             </div>
-                            <Button
-                                variant="outlined"
-                                icon={TrashIcon}
-                                onClick={handleOnClickRemove}
-                            />
+                            <Button variant="text" icon={TrashIcon} onClick={handleOnClickRemove} />
                         </Card>
                     ) : (
                         <div
                             className={cn(
-                                'flex h-full cursor-pointer items-center justify-center rounded-sm text-muted-foreground'
+                                'flex h-full cursor-pointer items-center justify-center rounded-sm'
                             )}
                             onClick={handleOnClick}
                         >
-                            <div className="truncate text-center text-xs">
+                            <div className="truncate text-center text-xs text-muted-foreground">
                                 {props.placeholder ?? 'No files selected'}
                             </div>
                         </div>
