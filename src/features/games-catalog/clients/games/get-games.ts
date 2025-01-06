@@ -103,7 +103,6 @@ export const GAMES: Game[] = [
 
 export default function getGames() {
     return new Promise<Game[]>((res) => {
-        const sortedGames = [...GAMES].sort((a, b) => a.title.localeCompare(b.title));
-        setTimeout(() => res(sortedGames), Randomize.number(500, 1000));
+        setTimeout(() => res([...GAMES]), Randomize.number(500, 1000));
     });
 }
