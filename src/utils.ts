@@ -20,12 +20,6 @@ export function containsSearchString(source: string, search: string) {
     return new RegExp(trimmedSearchString, 'i').test(trimmedSourceString);
 }
 
-export const randomizeId = (length: number = 16) => {
-    return Math.random()
-        .toString(36)
-        .slice(2, 2 + length);
-};
-
 export function getBrowserLocale(): string {
     return navigator.language ?? 'en-US';
 }

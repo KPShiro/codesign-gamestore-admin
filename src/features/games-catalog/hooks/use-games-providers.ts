@@ -1,19 +1,14 @@
-import { GameProvider } from '@features/games-catalog/models/game-provider';
-import { GAME_PROVIDERS } from '@features/games-catalog/utils';
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { GamesClient } from '../clients/games';
 
 export const useGamesProviders = () => {
-    const [providers, setProiders] = useState<GameProvider[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const { data, ...query } = useQuery({
+        queryKey: ['games-providers'],
+        queryFn: GamesClient.getProviders,
+    });
 
-    useEffect(() => {
-        setIsLoading(true);
-
-        setTimeout(() => {
-            setProiders([...GAME_PROVIDERS.sort((a, b) => a.name.localeCompare(b.name))]);
-            setIsLoading(false);
-        }, 500);
-    }, []);
-
-    return { data: providers, isLoading };
+    return {
+        data: data ? data.sort((a, b) => a.name.localeCompare(b.name)) : data,
+        ...query,
+    };
 };

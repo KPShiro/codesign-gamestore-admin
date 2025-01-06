@@ -15,6 +15,7 @@ export default tseslint.config(
         },
         extends: [
             'plugin:storybook/recommended',
+            'plugin:@tanstack/query/recommended',
             js.configs.recommended,
             ...tseslint.configs.recommendedTypeChecked,
             ...tseslint.configs.strictTypeChecked,

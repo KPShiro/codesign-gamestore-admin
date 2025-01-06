@@ -2,16 +2,15 @@ import FileInput from '@components/file-input';
 import TextInput from '@components/text-input';
 import Button from '@components/ui/button';
 import FormField from '@components/ui/form';
-import Select from '@components/ui/select';
 import { Dialog } from '@features/dialog';
-import { useGamesProviders } from '@features/games-catalog/hooks/use-games-providers';
-import { useGamesStudios } from '@features/games-catalog/hooks/use-games-studios';
 import {
     GameMetadataFormData,
     GameMetadataFormSchema,
 } from '@features/games-catalog/schemas/game-metadata';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
+import GameProviderInput from './game-provider-input';
+import GameStudioInput from './game-studio-input';
 
 type GameMetadataFormProps = {
     onSubmit: (data: GameMetadataFormData) => void;
@@ -24,9 +23,6 @@ const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
         mode: 'onChange',
         defaultValues: values,
     });
-
-    const { data: providers } = useGamesProviders();
-    const { data: studios } = useGamesStudios();
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -62,22 +58,13 @@ const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
                     )}
                 />
             </FormField>
-            <FormField className="">
+            <FormField>
                 <FormField.Label>Provider</FormField.Label>
                 <Controller
                     control={control}
                     name="providerId"
                     render={({ field }) => (
-                        <Select value={field.value} onValueChange={field.onChange}>
-                            <Select.Trigger className="min-w-40" placeholder="Select provider" />
-                            <Select.Content>
-                                {providers.map((provider) => (
-                                    <Select.Item key={provider.id} value={provider.id}>
-                                        {provider.name}
-                                    </Select.Item>
-                                ))}
-                            </Select.Content>
-                        </Select>
+                        <GameProviderInput value={field.value} onValueChange={field.onChange} />
                     )}
                 />
             </FormField>
@@ -87,16 +74,7 @@ const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
                     control={control}
                     name="studioId"
                     render={({ field }) => (
-                        <Select value={field.value} onValueChange={field.onChange}>
-                            <Select.Trigger className="min-w-40" placeholder="Select provider" />
-                            <Select.Content>
-                                {studios.map((studio) => (
-                                    <Select.Item key={studio.id} value={studio.id}>
-                                        {studio.name}
-                                    </Select.Item>
-                                ))}
-                            </Select.Content>
-                        </Select>
+                        <GameStudioInput value={field.value} onValueChange={field.onChange} />
                     )}
                 />
             </FormField>

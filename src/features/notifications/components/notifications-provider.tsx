@@ -1,4 +1,4 @@
-import { randomizeId } from '@/utils';
+import { Randomize } from '@/utils/randomizer';
 import {
     AppNotification,
     Notification,
@@ -14,7 +14,7 @@ const NotificationsProvider = ({ children }: React.PropsWithChildren) => {
         setNotifications((currentNotifications) => [
             ...currentNotifications,
             {
-                id: randomizeId(),
+                id: Randomize.string(),
                 // TODO: Get logged in user name
                 author: 'Peter Parker',
                 timestamp: Date.now(),
