@@ -8,7 +8,7 @@ import GamesTable from '@features/games-catalog/components/games-table/games-tab
 import { useFilteredGames } from '@features/games-catalog/hooks/use-filtered-games';
 
 const GamesCatalogPage = () => {
-    const { games, isLoading, clearFilters } = useFilteredGames();
+    const { games, isLoading, isFiltering, clearFilters } = useFilteredGames();
 
     if (isNotDefined(games) || isLoading) {
         return (
@@ -38,9 +38,19 @@ const GamesCatalogPage = () => {
                 </div>
                 <CreateGameButton />
             </div>
-            {games.length ? (
-                <GamesTable games={games} />
-            ) : (
+            {games.length ? <GamesTable games={games} /> : null}
+            {games.length === 0 && !isFiltering ? (
+                <div className="flex flex-col items-center gap-6 rounded border p-20">
+                    <div className="max-w-prose space-y-2 text-center text-sm">
+                        <h5 className="font-semibold uppercase">Your Database Is Empty</h5>
+                        <p className="text-muted-foreground">
+                            Minus veniam nesciunt, esse ullam quidem quae aperiam necessitatibus
+                            neque. Ad hic, a libero nam sunt voluptate necessitatibus veritatis.
+                        </p>
+                    </div>
+                </div>
+            ) : null}
+            {games.length === 0 && isFiltering ? (
                 <div className="flex flex-col items-center gap-6 rounded border p-20">
                     <div className="max-w-prose space-y-2 text-center text-sm">
                         <h5 className="font-semibold uppercase">No Results Found</h5>
@@ -51,7 +61,7 @@ const GamesCatalogPage = () => {
                     </div>
                     <Button variant={'outlined'} text="Clear filters" onClick={clearFilters} />
                 </div>
-            )}
+            ) : null}
         </PageWrapper>
     );
 };

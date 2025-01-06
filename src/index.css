@@ -56,7 +56,7 @@
     }
 
     table.card-table {
-        @apply border-separate border-spacing-y-2;
+        @apply -my-2 border-separate border-spacing-x-0 border-spacing-y-2;
     }
 
     table.card-table th {
