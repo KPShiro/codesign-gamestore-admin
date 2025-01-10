@@ -30,7 +30,13 @@ const GameConfigurationForm = ({ onSubmit, values }: GameConfigurationFormProps)
                     control={control}
                     name="rtp"
                     render={({ field }) => (
-                        <NumberInput {...field} onValueChange={field.onChange} />
+                        <NumberInput
+                            {...field}
+                            value={field.value}
+                            onValueChange={field.onChange}
+                            min={0}
+                            max={100}
+                        />
                     )}
                 />
             </FormField>
@@ -40,7 +46,12 @@ const GameConfigurationForm = ({ onSubmit, values }: GameConfigurationFormProps)
                     control={control}
                     name="maxWin"
                     render={({ field }) => (
-                        <NumberInput {...field} onValueChange={field.onChange} />
+                        <NumberInput
+                            {...field}
+                            value={field.value}
+                            onValueChange={field.onChange}
+                            min={0}
+                        />
                     )}
                 />
             </FormField>

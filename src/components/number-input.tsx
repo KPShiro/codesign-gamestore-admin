@@ -1,21 +1,30 @@
 import Input from '@components/ui/input';
 import { forwardRef, useState } from 'react';
 
-type NumberInputProps = Omit<React.ComponentProps<typeof Input>, 'value' | 'type'> & {
+type NumberInputProps = Omit<React.ComponentProps<typeof Input>, 'value' | 'type' | 'onChange'> & {
     value?: number;
     onValueChange?: (value: number) => void;
 };
 
 const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
-    ({ value, onValueChange, onChange, ...props }, ref) => {
+    ({ value, onValueChange, ...props }, ref) => {
         const [internalValue, setInternalValue] = useState<number>(value ?? 0);
 
         const handleOnChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
-            const newValue: number = +event.target.value;
+            let newValue: number = Number(event.target.value);
+
+            if (props.min) {
+                const min: number = Number(props.min);
+                newValue = newValue < min ? min : newValue;
+            }
+
+            if (props.max) {
+                const max: number = Number(props.max);
+                newValue = newValue > max ? max : newValue;
+            }
 
             setInternalValue(newValue);
             onValueChange?.(newValue);
-            onChange?.(event);
         };
 
         return (
@@ -33,4 +42,3 @@ const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
 NumberInput.displayName = 'NumberInput';
 
 export default NumberInput;
-
