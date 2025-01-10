@@ -1,8 +1,8 @@
 import Thumbnail from '@/components/thumbnail';
 import Icon from '@components/ui/icon';
+import { useViewGameAction } from '@features/games-catalog/actions/use-view-game';
 import { Game } from '@features/games-catalog/models/game';
-import { PlayIcon } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { SquareArrowOutUpRightIcon } from 'lucide-react';
 
 type GameThumbnailProps = {
     id: Game['id'];
@@ -11,25 +11,20 @@ type GameThumbnailProps = {
 };
 
 const GameThumbnail = ({ id, thumbnail, size = 'sm' }: GameThumbnailProps) => {
-    const navigate = useNavigate();
+    const action = useViewGameAction(id);
 
     return (
         <button
-            className="group relative isolate flex flex-shrink-0 flex-grow-0 cursor-pointer select-none items-center justify-center rounded-sm border text-muted-foreground"
-            onClick={() => navigate(`/casino/${id}`)}
+            className="group relative isolate flex flex-shrink-0 flex-grow-0 cursor-default select-none items-center justify-center rounded-sm border text-muted-foreground enabled:cursor-pointer"
+            disabled={action.isDisabled}
+            onClick={action.execute}
         >
-            <div className="absolute inset-0 z-10 flex items-center justify-center rounded-sm bg-foreground/25 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 group-active:bg-foreground/50">
-                <Icon
-                    icon={PlayIcon}
-                    className="scale-50 stroke-white transition-transform duration-300 group-hover:scale-100"
-                />
-            </div>
-            <div className="relative">
-                <Thumbnail src={thumbnail} size={size} />
-                <div className="absolute inset-0 -z-[1] transition-all duration-500 group-hover:blur-sm group-active:blur-none">
-                    <Thumbnail src={thumbnail} size={size} />
+            {!action.isDisabled ? (
+                <div className="absolute inset-0 z-10 flex items-center justify-center rounded-sm bg-foreground/25 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 group-active:bg-foreground/50">
+                    <Icon icon={SquareArrowOutUpRightIcon} className="stroke-background" />
                 </div>
-            </div>
+            ) : null}
+            <Thumbnail src={thumbnail} size={size} />
         </button>
     );
 };
