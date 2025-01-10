@@ -15,6 +15,7 @@ type ImageInputProps = Pick<React.HTMLAttributes<HTMLDivElement>, 'className'> &
     value?: File | null;
 };
 
+/** @deprecated Please use other input components like `ImageInput` instead. */
 const FileInput = forwardRef<HTMLInputElement, ImageInputProps>(
     ({ value, showFileRestrictions, className, ...props }, ref) => {
         const [file, setFile] = useState<typeof value>(value);
