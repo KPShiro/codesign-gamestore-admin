@@ -50,6 +50,32 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         },
         ref
     ) => {
+        const getIconSize = () => {
+            switch (size) {
+                case 'md':
+                    return 16;
+                case 'sm':
+                    return 14;
+                case 'xs':
+                    return 12;
+                default:
+                    return 16;
+            }
+        };
+
+        const getIconStrokeWidth = () => {
+            switch (size) {
+                case 'md':
+                    return 1.5;
+                case 'sm':
+                    return 1.25;
+                case 'xs':
+                    return 1.25;
+                default:
+                    return 1.5;
+            }
+        };
+
         return (
             <button
                 {...props}
@@ -73,8 +99,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 {icon ? (
                     <Icon
                         icon={icon}
-                        size={size === 'xs' ? 12 : 16}
-                        strokeWidth={size === 'xs' ? 1.25 : 1.5}
+                        size={getIconSize()}
+                        strokeWidth={getIconStrokeWidth()}
                         className={cn(loading && 'opacity-0')}
                     />
                 ) : null}
