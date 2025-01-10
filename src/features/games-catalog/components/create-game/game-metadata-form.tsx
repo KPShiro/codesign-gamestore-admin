@@ -1,4 +1,5 @@
-import FileInput from '@components/file-input';
+import ImageInput from '@/components/image-input';
+import { useToast } from '@/features/toast';
 import TextInput from '@components/text-input';
 import Button from '@components/ui/button';
 import FormField from '@components/ui/form';
@@ -23,9 +24,33 @@ const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
         mode: 'onChange',
         defaultValues: values,
     });
+    const toast = useToast();
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <FormField>
+                <FormField.Label>Thumbnail</FormField.Label>
+                <Controller
+                    control={control}
+                    name="thumbnail"
+                    render={({ field }) => (
+                        <ImageInput
+                            {...field}
+                            value={field.value}
+                            onValueChange={field.onChange}
+                            onError={(error) =>
+                                toast.show({
+                                    variant: 'danger',
+                                    title: error.type,
+                                    description: error.file.name,
+                                })
+                            }
+                            maxFileSize={3_145_728}
+                            placeholder="Upload thumbnail image"
+                        />
+                    )}
+                />
+            </FormField>
             <FormField>
                 <FormField.Label>Title</FormField.Label>
                 <Controller
@@ -36,24 +61,6 @@ const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
                             {...field}
                             onValueChange={field.onChange}
                             placeholder="e.g. The Witcher 3"
-                        />
-                    )}
-                />
-            </FormField>
-            <FormField>
-                <FormField.Label>Thumbnail</FormField.Label>
-                <Controller
-                    control={control}
-                    name="thumbnail"
-                    render={({ field }) => (
-                        <FileInput
-                            {...field}
-                            placeholder="Upload thumbnail file"
-                            accept="image/*"
-                            maxSize={3_145_728}
-                            showFileRestrictions
-                            onChange={field.onChange}
-                            value={field.value}
                         />
                     )}
                 />
