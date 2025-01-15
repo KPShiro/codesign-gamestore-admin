@@ -5,10 +5,7 @@ type CardProps = ComponentProps<'div'> & PropsWithChildren;
 
 const Card = ({ children, className, ...props }: CardProps) => {
     return (
-        <div
-            {...props}
-            className={cn('flex flex-col gap-4 rounded border bg-background p-6', className)}
-        >
+        <div {...props} className={cn('rounded-md border bg-background p-4', className)}>
             {children}
         </div>
     );
