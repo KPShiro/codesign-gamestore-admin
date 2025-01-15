@@ -1,23 +1,13 @@
 import { Randomize } from '@/utils/randomizer';
+import axios from 'axios';
 import { GameProvider } from '../../models/game-provider';
 
-export const GAME_PROVIDERS: GameProvider[] = [
-    {
-        id: '0000-0000-0000-0000',
-        name: 'Golden Games',
-    },
-    {
-        id: '0000-0000-0000-0001',
-        name: 'CD Project',
-    },
-    {
-        id: '0000-0000-0000-0002',
-        name: 'Ducking Amazing',
-    },
-];
+export default async function getProviders() {
+    const response = await axios.get<GameProvider[]>(
+        `${import.meta.env.VITE_API_BASE_URL}/providers`
+    );
 
-export default function getProviders() {
     return new Promise<GameProvider[]>((res) => {
-        setTimeout(() => res(GAME_PROVIDERS), Randomize.number(500, 1000));
+        setTimeout(() => res(response.data), Randomize.number(500, 1000));
     });
 }

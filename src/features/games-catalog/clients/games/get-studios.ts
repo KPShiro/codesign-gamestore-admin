@@ -1,23 +1,11 @@
 import { Randomize } from '@/utils/randomizer';
+import axios from 'axios';
 import { GameStudio } from '../../models/game-studio';
 
-export const GAME_STUDIOS: GameStudio[] = [
-    {
-        id: '0000-0000-0000-0000',
-        name: 'Golden Feather Studios',
-    },
-    {
-        id: '0000-0000-0000-0001',
-        name: 'CD Project RED',
-    },
-    {
-        id: '0000-0000-0000-0002',
-        name: 'Industrial Studios',
-    },
-];
+export default async function getStudios() {
+    const response = await axios.get<GameStudio[]>(`${import.meta.env.VITE_API_BASE_URL}/studios`);
 
-export default function getStudios() {
     return new Promise<GameStudio[]>((res) => {
-        setTimeout(() => res(GAME_STUDIOS), Randomize.number(500, 1000));
+        setTimeout(() => res(response.data), Randomize.number(500, 1000));
     });
 }

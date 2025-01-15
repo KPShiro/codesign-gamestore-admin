@@ -1,0 +1,83 @@
+{
+    "users": [
+        {
+            "id": "0000-0000-0000-0000",
+            "email": "natasha.romanov@avengers.com"
+        }
+    ],
+    "providers": [
+        {
+            "id": "0000-0000-0000-0000",
+            "name": "Riot Forge"
+        },
+        {
+            "id": "0000-0000-0000-0001",
+            "name": "CD Project"
+        },
+        {
+            "id": "0000-0000-0000-0002",
+            "name": "Larian Studios"
+        }
+    ],
+    "studios": [
+        {
+            "id": "0000-0000-0000-0000",
+            "name": "Riot Games"
+        },
+        {
+            "id": "0000-0000-0000-0001",
+            "name": "CD Project RED"
+        },
+        {
+            "id": "0000-0000-0000-0002",
+            "name": "Larian Studios"
+        }
+    ],
+    "games": [
+        {
+            "id": "0000-0000-0000-0000",
+            "thumbnail": "https://image.api.playstation.com/vulcan/ap/rnd/202211/0711/PuoMsHLuWRDBlI6dssHMdaqA.png",
+            "title": "The Witcher 3",
+            "providerId": "0000-0000-0000-0001",
+            "studioId": "0000-0000-0000-0001",
+            "publishStatus": "PUBLISHED",
+            "coins": ["GC", "SC"],
+            "tags": ["theme:witcher", "theme:rpg", "feat:coins", "feat:spins"],
+            "rtp": 0.98,
+            "win": {
+                "min": 900,
+                "max": 1000
+            }
+        },
+        {
+            "id": "0000-0000-0000-0001",
+            "thumbnail": "https://d1lss44hh2trtw.cloudfront.net/assets/article/2019/05/30/larian-studios-teasing-baldurs-gate-3_feature.jpg",
+            "title": "Baldurs Gate 3",
+            "providerId": "0000-0000-0000-0002",
+            "studioId": "0000-0000-0000-0002",
+            "publishStatus": "PUBLISHED",
+            "coins": ["GC", "SC"],
+            "tags": ["theme:baldurs_gate", "theme:rpg", "feat:coins", "feat:spins"],
+            "rtp": 0.92,
+            "win": {
+                "min": 850,
+                "max": 900
+            }
+        },
+        {
+            "id": "0000-0000-0000-0002",
+            "thumbnail": "https://cdn.galleries.smcloud.net/t/galleries/gf-FaC9-nv1e-fXDQ_league-of-legends-994x828.jpg",
+            "title": "League of Legends",
+            "providerId": "0000-0000-0000-0000",
+            "studioId": "0000-0000-0000-0000",
+            "publishStatus": "NOT_PUBLISHED",
+            "coins": ["GC"],
+            "tags": ["theme:baldurs_gate", "theme:rpg", "feat:coins", "feat:spins"],
+            "rtp": 0.88,
+            "win": {
+                "min": 980,
+                "max": 1000
+            }
+        }
+    ]
+}

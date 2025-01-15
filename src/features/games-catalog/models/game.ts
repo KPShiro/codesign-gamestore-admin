@@ -1,4 +1,3 @@
-import { User } from '@/models/user';
 import { GameCoin } from './game-coin';
 import { GameProvider } from './game-provider';
 import { GamePublishStatus } from './game-publish-status';
@@ -12,8 +11,6 @@ type Game = {
     studio: GameStudio;
     coins: GameCoin[];
     publishStatus: GamePublishStatus;
-    updatedAt: number;
-    updatedBy: User;
     tags: string[];
     rtp: number;
     win: {
