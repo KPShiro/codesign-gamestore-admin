@@ -1,7 +1,6 @@
-import { convertBytes, formatNumber, isNotDefined } from '@/utils';
+import { isNotDefined } from '@/utils';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import ImageInputPlaceholder from './image-input-placeholder';
 import ImageInputValue from './image-input-value';
 
 type ImageInputErrorType = 'INVALID_SIZE' | 'INVALID_TYPE';
@@ -13,15 +12,13 @@ type ImageInputError = {
 
 type ImageInputProps = {
     value?: File | null;
+    maxFileSize?: number;
     onValueChange?: (value: File | null) => void;
     onError?: (error: ImageInputError) => void;
-    maxFileSize: number;
-    placeholder?: string;
-    accept?: string;
-};
+} & Pick<React.ComponentProps<'input'>, 'placeholder'>;
 
 const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
-    ({ value, onValueChange, onError, maxFileSize, placeholder, accept = 'image/*' }, ref) => {
+    ({ value, onValueChange, onError, maxFileSize = 3_145_728, placeholder }, ref) => {
         const [file, setFile] = useState<typeof value>(value);
         const inputRef = useRef<HTMLInputElement>(null);
 
@@ -84,24 +81,23 @@ const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
         };
 
         return (
-            <div className="flex flex-col gap-2">
+            <>
                 <VisuallyHidden>
-                    <input ref={inputRef} type="file" accept={accept} onChange={handleOnChange} />
+                    <input
+                        ref={inputRef}
+                        type="file"
+                        accept="image/*"
+                        multiple={false}
+                        onChange={handleOnChange}
+                    />
                 </VisuallyHidden>
-                {file ? (
-                    <ImageInputValue
-                        file={file}
-                        onClick={handleOnTrigger}
-                        onFileRemove={clearInput}
-                    />
-                ) : (
-                    <ImageInputPlaceholder
-                        title={placeholder ?? 'Upload your image'}
-                        description={`Max. file size: ${formatNumber(convertBytes(maxFileSize, 'MB'))} MB`}
-                        onClick={handleOnTrigger}
-                    />
-                )}
-            </div>
+                <ImageInputValue
+                    file={file}
+                    placeholder={placeholder}
+                    onUploadClick={handleOnTrigger}
+                    onRemoveClick={clearInput}
+                />
+            </>
         );
     }
 );

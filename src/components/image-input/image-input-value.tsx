@@ -1,42 +1,56 @@
-import { convertBytes, formatNumber } from '@/utils';
-import Card from '@components/card';
-import Thumbnail from '@components/thumbnail';
-import Button from '@components/ui/button';
-import { TrashIcon } from 'lucide-react';
+import { Maybe } from '@/models/maybe';
+import { cn, convertBytes, formatNumber } from '@/utils';
+import { UploadIcon, XIcon } from 'lucide-react';
+import Icon from '../ui/icon';
 
 type ImageInputValueProps = {
-    file: File;
-    onClick: () => void;
-    onFileRemove: () => void;
-};
+    file: Maybe<File>;
+    onUploadClick: () => void;
+    onRemoveClick: () => void;
+} & Pick<React.ComponentProps<'input'>, 'placeholder'>;
 
-const ImageInputValue = ({ file, onClick, onFileRemove }: ImageInputValueProps) => {
+const ImageInputValue = ({
+    file,
+    placeholder = 'Select image',
+    onUploadClick,
+    onRemoveClick,
+}: ImageInputValueProps) => {
     return (
-        <Card
-            className="flex h-24 cursor-pointer flex-row items-center gap-5 p-3 pr-6"
-            onClick={onClick}
-        >
-            <div className="aspect-square h-full">
-                <Thumbnail size={'full'} src={URL.createObjectURL(file)} />
+        <div className="flex h-10 select-none gap-1">
+            <div
+                className="group flex aspect-square h-full cursor-pointer items-center justify-center overflow-clip rounded-md border"
+                onClick={file ? onRemoveClick : onUploadClick}
+            >
+                {file ? (
+                    <div className="relative isolate">
+                        <img src={URL.createObjectURL(file)} className="object-cover" />
+                        <div className="absolute inset-0 z-10 flex items-center justify-center bg-foreground/15 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
+                            <Icon icon={XIcon} size={12} className="text-background" />
+                        </div>
+                    </div>
+                ) : (
+                    <Icon icon={UploadIcon} size={12} className="text-muted-foreground" />
+                )}
             </div>
-            <div className="flex min-w-0 flex-1 flex-col gap-1">
-                <div className="truncate text-sm font-medium">{file.name}</div>
-                <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs uppercase text-muted-foreground">
-                    <div>{file.type}</div>
-                    <div className="size-0.5 rounded-full bg-muted-foreground"></div>
-                    <div>{formatNumber(convertBytes(file.size, 'MB'))} MB</div>
+            <div
+                className="flex h-full flex-1 cursor-pointer rounded-md border"
+                onClick={onUploadClick}
+            >
+                <div
+                    className={cn(
+                        'grid h-full flex-1 items-center gap-3 px-3',
+                        file ? 'grid-cols-[1fr_auto]' : 'grid-cols-1'
+                    )}
+                >
+                    <div className="truncate text-sm">{file ? file.name : placeholder}</div>
+                    {file ? (
+                        <div className="text-xs text-muted-foreground">
+                            {formatNumber(convertBytes(file.size, 'MB'))} MB
+                        </div>
+                    ) : null}
                 </div>
             </div>
-            <Button
-                variant={'outlined'}
-                size={'sm'}
-                icon={TrashIcon}
-                onClick={(event) => {
-                    event.stopPropagation();
-                    onFileRemove();
-                }}
-            />
-        </Card>
+        </div>
     );
 };
 

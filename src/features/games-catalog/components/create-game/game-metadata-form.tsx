@@ -29,29 +29,6 @@ const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <FormField>
-                <FormField.Label>Thumbnail</FormField.Label>
-                <Controller
-                    control={control}
-                    name="thumbnail"
-                    render={({ field }) => (
-                        <ImageInput
-                            {...field}
-                            value={field.value}
-                            onValueChange={field.onChange}
-                            onError={(error) =>
-                                toast.show({
-                                    variant: 'danger',
-                                    title: error.type,
-                                    description: error.file.name,
-                                })
-                            }
-                            maxFileSize={3_145_728}
-                            placeholder="Upload thumbnail image"
-                        />
-                    )}
-                />
-            </FormField>
-            <FormField>
                 <FormField.Label>Title</FormField.Label>
                 <Controller
                     control={control}
@@ -61,6 +38,27 @@ const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
                             {...field}
                             onValueChange={field.onChange}
                             placeholder="e.g. The Witcher 3"
+                        />
+                    )}
+                />
+            </FormField>
+            <FormField>
+                <FormField.Label>Thumbnail</FormField.Label>
+                <Controller
+                    control={control}
+                    name="thumbnail"
+                    render={({ field }) => (
+                        <ImageInput
+                            {...field}
+                            value={field.value}
+                            onValueChange={field.onChange}
+                            onError={(error) => {
+                                toast.show({
+                                    variant: 'danger',
+                                    title: error.type,
+                                    description: error.file.name,
+                                });
+                            }}
                         />
                     )}
                 />
