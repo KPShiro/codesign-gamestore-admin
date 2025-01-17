@@ -8,7 +8,9 @@ import {
 } from '@features/games-catalog/schemas/game-configuration';
 import { Stepper } from '@features/stepper';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import { Controller, useForm } from 'react-hook-form';
+import { GamesClient } from '../../clients/games';
 
 type GameConfigurationFormProps = {
     onSubmit: (data: GameConfigurationFormData) => void;
@@ -20,6 +22,10 @@ const GameConfigurationForm = ({ onSubmit, values }: GameConfigurationFormProps)
         resolver: zodResolver(GameConfigurationFormSchema),
         mode: 'onChange',
         defaultValues: values,
+    });
+
+    const createGameMutation = useMutation({
+        mutationFn: () => GamesClient.createGame(),
     });
 
     return (
@@ -57,7 +63,13 @@ const GameConfigurationForm = ({ onSubmit, values }: GameConfigurationFormProps)
             </FormField>
             <Dialog.Footer>
                 <Stepper.Prev text="Previous Step" />
-                <Button type="submit" text="Complete and Save" disabled={!formState.isValid} />
+                <Button
+                    type="submit"
+                    text="Complete and Save"
+                    disabled={!formState.isValid || createGameMutation.isPending}
+                    loading={createGameMutation.isPending}
+                    onClick={() => createGameMutation.mutate()}
+                />
             </Dialog.Footer>
         </form>
     );
