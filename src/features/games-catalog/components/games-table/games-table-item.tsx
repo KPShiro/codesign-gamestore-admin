@@ -42,7 +42,7 @@ const GamesTableItem = ({ game }: GamesTableItemProps) => {
                 <SupportedCoinsWidget coins={game.coins} />
             </td>
             <td className="text-right">
-                <GamesTableItemMenu id={game.id} />
+                <GamesTableItemMenu game={game} />
             </td>
         </tr>
     );

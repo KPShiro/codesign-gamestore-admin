@@ -1,35 +1,28 @@
-import { useToast } from '@/features/toast';
 import { usePermissions } from '@/hooks/use-permissions';
 import Button from '@components/ui/button';
 import { Dialog, useDialog } from '@features/dialog';
 import { CreateGameFormData } from '@features/games-catalog/schemas/create-game';
-import { useQueryClient } from '@tanstack/react-query';
 import React from 'react';
+import { useCreateGameMutation } from '../../hooks/use-create-game-mutation';
 import CreateGameForm from './create-game-form';
 
 type CreateGameButtonProps = Pick<React.ComponentProps<typeof Button>, 'disabled'>;
 
 const CreateGameButton = (props: CreateGameButtonProps) => {
     const { hasPermissions } = usePermissions();
-    const queryClient = useQueryClient();
+    const createGameMutation = useCreateGameMutation();
     const dialog = useDialog();
-    const toast = useToast();
 
     const handleOnSuccess = async (data: CreateGameFormData) => {
-        await queryClient.invalidateQueries({
-            queryKey: ['games'],
-        });
-
-        dialog.close();
-        toast.show({
-            variant: 'primary',
-            title: 'Game added to the catalog!',
-            description: `"${data.title}" was successfully added to the catalog. Game won't be available for brands until published.`,
-            action: {
-                label: 'Publish Now',
-                callback: () => {},
+        await createGameMutation.mutateAsync({
+            ...data,
+            win: {
+                // TODO: Add WIN_MIN to the createGameForm
+                min: 0,
+                max: data.maxWin,
             },
         });
+        dialog.close();
     };
 
     const handleOnClick = () => {

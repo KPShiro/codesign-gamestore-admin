@@ -8,9 +8,8 @@ import {
 } from '@features/games-catalog/schemas/game-configuration';
 import { Stepper } from '@features/stepper';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useMutation } from '@tanstack/react-query';
+import { useMutationState } from '@tanstack/react-query';
 import { Controller, useForm } from 'react-hook-form';
-import { GamesClient } from '../../clients/games';
 
 type GameConfigurationFormProps = {
     onSubmit: (data: GameConfigurationFormData) => void;
@@ -24,9 +23,13 @@ const GameConfigurationForm = ({ onSubmit, values }: GameConfigurationFormProps)
         defaultValues: values,
     });
 
-    const createGameMutation = useMutation({
-        mutationFn: () => GamesClient.createGame(),
+    const mutationState = useMutationState({
+        filters: {
+            mutationKey: ['create-game'],
+            status: 'pending',
+        },
     });
+    const isPending = mutationState[0]?.status === 'pending';
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -66,9 +69,8 @@ const GameConfigurationForm = ({ onSubmit, values }: GameConfigurationFormProps)
                 <Button
                     type="submit"
                     text="Complete and Save"
-                    disabled={!formState.isValid || createGameMutation.isPending}
-                    loading={createGameMutation.isPending}
-                    onClick={() => createGameMutation.mutate()}
+                    disabled={!formState.isValid || isPending}
+                    loading={isPending}
                 />
             </Dialog.Footer>
         </form>
