@@ -1,9 +1,14 @@
 import StepperContent from '@features/stepper/components/stepper-content';
-import StepperProgress from '@features/stepper/components/stepper-progress';
+import {
+    StepperProgress,
+    StepperProgressBar,
+    StepperProgressCounter,
+    StepperProgressTitle,
+} from '@features/stepper/components/stepper-progress';
 import { StepperContext } from '@features/stepper/hooks/use-stepper';
 import { StepperInternalContext, StepperItem } from '@features/stepper/hooks/use-stepper-context';
 import { PropsWithChildren, useCallback, useMemo, useState } from 'react';
-import { StepperNextButton, StepperPrevButton } from './stepper-button';
+import { StepperCompleteButton, StepperNextButton, StepperPrevButton } from './stepper-button';
 
 type StepperProps = PropsWithChildren<{
     steps: readonly StepperItem[];
@@ -11,6 +16,11 @@ type StepperProps = PropsWithChildren<{
 
 const Stepper = ({ steps, children }: StepperProps) => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
+
+    const isValid = useMemo(() => {
+        const activeStep = steps[activeIndex];
+        return activeStep.isValid ?? true;
+    }, [activeIndex, steps]);
 
     const canPrev = useMemo(() => activeIndex > 0, [activeIndex]);
     const canNext = useMemo(() => activeIndex < steps.length - 1, [activeIndex, steps.length]);
@@ -32,6 +42,7 @@ const Stepper = ({ steps, children }: StepperProps) => {
             value={{
                 steps,
                 activeIndex,
+                isValid,
                 canPrev,
                 canNext,
                 prev: handlePrev,
@@ -48,6 +59,10 @@ const Stepper = ({ steps, children }: StepperProps) => {
 Stepper.Content = StepperContent;
 Stepper.Next = StepperNextButton;
 Stepper.Prev = StepperPrevButton;
+Stepper.Complete = StepperCompleteButton;
 Stepper.Progress = StepperProgress;
+Stepper.ProgressBar = StepperProgressBar;
+Stepper.Title = StepperProgressTitle;
+Stepper.Counter = StepperProgressCounter;
 
 export default Stepper;

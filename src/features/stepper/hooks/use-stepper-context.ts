@@ -11,12 +11,14 @@ type RenderMethodProps = {
 type StepperItem = {
     id: string;
     label: string;
+    isValid?: boolean;
     render: (config: RenderMethodProps) => React.ReactNode;
 };
 
 type StepperContextType = {
     steps: readonly StepperItem[];
     activeIndex: number;
+    isValid: boolean;
     canPrev: boolean;
     canNext: boolean;
     prev: NavigationMethod;

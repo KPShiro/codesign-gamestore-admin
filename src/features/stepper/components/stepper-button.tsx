@@ -1,13 +1,12 @@
-import Button from '@/components/ui/button';
 import { useStepperContext } from '@/features/stepper/hooks/use-stepper-context';
 import { Slot } from '@radix-ui/react-slot';
 
-type StepperButton = React.ComponentProps<typeof Button> & {
+type StepperButton = React.ComponentProps<'button'> & {
     asChild?: boolean;
 };
 
 const StepperButton = ({ asChild, ...props }: StepperButton) => {
-    const Comp = asChild ? Slot : Button;
+    const Comp = asChild ? Slot : 'button';
 
     const handleOnClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
         if (props.disabled) {
@@ -23,15 +22,27 @@ const StepperButton = ({ asChild, ...props }: StepperButton) => {
 const StepperNextButton = ({ ...props }: StepperButton) => {
     const context = useStepperContext();
 
-    return context.canNext ? <StepperButton {...props} onClick={context.next} /> : null;
+    return context.canNext ? (
+        <StepperButton
+            {...props}
+            disabled={props.disabled || !context.isValid}
+            onClick={context.next}
+        />
+    ) : null;
 };
 
 const StepperPrevButton = ({ ...props }: StepperButton) => {
     const context = useStepperContext();
 
-    return context.canPrev ? (
-        <StepperButton variant="outlined" {...props} onClick={context.prev} />
+    return context.canPrev ? <StepperButton {...props} onClick={context.prev} /> : null;
+};
+
+const StepperCompleteButton = ({ ...props }: StepperButton) => {
+    const context = useStepperContext();
+
+    return !context.canNext ? (
+        <StepperButton {...props} disabled={props.disabled || !context.isValid} />
     ) : null;
 };
 
-export { StepperNextButton, StepperPrevButton };
+export { StepperCompleteButton, StepperNextButton, StepperPrevButton };
