@@ -1,38 +1,35 @@
 import NumberInput from '@components/number-input';
-import Button from '@components/ui/button';
 import FormField from '@components/ui/form';
-import { Dialog } from '@features/dialog';
 import {
     GameConfigurationFormData,
     GameConfigurationFormSchema,
 } from '@features/games-catalog/schemas/game-configuration';
-import { Stepper } from '@features/stepper';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useMutationState } from '@tanstack/react-query';
+import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 type GameConfigurationFormProps = {
-    onSubmit: (data: GameConfigurationFormData) => void;
-    values: Partial<GameConfigurationFormData>;
+    value?: Partial<GameConfigurationFormData>;
+    onValueChange: (value: Partial<GameConfigurationFormData>) => void;
 };
 
-const GameConfigurationForm = ({ onSubmit, values }: GameConfigurationFormProps) => {
-    const { control, formState, handleSubmit } = useForm<GameConfigurationFormData>({
+const GameConfigurationForm = ({ value, onValueChange }: GameConfigurationFormProps) => {
+    const { control, watch } = useForm<GameConfigurationFormData>({
         resolver: zodResolver(GameConfigurationFormSchema),
         mode: 'onChange',
-        defaultValues: values,
+        defaultValues: value,
     });
 
-    const mutationState = useMutationState({
-        filters: {
-            mutationKey: ['create-game'],
-            status: 'pending',
-        },
-    });
-    const isPending = mutationState[0]?.status === 'pending';
+    useEffect(() => {
+        const { unsubscribe } = watch((data) => {
+            onValueChange?.(data);
+        });
+
+        return () => unsubscribe();
+    }, [watch]);
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form className="space-y-4">
             <FormField>
                 <FormField.Label>RTP</FormField.Label>
                 <Controller
@@ -64,15 +61,6 @@ const GameConfigurationForm = ({ onSubmit, values }: GameConfigurationFormProps)
                     )}
                 />
             </FormField>
-            <Dialog.Footer>
-                <Stepper.Prev text="Previous Step" />
-                <Button
-                    type="submit"
-                    text="Complete and Save"
-                    disabled={!formState.isValid || isPending}
-                    loading={isPending}
-                />
-            </Dialog.Footer>
         </form>
     );
 };
