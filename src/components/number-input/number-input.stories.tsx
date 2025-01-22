@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 import NumberInput from './number-input';
 
 const meta = {
@@ -21,15 +22,17 @@ type Story = StoryObj<typeof meta>;
 
 export const Empty: Story = {};
 
-export const Valid: Story = {
+export const WithValue: Story = {
     args: {
         value: 100,
+        onValueChange: () => fn(),
     },
 };
 
 export const Invalid: Story = {
     args: {
         value: 100,
+        onValueChange: () => fn(),
         invalid: true,
     },
 };
@@ -37,6 +40,7 @@ export const Invalid: Story = {
 export const Disabled: Story = {
     args: {
         value: 100,
+        onValueChange: () => fn(),
         disabled: true,
     },
 };
