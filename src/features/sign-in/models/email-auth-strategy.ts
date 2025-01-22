@@ -6,7 +6,7 @@ export type EmailStrategyCredentials = {
 };
 
 export const EmailAuthStrategy: AuthStrategy<EmailStrategyCredentials> = {
-    signIn: (credentials: EmailStrategyCredentials) => {
+    signIn: (_credentials: EmailStrategyCredentials) => {
         return new Promise<string>((res) => {
             setTimeout(() => {
                 res(
