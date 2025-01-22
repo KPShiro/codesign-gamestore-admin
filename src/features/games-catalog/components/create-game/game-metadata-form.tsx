@@ -2,39 +2,17 @@ import ImageInput from '@/components/image-input';
 import { useToast } from '@/features/toast';
 import TextInput from '@components/text-input';
 import FormField from '@components/ui/form';
-import {
-    GameMetadataFormData,
-    GameMetadataFormSchema,
-} from '@features/games-catalog/schemas/game-metadata';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
+import { CreateGameFormData } from '../../schemas/create-game';
 import GameProviderInput from './game-provider-input';
 import GameStudioInput from './game-studio-input';
 
-type GameMetadataFormProps = {
-    value?: Partial<GameMetadataFormData>;
-    onValueChange: (value: Partial<GameMetadataFormData>) => void;
-};
-
-const GameMetadataForm = ({ value, onValueChange }: GameMetadataFormProps) => {
-    const { control, watch } = useForm<GameMetadataFormData>({
-        resolver: zodResolver(GameMetadataFormSchema),
-        mode: 'onChange',
-        defaultValues: value,
-    });
+const GameMetadataForm = () => {
+    const { control } = useFormContext<CreateGameFormData>();
     const toast = useToast();
 
-    useEffect(() => {
-        const { unsubscribe } = watch((data) => {
-            onValueChange?.(data);
-        });
-
-        return () => unsubscribe();
-    }, [watch]);
-
     return (
-        <form className="space-y-4">
+        <div className="space-y-4">
             <FormField>
                 <FormField.Label>Thumbnail</FormField.Label>
                 <Controller
@@ -90,7 +68,7 @@ const GameMetadataForm = ({ value, onValueChange }: GameMetadataFormProps) => {
                     )}
                 />
             </FormField>
-        </form>
+        </div>
     );
 };
 

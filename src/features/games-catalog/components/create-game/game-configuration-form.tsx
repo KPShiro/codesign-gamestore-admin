@@ -1,45 +1,26 @@
-import NumberInput from '@components/number-input';
+import RangeInput from '@/components/range-input/range-input';
 import FormField from '@components/ui/form';
-import {
-    GameConfigurationFormData,
-    GameConfigurationFormSchema,
-} from '@features/games-catalog/schemas/game-configuration';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
+import { CreateGameFormData } from '../../schemas/create-game';
 
-type GameConfigurationFormProps = {
-    value?: Partial<GameConfigurationFormData>;
-    onValueChange: (value: Partial<GameConfigurationFormData>) => void;
-};
-
-const GameConfigurationForm = ({ value, onValueChange }: GameConfigurationFormProps) => {
-    const { control, watch } = useForm<GameConfigurationFormData>({
-        resolver: zodResolver(GameConfigurationFormSchema),
-        mode: 'onChange',
-        defaultValues: value,
-    });
-
-    useEffect(() => {
-        const { unsubscribe } = watch((data) => {
-            onValueChange?.(data);
-        });
-
-        return () => unsubscribe();
-    }, [watch]);
+const GameConfigurationForm = () => {
+    const { control } = useFormContext<CreateGameFormData>();
 
     return (
-        <form className="space-y-4">
+        <div className="space-y-4">
             <FormField>
                 <FormField.Label>RTP</FormField.Label>
                 <Controller
                     control={control}
                     name="rtp"
                     render={({ field }) => (
-                        <NumberInput
+                        <RangeInput
                             {...field}
-                            value={field.value}
-                            onValueChange={field.onChange}
+                            value={[field.value]}
+                            onValueChange={(value) => {
+                                field.onChange(value[0]);
+                            }}
+                            step={5}
                             min={0}
                             max={100}
                         />
@@ -50,18 +31,22 @@ const GameConfigurationForm = ({ value, onValueChange }: GameConfigurationFormPr
                 <FormField.Label>Max. Win</FormField.Label>
                 <Controller
                     control={control}
-                    name="maxWin"
+                    name="win"
                     render={({ field }) => (
-                        <NumberInput
+                        <RangeInput
                             {...field}
-                            value={field.value}
-                            onValueChange={field.onChange}
+                            value={[field.value.min, field.value.max]}
+                            onValueChange={(value) => {
+                                field.onChange({ min: value[0], max: value[1] });
+                            }}
+                            step={1_000}
                             min={0}
+                            max={10_000}
                         />
                     )}
                 />
             </FormField>
-        </form>
+        </div>
     );
 };
 
