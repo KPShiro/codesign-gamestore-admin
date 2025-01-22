@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import RangeInput from './range-input';
 
 const meta = {
-    title: 'Forms/Range Input',
+    title: 'Forms/Inputs/Range',
     component: RangeInput,
     tags: ['autodocs'],
     parameters: {
