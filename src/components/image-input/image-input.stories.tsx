@@ -3,7 +3,7 @@ import { fn } from '@storybook/test';
 import ImageInput from './image-input';
 
 const meta = {
-    title: 'Forms/Image Input',
+    title: 'Forms/Inputs/Image',
     component: ImageInput,
     tags: ['autodocs'],
     parameters: {

@@ -3,7 +3,7 @@ import { fn } from '@storybook/test';
 import TextInput from './text-input';
 
 const meta = {
-    title: 'Forms/Text Input',
+    title: 'Forms/Inputs/Text',
     component: TextInput,
     tags: ['autodocs'],
     parameters: {
