@@ -1,7 +1,7 @@
+import { FormField } from '@/components/form-field';
 import ImageInput from '@/components/image-input';
 import { useToast } from '@/features/toast';
 import { TextInput } from '@components/text-input';
-import FormField from '@components/ui/form';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CreateGameFormData } from '../../schemas/create-game';
 import GameProviderInput from './game-provider-input';
@@ -13,12 +13,12 @@ const GameMetadataForm = () => {
 
     return (
         <div className="space-y-4">
-            <FormField>
-                <FormField.Label>Thumbnail</FormField.Label>
-                <Controller
-                    control={control}
-                    name="thumbnail"
-                    render={({ field, fieldState }) => (
+            <Controller
+                control={control}
+                name="thumbnail"
+                render={({ field, fieldState }) => (
+                    <FormField>
+                        <FormField.Label>Thumbnail</FormField.Label>
                         <ImageInput
                             {...field}
                             value={field.value}
@@ -32,44 +32,44 @@ const GameMetadataForm = () => {
                                 });
                             }}
                         />
-                    )}
-                />
-            </FormField>
-            <FormField>
-                <FormField.Label>Title</FormField.Label>
-                <Controller
-                    control={control}
-                    name="title"
-                    render={({ field, fieldState }) => (
+                    </FormField>
+                )}
+            />
+            <Controller
+                control={control}
+                name="title"
+                render={({ field, fieldState }) => (
+                    <FormField>
+                        <FormField.Label>Title</FormField.Label>
                         <TextInput
                             {...field}
                             onValueChange={field.onChange}
                             placeholder="e.g. Fantastic Game 3"
                             invalid={!!fieldState.error}
                         />
-                    )}
-                />
-            </FormField>
-            <FormField>
-                <FormField.Label>Provider</FormField.Label>
-                <Controller
-                    control={control}
-                    name="providerId"
-                    render={({ field }) => (
+                    </FormField>
+                )}
+            />
+            <Controller
+                control={control}
+                name="providerId"
+                render={({ field }) => (
+                    <FormField>
+                        <FormField.Label>Provider</FormField.Label>
                         <GameProviderInput value={field.value} onValueChange={field.onChange} />
-                    )}
-                />
-            </FormField>
-            <FormField>
-                <FormField.Label>Studio</FormField.Label>
-                <Controller
-                    control={control}
-                    name="studioId"
-                    render={({ field }) => (
+                    </FormField>
+                )}
+            />
+            <Controller
+                control={control}
+                name="studioId"
+                render={({ field }) => (
+                    <FormField>
+                        <FormField.Label>Studio</FormField.Label>
                         <GameStudioInput value={field.value} onValueChange={field.onChange} />
-                    )}
-                />
-            </FormField>
+                    </FormField>
+                )}
+            />
         </div>
     );
 };
