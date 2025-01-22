@@ -18,10 +18,11 @@ const GameMetadataForm = () => {
                 <Controller
                     control={control}
                     name="thumbnail"
-                    render={({ field }) => (
+                    render={({ field, fieldState }) => (
                         <ImageInput
                             {...field}
                             value={field.value}
+                            invalid={!!fieldState.error}
                             onValueChange={field.onChange}
                             onError={(error) => {
                                 toast.show({
@@ -39,11 +40,12 @@ const GameMetadataForm = () => {
                 <Controller
                     control={control}
                     name="title"
-                    render={({ field }) => (
+                    render={({ field, fieldState }) => (
                         <TextInput
                             {...field}
                             onValueChange={field.onChange}
                             placeholder="e.g. Fantastic Game 3"
+                            invalid={!!fieldState.error}
                         />
                     )}
                 />

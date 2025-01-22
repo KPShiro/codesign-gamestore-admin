@@ -15,10 +15,11 @@ type ImageInputProps = {
     maxFileSize?: number;
     onValueChange?: (value: File | null) => void;
     onError?: (error: ImageInputError) => void;
-} & Pick<React.ComponentProps<'input'>, 'placeholder'>;
+    invalid?: boolean;
+} & Pick<React.ComponentProps<'input'>, 'placeholder' | 'disabled'>;
 
 const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
-    ({ value, onValueChange, onError, maxFileSize = 3_145_728, placeholder }, ref) => {
+    ({ value, onValueChange, onError, maxFileSize = 3_145_728, ...props }, ref) => {
         const [file, setFile] = useState<typeof value>(value);
         const inputRef = useRef<HTMLInputElement>(null);
 
@@ -38,7 +39,7 @@ const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
         };
 
         const handleOnTrigger = () => {
-            if (isNotDefined(inputRef.current)) {
+            if (isNotDefined(inputRef.current) || props.disabled) {
                 return;
             }
 
@@ -93,9 +94,11 @@ const ImageInput = forwardRef<HTMLInputElement, ImageInputProps>(
                 </VisuallyHidden>
                 <ImageInputValue
                     file={file}
-                    placeholder={placeholder}
+                    placeholder={props.placeholder}
                     onUploadClick={handleOnTrigger}
                     onRemoveClick={clearInput}
+                    disabled={props.disabled}
+                    invalid={props.invalid}
                 />
             </>
         );
