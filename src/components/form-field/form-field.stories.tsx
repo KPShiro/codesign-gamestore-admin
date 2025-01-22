@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import Input from '../ui/input';
 import { FormField } from './form-field';
 
 const meta = {
@@ -19,21 +20,17 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const Placeholder = () => {
-    return (
-        <div className="flex h-10 items-center rounded-md bg-muted px-3">
-            <span className="text-xs text-muted-foreground">COMPONENT_PLACEHOLDER</span>
-        </div>
-    );
-};
+const label = 'Email address';
+const placeholder = 'natasha.romanov@avenvers.com';
+const message = 'System notifications will be sent here';
 
 export const Default: Story = {
     render: (args) => {
         return (
             <FormField {...args}>
-                <FormField.Label>Lorem ipsum</FormField.Label>
-                <Placeholder />
-                <FormField.Message>Dolor sit amet et umbra dorcet</FormField.Message>
+                <FormField.Label>{label}</FormField.Label>
+                <Input placeholder={placeholder} />
+                <FormField.Message>{message}</FormField.Message>
             </FormField>
         );
     },
@@ -43,8 +40,8 @@ export const OnlyLabel: Story = {
     render: (args) => {
         return (
             <FormField {...args}>
-                <FormField.Label>Lorem ipsum</FormField.Label>
-                <Placeholder />
+                <FormField.Label>{label}</FormField.Label>
+                <Input placeholder={placeholder} />
             </FormField>
         );
     },
@@ -54,8 +51,8 @@ export const OnlyMessage: Story = {
     render: (args) => {
         return (
             <FormField {...args}>
-                <Placeholder />
-                <FormField.Message>Dolor sit amet et umbra dorcet</FormField.Message>
+                <Input placeholder={placeholder} />
+                <FormField.Message>{message}</FormField.Message>
             </FormField>
         );
     },
