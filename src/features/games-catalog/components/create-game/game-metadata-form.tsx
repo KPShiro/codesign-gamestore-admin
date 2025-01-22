@@ -1,6 +1,6 @@
 import ImageInput from '@/components/image-input';
 import { useToast } from '@/features/toast';
-import TextInput from '@components/text-input';
+import { TextInput } from '@components/text-input';
 import FormField from '@components/ui/form';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CreateGameFormData } from '../../schemas/create-game';
