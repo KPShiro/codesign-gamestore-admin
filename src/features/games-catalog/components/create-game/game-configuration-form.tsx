@@ -1,5 +1,5 @@
+import { FormField } from '@/components/form-field';
 import RangeInput from '@/components/range-input/range-input';
-import FormField from '@components/ui/form';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CreateGameFormData } from '../../schemas/create-game';
 
@@ -8,12 +8,12 @@ const GameConfigurationForm = () => {
 
     return (
         <div className="space-y-4">
-            <FormField>
-                <FormField.Label>RTP</FormField.Label>
-                <Controller
-                    control={control}
-                    name="rtp"
-                    render={({ field }) => (
+            <Controller
+                control={control}
+                name="rtp"
+                render={({ field }) => (
+                    <FormField>
+                        <FormField.Label>RTP</FormField.Label>
                         <RangeInput
                             {...field}
                             value={[field.value]}
@@ -24,15 +24,15 @@ const GameConfigurationForm = () => {
                             min={0}
                             max={100}
                         />
-                    )}
-                />
-            </FormField>
-            <FormField>
-                <FormField.Label>Max. Win</FormField.Label>
-                <Controller
-                    control={control}
-                    name="win"
-                    render={({ field }) => (
+                    </FormField>
+                )}
+            />
+            <Controller
+                control={control}
+                name="win"
+                render={({ field }) => (
+                    <FormField>
+                        <FormField.Label>Max. Win</FormField.Label>
                         <RangeInput
                             {...field}
                             value={[field.value.min, field.value.max]}
@@ -43,9 +43,9 @@ const GameConfigurationForm = () => {
                             min={0}
                             max={10_000}
                         />
-                    )}
-                />
-            </FormField>
+                    </FormField>
+                )}
+            />
         </div>
     );
 };
