@@ -13,19 +13,19 @@ type ActionMenuItemGroup = {
 };
 
 type GamesTableItemMenuProps = {
-    id: Game['id'];
+    game: Game;
 };
 
-const GamesTableItemMenu = ({ id }: GamesTableItemMenuProps) => {
+const GamesTableItemMenu = ({ game }: GamesTableItemMenuProps) => {
     const groups: ActionMenuItemGroup[] = [
         {
-            options: [usePlayNowAction(id)],
+            options: [usePlayNowAction(game.id)],
         },
         {
-            options: [useViewGameAction(id), useEditGameAction(id)],
+            options: [useViewGameAction(game.id), useEditGameAction(game.id)],
         },
         {
-            options: [useDeleteGameAction(id)],
+            options: [useDeleteGameAction(game.id, game.title)],
         },
     ];
 

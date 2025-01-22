@@ -1,56 +1,28 @@
 import ImageInput from '@/components/image-input';
 import { useToast } from '@/features/toast';
-import TextInput from '@components/text-input';
-import Button from '@components/ui/button';
+import { TextInput } from '@components/text-input';
 import FormField from '@components/ui/form';
-import { Dialog } from '@features/dialog';
-import {
-    GameMetadataFormData,
-    GameMetadataFormSchema,
-} from '@features/games-catalog/schemas/game-metadata';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, useFormContext } from 'react-hook-form';
+import { CreateGameFormData } from '../../schemas/create-game';
 import GameProviderInput from './game-provider-input';
 import GameStudioInput from './game-studio-input';
 
-type GameMetadataFormProps = {
-    onSubmit: (data: GameMetadataFormData) => void;
-    values: Partial<GameMetadataFormData>;
-};
-
-const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
-    const { control, formState, handleSubmit } = useForm<GameMetadataFormData>({
-        resolver: zodResolver(GameMetadataFormSchema),
-        mode: 'onChange',
-        defaultValues: values,
-    });
+const GameMetadataForm = () => {
+    const { control } = useFormContext<CreateGameFormData>();
     const toast = useToast();
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <FormField>
-                <FormField.Label>Title</FormField.Label>
-                <Controller
-                    control={control}
-                    name="title"
-                    render={({ field }) => (
-                        <TextInput
-                            {...field}
-                            onValueChange={field.onChange}
-                            placeholder="e.g. The Witcher 3"
-                        />
-                    )}
-                />
-            </FormField>
+        <div className="space-y-4">
             <FormField>
                 <FormField.Label>Thumbnail</FormField.Label>
                 <Controller
                     control={control}
                     name="thumbnail"
-                    render={({ field }) => (
+                    render={({ field, fieldState }) => (
                         <ImageInput
                             {...field}
                             value={field.value}
+                            invalid={!!fieldState.error}
                             onValueChange={field.onChange}
                             onError={(error) => {
                                 toast.show({
@@ -59,6 +31,21 @@ const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
                                     description: error.file.name,
                                 });
                             }}
+                        />
+                    )}
+                />
+            </FormField>
+            <FormField>
+                <FormField.Label>Title</FormField.Label>
+                <Controller
+                    control={control}
+                    name="title"
+                    render={({ field, fieldState }) => (
+                        <TextInput
+                            {...field}
+                            onValueChange={field.onChange}
+                            placeholder="e.g. Fantastic Game 3"
+                            invalid={!!fieldState.error}
                         />
                     )}
                 />
@@ -83,10 +70,7 @@ const GameMetadataForm = ({ onSubmit, values }: GameMetadataFormProps) => {
                     )}
                 />
             </FormField>
-            <Dialog.Footer>
-                <Button type="submit" text="Continue" disabled={!formState.isValid} />
-            </Dialog.Footer>
-        </form>
+        </div>
     );
 };
 
