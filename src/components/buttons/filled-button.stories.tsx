@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { PlusIcon } from 'lucide-react';
-import { ButtonSizes, ButtonVariants, FilledButton } from './filled-button';
+import { FilledButton } from './filled-button';
+import { ButtonSizes, ButtonVariants } from './types';
 
 const meta = {
     title: 'Buttons/Filled',
