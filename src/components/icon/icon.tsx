@@ -7,13 +7,17 @@ export type IconSize = (typeof IconSizes)[number];
 
 type IconProps = LucideProps & {
     icon: React.ElementType<LucideProps>;
-    size?: IconSize;
+    size?: IconSize | number;
 };
 
 export const Icon = ({ icon, size = 'md', className, ...props }: IconProps) => {
     const IconComponent = icon;
 
     const iconSize = useMemo(() => {
+        if (typeof size === 'number') {
+            return size;
+        }
+
         switch (size) {
             case 'sm':
                 return 16;

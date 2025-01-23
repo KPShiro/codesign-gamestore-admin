@@ -1,8 +1,8 @@
 import { cn } from '@/utils';
-import Icon from '@components/ui/icon';
+import { Icon, IconSize } from '@components/icon';
 import { cva, VariantProps } from 'class-variance-authority';
 import { LoaderCircleIcon, LucideProps } from 'lucide-react';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 const variants = cva(
     'relative inline-flex gap-2 min-w-fit flex-shrink-0 items-center justify-center font-medium  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 select-none disabled:opacity-disabled disabled:pointer-events-none ring-offset-background border border-transparent',
@@ -36,6 +36,7 @@ type ButtonProps = React.ComponentPropsWithoutRef<'button'> &
         text?: string;
     };
 
+/** @deprecated Please use other, less generic button components (e.g. FilledButton) */
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     (
         {
@@ -50,18 +51,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         },
         ref
     ) => {
-        const getIconSize = () => {
+        const iconSize: IconSize = useMemo(() => {
             switch (size) {
-                case 'md':
-                    return 16;
                 case 'sm':
-                    return 14;
                 case 'xs':
-                    return 12;
+                    return 'sm';
+                case 'md':
                 default:
-                    return 16;
+                    return 'md';
             }
-        };
+        }, [size]);
 
         const getIconStrokeWidth = () => {
             switch (size) {
@@ -99,7 +98,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 {icon ? (
                     <Icon
                         icon={icon}
-                        size={getIconSize()}
+                        size={iconSize}
                         strokeWidth={getIconStrokeWidth()}
                         className={cn(loading && 'opacity-0')}
                     />

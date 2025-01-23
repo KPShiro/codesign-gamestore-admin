@@ -1,7 +1,7 @@
 import { Maybe } from '@/models/maybe';
 import { cn, convertBytes, formatNumber } from '@/utils';
+import { Icon } from '@components/icon';
 import { UploadIcon, XIcon } from 'lucide-react';
-import Icon from '../ui/icon';
 
 type ImageInputValueProps = {
     file: Maybe<File>;
@@ -33,11 +33,11 @@ const ImageInputValue = ({
                     <div className="relative isolate">
                         <img src={URL.createObjectURL(file)} className="object-cover" />
                         <div className="absolute inset-0 z-10 flex items-center justify-center bg-foreground/15 opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
-                            <Icon icon={XIcon} size={12} className="text-background" />
+                            <Icon icon={XIcon} size="xs" className="text-background" />
                         </div>
                     </div>
                 ) : (
-                    <Icon icon={UploadIcon} size={12} className="text-muted-foreground" />
+                    <Icon icon={UploadIcon} size="xs" className="text-muted-foreground" />
                 )}
             </div>
             <div

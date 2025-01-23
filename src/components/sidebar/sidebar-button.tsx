@@ -1,5 +1,5 @@
 import { cn } from '@/utils';
-import Icon from '@components/ui/icon';
+import { Icon } from '@components/icon';
 import { LucideProps } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
@@ -22,7 +22,7 @@ const SidebarButton = ({ to, icon, text }: SidebarButtonProps) => {
             }
             title={text}
         >
-            <Icon icon={icon} />
+            <Icon icon={icon} size="md" />
         </NavLink>
     );
 };
