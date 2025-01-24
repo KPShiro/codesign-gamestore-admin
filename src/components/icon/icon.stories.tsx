@@ -4,7 +4,7 @@ import { Icon } from '.';
 import { IconSizes } from './icon';
 
 const meta = {
-    title: 'Icon',
+    title: 'UI/Icon',
     component: Icon,
     tags: ['autodocs'],
     parameters: {
