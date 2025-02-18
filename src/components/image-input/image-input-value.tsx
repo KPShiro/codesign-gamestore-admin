@@ -23,7 +23,7 @@ const ImageInputValue = ({
         <div className={cn('flex h-10 select-none gap-1', disabled && 'opacity-disabled')}>
             <div
                 className={cn(
-                    'group flex aspect-square h-full cursor-pointer items-center justify-center overflow-clip rounded-md border',
+                    'group flex aspect-square h-full cursor-pointer items-center justify-center overflow-clip rounded-md border bg-background',
                     invalid &&
                         'cursor-pointer focus-visible:ring-2 focus-visible:ring-danger focus-visible:ring-offset-2 [&:not(:focus)]:border-danger [&:not(:focus)]:bg-danger/5'
                 )}
@@ -42,7 +42,7 @@ const ImageInputValue = ({
             </div>
             <div
                 className={cn(
-                    'flex h-full flex-1 cursor-pointer rounded-md border',
+                    'flex h-full flex-1 cursor-pointer rounded-md border bg-background',
                     invalid &&
                         'focus-visible:ring-2 focus-visible:ring-danger focus-visible:ring-offset-2 [&:not(:focus)]:border-danger [&:not(:focus)]:bg-danger/5'
                 )}
@@ -54,7 +54,13 @@ const ImageInputValue = ({
                         file ? 'grid-cols-[1fr_auto]' : 'grid-cols-1'
                     )}
                 >
-                    <div className="truncate text-sm">{file ? file.name : placeholder}</div>
+                    <div className="min-w-0 text-sm">
+                        {file ? (
+                            <div className="truncate text-base">{file.name}</div>
+                        ) : (
+                            <div className="truncate text-muted-foreground">{placeholder}</div>
+                        )}
+                    </div>
                     {file ? (
                         <div className="text-xs text-muted-foreground">
                             {formatNumber(convertBytes(file.size, 'MB'))} MB
