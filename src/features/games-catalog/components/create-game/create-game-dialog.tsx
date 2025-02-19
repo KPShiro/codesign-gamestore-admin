@@ -1,4 +1,4 @@
-import Button from '@/components/ui/button';
+import { FilledButton, OutlinedButton } from '@/components/buttons';
 import { Dialog, useDialog } from '@features/dialog';
 import { Stepper, StepperItem } from '@features/stepper';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -65,14 +65,13 @@ const CreateGameDialog = () => {
                     </Dialog.Body>
                     <Dialog.Footer>
                         <Stepper.Prev asChild>
-                            <Button variant="outlined" type="button" text="Previous step" />
+                            <OutlinedButton text="Previous step" />
                         </Stepper.Prev>
                         <Stepper.Next asChild>
-                            <Button type="button" text="Next step" />
+                            <FilledButton text="Next step" />
                         </Stepper.Next>
                         <Stepper.Complete asChild>
-                            <Button
-                                type="button"
+                            <FilledButton
                                 text="Complete"
                                 disabled={createGameMutation.isPending}
                                 loading={createGameMutation.isPending}

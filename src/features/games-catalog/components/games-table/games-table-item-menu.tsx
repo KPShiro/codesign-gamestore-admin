@@ -1,6 +1,6 @@
+import { GhostButton } from '@/components/buttons';
 import { Action } from '@/hooks/use-action';
 import PopoverMenu from '@components/popover-menu';
-import Button from '@components/ui/button';
 import { useDeleteGameAction } from '@features/games-catalog/actions/use-delete-game';
 import { useEditGameAction } from '@features/games-catalog/actions/use-edit-game';
 import { usePlayNowAction } from '@features/games-catalog/actions/use-play-now';
@@ -50,7 +50,7 @@ const GamesTableItemMenu = ({ game }: GamesTableItemMenuProps) => {
     return (
         <PopoverMenu>
             <PopoverMenu.Trigger asChild>
-                <Button variant="text" size="sm" icon={EllipsisIcon} />
+                <GhostButton size="xs" icon={EllipsisIcon} />
             </PopoverMenu.Trigger>
             <PopoverMenu.Options>
                 {getAvailableGroups().map((group, index) => (

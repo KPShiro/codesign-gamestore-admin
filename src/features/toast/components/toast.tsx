@@ -1,5 +1,5 @@
+import { OutlinedButton } from '@/components/buttons';
 import { cn } from '@/utils';
-import Button from '@components/ui/button';
 import { ShowToastConfig } from '@features/toast/hooks/use-toast-context';
 import * as RadixToast from '@radix-ui/react-toast';
 import { cva, VariantProps } from 'class-variance-authority';
@@ -44,9 +44,7 @@ const Toast = ({ config, ...props }: ToastProps) => {
             {config.action ? (
                 <div>
                     <RadixToast.Action altText={config.action.label} asChild>
-                        <Button
-                            type="button"
-                            variant="outlined"
+                        <OutlinedButton
                             size="sm"
                             text={config.action.label}
                             onClick={config.action.callback}

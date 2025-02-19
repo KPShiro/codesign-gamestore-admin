@@ -1,8 +1,8 @@
 import { useAuth } from '@/hooks/use-auth';
-import Button from '@components/ui/button';
 import { NotificationsTrigger } from '@features/notifications';
 import { LogOutIcon, SettingsIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { OutlinedButton } from './buttons';
 
 const Navbar = () => {
     const { signOut } = useAuth();
@@ -20,8 +20,8 @@ const Navbar = () => {
                 </div>
                 <div className="flex items-center gap-2">
                     <NotificationsTrigger />
-                    <Button type="button" variant="outlined" icon={SettingsIcon} />
-                    <Button type="button" variant="outlined" icon={LogOutIcon} onClick={signOut} />
+                    <OutlinedButton icon={SettingsIcon} />
+                    <OutlinedButton icon={LogOutIcon} onClick={signOut} />
                 </div>
             </div>
         </nav>

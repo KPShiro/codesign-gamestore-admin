@@ -1,4 +1,4 @@
-import Button from '@/components/ui/button';
+import { FilledButton } from '@/components/buttons';
 import Input from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -45,7 +45,7 @@ const SignInForm = ({ actions, loading, onSubmit }: SignInFormProps) => {
                 />
             </div>
             <div className="flex flex-col gap-2">
-                <Button
+                <FilledButton
                     type="submit"
                     text="Sign In"
                     loading={form.formState.disabled}
