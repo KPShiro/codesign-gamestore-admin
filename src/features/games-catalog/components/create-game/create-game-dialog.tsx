@@ -14,6 +14,7 @@ const CreateGameDialog = () => {
         resolver: zodResolver(CreateGameFormSchema),
         defaultValues: {
             status: 'NOT_PUBLISHED',
+            title: '',
             rtp: 50,
             win: {
                 min: 0,
