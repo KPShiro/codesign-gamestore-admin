@@ -33,7 +33,7 @@ const meta = {
                     summary: ButtonVariants.join('|'),
                 },
                 defaultValue: {
-                    summary: ButtonVariants[0],
+                    summary: 'primary',
                 },
             },
         },
@@ -45,7 +45,7 @@ const meta = {
                     summary: ButtonSizes.join('|'),
                 },
                 defaultValue: {
-                    summary: ButtonSizes[0],
+                    summary: 'md',
                 },
             },
         },
