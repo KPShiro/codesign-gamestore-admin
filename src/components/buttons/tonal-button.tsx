@@ -11,6 +11,7 @@ const variants = cva<{
         color: {
             primary: 'bg-primary/10 text-primary hover:bg-primary/15 active:bg-primary/20',
             danger: 'bg-danger/10 text-danger hover:bg-danger/15 active:bg-danger/20',
+            neutral: 'bg-muted/40 text-foreground hover:bg-muted/60 active:bg-muted/80',
         },
     },
     defaultVariants: {

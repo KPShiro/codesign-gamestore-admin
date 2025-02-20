@@ -8,7 +8,7 @@ import { ButtonSize } from './types';
 const variants = cva<{
     size: Record<ButtonSize, string>;
 }>(
-    'relative isolate inline-flex select-none items-center justify-center border border-transparent font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 enabled:cursor-pointer disabled:cursor-default disabled:bg-foreground/5 disabled:text-foreground/25',
+    'relative isolate inline-flex select-none items-center justify-center border border-transparent font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 enabled:cursor-pointer disabled:cursor-default disabled:bg-muted disabled:text-muted-foreground disabled:opacity-disabled',
     {
         variants: {
             size: {
