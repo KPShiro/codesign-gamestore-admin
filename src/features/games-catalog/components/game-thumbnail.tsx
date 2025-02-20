@@ -1,5 +1,5 @@
 import Thumbnail from '@/components/thumbnail';
-import Icon from '@components/ui/icon';
+import { Icon } from '@components/icon';
 import { useViewGameAction } from '@features/games-catalog/actions/use-view-game';
 import { Game } from '@features/games-catalog/models/game';
 import { SquareArrowOutUpRightIcon } from 'lucide-react';
@@ -21,7 +21,11 @@ const GameThumbnail = ({ id, thumbnail, size = 'sm' }: GameThumbnailProps) => {
         >
             {!action.isDisabled ? (
                 <div className="absolute inset-0 z-10 flex items-center justify-center rounded-sm bg-foreground/25 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 group-active:bg-foreground/50">
-                    <Icon icon={SquareArrowOutUpRightIcon} className="stroke-background" />
+                    <Icon
+                        icon={SquareArrowOutUpRightIcon}
+                        size="md"
+                        className="stroke-background"
+                    />
                 </div>
             ) : null}
             <Thumbnail src={thumbnail} size={size} />

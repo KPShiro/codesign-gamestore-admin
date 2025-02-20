@@ -1,8 +1,8 @@
 import { cn } from '@/utils';
+import { Icon } from '@components/icon';
 import Popover from '@components/ui/popover';
 import { Loader2Icon, LucideProps } from 'lucide-react';
 import React from 'react';
-import Icon from './ui/icon';
 
 type PopoverMenuOptionProps = {
     icon?: React.ElementType<LucideProps>;
@@ -41,12 +41,12 @@ const PopoverMenuOption = ({
             )}
         >
             {icon && !isProcessing ? (
-                <Icon icon={icon} size={14} strokeWidth={1.25} className="text-muted-foreground" />
+                <Icon icon={icon} size="sm" strokeWidth={1.25} className="text-muted-foreground" />
             ) : null}
             {icon && isProcessing ? (
                 <Icon
                     icon={Loader2Icon}
-                    size={14}
+                    size="sm"
                     strokeWidth={1.25}
                     className="animate-spin text-muted-foreground"
                 />

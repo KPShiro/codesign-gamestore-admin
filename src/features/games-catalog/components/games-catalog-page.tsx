@@ -1,6 +1,6 @@
+import { OutlinedButton } from '@/components/buttons';
 import PageWrapper from '@/components/page-wrapper';
 import { Skeleton } from '@/components/skeleton';
-import Button from '@/components/ui/button';
 import { isNotDefined } from '@/utils';
 import CreateGameButton from '@features/games-catalog/components/create-game/create-game-button';
 import { PublishStatusFilter, SearchFilter } from '@features/games-catalog/components/filters';
@@ -59,7 +59,7 @@ const GamesCatalogPage = () => {
                             neque. Ad hic, a libero nam sunt voluptate necessitatibus veritatis.
                         </p>
                     </div>
-                    <Button variant={'outlined'} text="Clear filters" onClick={clearFilters} />
+                    <OutlinedButton text="Clear filters" onClick={clearFilters} />
                 </div>
             ) : null}
         </PageWrapper>

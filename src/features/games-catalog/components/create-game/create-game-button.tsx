@@ -1,17 +1,17 @@
+import { FilledButton } from '@/components/buttons';
 import { usePermissions } from '@/hooks/use-permissions';
-import Button from '@components/ui/button';
 import { useDialog } from '@features/dialog';
 import React from 'react';
 import CreateGameDialog from './create-game-dialog';
 
-type CreateGameButtonProps = Pick<React.ComponentProps<typeof Button>, 'disabled'>;
+type CreateGameButtonProps = Pick<React.ComponentProps<typeof FilledButton>, 'disabled'>;
 
 const CreateGameButton = (props: CreateGameButtonProps) => {
     const { hasPermissions } = usePermissions();
     const dialog = useDialog();
 
     return (
-        <Button
+        <FilledButton
             {...props}
             text="Add Game"
             disabled={!hasPermissions(['Game.Create'])}

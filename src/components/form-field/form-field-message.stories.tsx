@@ -17,9 +17,10 @@ const meta = {
             options: FormFieldMessageTypes,
             table: {
                 type: {
-                    summary: FormFieldMessageTypes.map((type) => {
-                        return `'${type}'`;
-                    }).join(' | '),
+                    summary: FormFieldMessageTypes.join('|'),
+                },
+                defaultValue: {
+                    summary: FormFieldMessageTypes[0],
                 },
             },
         },

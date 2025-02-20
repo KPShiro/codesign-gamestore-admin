@@ -1,4 +1,4 @@
-import Button from '@/components/ui/button';
+import { GhostButton } from '@/components/buttons';
 import { cn, formatDateTime } from '@/utils';
 import { useNotifications } from '@features/notifications/hooks/use-notifications';
 import { Notification } from '@features/notifications/hooks/use-notifications-context';
@@ -19,9 +19,8 @@ const NotificationCard = ({ notification }: NotificationProps) => {
             )}
         >
             <div className="absolute -top-4 right-3 z-10 hidden space-x-0.5 rounded-sm border bg-background p-0.5 shadow group-hover:block">
-                <Button
-                    size={'xs'}
-                    variant={'text'}
+                <GhostButton
+                    size="xs"
                     icon={CheckIcon}
                     title="Mark as read"
                     onClick={() => markAsRead(notification.id)}

@@ -1,7 +1,7 @@
 import { cn } from '@/utils';
+import { Icon } from '@components/icon';
 import * as RadixSelect from '@radix-ui/react-select';
 import { CheckIcon, ChevronsUpDownIcon } from 'lucide-react';
-import Icon from './icon';
 
 const Trigger = ({ className, ...props }: React.ComponentProps<typeof RadixSelect.Value>) => {
     return (
@@ -17,7 +17,7 @@ const Trigger = ({ className, ...props }: React.ComponentProps<typeof RadixSelec
             <RadixSelect.Icon asChild>
                 <Icon
                     icon={ChevronsUpDownIcon}
-                    size={12}
+                    size="sm"
                     strokeWidth={1}
                     className="stroke-foreground"
                 />
@@ -39,7 +39,7 @@ const Item = ({ children, ...props }: React.ComponentProps<typeof RadixSelect.It
                 <RadixSelect.ItemText>{children}</RadixSelect.ItemText>
             </div>
             <RadixSelect.ItemIndicator asChild>
-                <Icon icon={CheckIcon} size={12} strokeWidth={1} />
+                <Icon icon={CheckIcon} size="sm" strokeWidth={1} />
             </RadixSelect.ItemIndicator>
         </RadixSelect.Item>
     );

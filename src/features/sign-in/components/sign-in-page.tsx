@@ -1,7 +1,7 @@
+import { TonalButton } from '@/components/buttons';
 import Card from '@/components/card';
-import Button from '@/components/ui/button';
-import Icon from '@/components/ui/icon';
 import { useAuth } from '@/hooks/use-auth';
+import { Icon } from '@components/icon';
 import { Loader2Icon } from 'lucide-react';
 import SignInForm from './sign-in-form';
 
@@ -25,8 +25,7 @@ const SignInPage = () => {
                             })
                         }
                         actions={
-                            <Button
-                                variant="tonal"
+                            <TonalButton
                                 text="Continue with Google"
                                 disabled={isAuthenticating}
                                 onClick={() => signIn({ provider: 'GOOGLE' })}

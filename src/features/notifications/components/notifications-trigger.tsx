@@ -1,4 +1,5 @@
-import Button from '@components/ui/button';
+import { OutlinedButton, TonalButton } from '@/components/buttons';
+import { cn } from '@/utils';
 import Popover from '@components/ui/popover';
 import { useNotificationsContext } from '@features/notifications/hooks/use-notifications-context';
 import { BellDotIcon, BellIcon } from 'lucide-react';
@@ -14,18 +15,23 @@ const NotificationsTrigger = () => {
     return (
         <Popover onOpenChange={setOpened}>
             <Popover.Trigger asChild>
-                <Button
-                    variant={hasNotifications ? 'tonal' : 'outlined'}
-                    icon={hasNotifications ? BellDotIcon : BellIcon}
-                    ping={hasNotifications && !opened}
-                />
+                {hasNotifications ? (
+                    <TonalButton
+                        icon={hasNotifications ? BellDotIcon : BellIcon}
+                        className={cn(hasNotifications && !opened && 'animate-ping-ring')}
+                    />
+                ) : (
+                    <OutlinedButton
+                        icon={hasNotifications ? BellDotIcon : BellIcon}
+                        className={cn(hasNotifications && !opened && 'animate-ping-ring')}
+                    />
+                )}
             </Popover.Trigger>
             <Popover.Content className="w-96 select-none">
                 <div className="flex items-center justify-between border-b p-4">
                     <h4 className="text-sm font-medium">Notifications</h4>
-                    <Button
-                        variant={'outlined'}
-                        size={'sm'}
+                    <OutlinedButton
+                        size="xs"
                         text="Mark all as read"
                         disabled={!hasNotifications}
                         onClick={markAllAsRead}

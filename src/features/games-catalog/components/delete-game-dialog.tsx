@@ -1,4 +1,4 @@
-import Button from '@/components/ui/button';
+import { FilledButton, OutlinedButton } from '@/components/buttons';
 import { Dialog } from '@/features/dialog';
 import { useMutationState } from '@tanstack/react-query';
 import { Game } from '../models/game';
@@ -30,9 +30,10 @@ const DeleteGameDialog = ({ gameTitle, onConfirmClick }: DeleteGameDialogProps) 
             </Dialog.Body>
             <Dialog.Footer>
                 <Dialog.Close asChild>
-                    <Button variant="outlined" text="Cancel" />
+                    <OutlinedButton text="Cancel" />
                 </Dialog.Close>
-                <Button
+                <FilledButton
+                    color="danger"
                     text="Delete forever"
                     loading={isPending}
                     disabled={isPending}
