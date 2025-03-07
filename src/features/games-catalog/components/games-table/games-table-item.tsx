@@ -14,7 +14,12 @@ const GamesTableItem = ({ game }: GamesTableItemProps) => {
         <tr>
             <td>
                 <div className="flex items-center gap-4">
-                    <Thumbnail id={game.id} thumbnail={game.thumbnail} size={'sm'} />
+                    <Thumbnail
+                        id={game.id}
+                        title={game.title}
+                        thumbnail={game.thumbnail}
+                        size={'sm'}
+                    />
                     <div className="flex min-w-0 flex-col gap-0.5">
                         <div className="truncate font-medium">{game.title}</div>
                         <div className="text-muted-foreground truncate text-xs uppercase">

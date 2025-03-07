@@ -6,11 +6,12 @@ import { SquareArrowOutUpRightIcon } from 'lucide-react';
 
 type GameThumbnailProps = {
     id: Game['id'];
+    title: Game['title'];
     thumbnail: Game['thumbnail'];
     size?: React.ComponentProps<typeof Thumbnail>['size'];
 };
 
-const GameThumbnail = ({ id, thumbnail, size = 'sm' }: GameThumbnailProps) => {
+const GameThumbnail = ({ id, title, thumbnail, size = 'sm' }: GameThumbnailProps) => {
     const action = useViewGameAction(id);
 
     return (
@@ -28,7 +29,7 @@ const GameThumbnail = ({ id, thumbnail, size = 'sm' }: GameThumbnailProps) => {
                     />
                 </div>
             ) : null}
-            <Thumbnail src={thumbnail} size={size} />
+            <Thumbnail src={thumbnail} alt={title} size={size} />
         </button>
     );
 };
