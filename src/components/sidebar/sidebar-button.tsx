@@ -3,7 +3,8 @@ import { Icon } from '@components/icon';
 import { LucideProps } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
-type SidebarButtonProps = Pick<React.ComponentProps<typeof NavLink>, 'to'> & {
+type SidebarButtonProps = {
+    to: React.ComponentProps<typeof NavLink>['to'];
     icon: React.ElementType<LucideProps>;
     text: string;
 };
@@ -16,8 +17,8 @@ const SidebarButton = ({ to, icon, text }: SidebarButtonProps) => {
                 cn(
                     'flex size-12 items-center justify-center',
                     isActive
-                        ? 'relative bg-primary/10 text-primary before:absolute before:bottom-0 before:left-0 before:top-0 before:block before:w-0.5 before:bg-primary before:content-[""]'
-                        : 'bg-transparent text-foreground hover:bg-foreground/5'
+                        ? 'bg-primary/15 text-primary before:bg-primary relative before:absolute before:top-0 before:bottom-0 before:left-0 before:block before:w-0.5 before:content-[""]'
+                        : 'text-on-surface/60 hover:bg-on-surface/5 hover:text-on-surface bg-transparent'
                 )
             }
             title={text}

@@ -1,0 +1,55 @@
+@theme {
+    --color-primary: var(--color-purple-600);
+    --color-on-primary: var(--color-purple-50);
+
+    --color-primary-container: var(--color-purple-100);
+    --color-on-primary-container: var(--color-purple-600);
+
+    --color-danger: var(--color-red-500);
+    --color-on-danger: var(--color-red-50);
+
+    --color-danger-container: var(--color-red-50);
+    --color-on-danger-container: var(--color-red-600);
+
+    --color-warning: var(--color-yellow-500);
+    --color-on-warning: var(--color-yellow-50);
+
+    --color-warning-container: var(--color-yellow-50);
+    --color-on-warning-container: var(--color-yellow-600);
+
+    --color-success: var(--color-green-600);
+    --color-on-success: var(--color-green-50);
+
+    --color-success-container: var(--color-green-50);
+    --color-on-success-container: var(--color-green-600);
+
+    --color-surface: var(--color-slate-50);
+    --color-on-surface: var(--color-slate-800);
+
+    --color-surface-container: var(--color-white);
+    --color-on-surface-container: var(--color-on-surface);
+
+    --color-border: var(--color-slate-300);
+
+    --opacity-disabled: 25%;
+
+    --radius-default: 0.375rem;
+    --width-border: 2px;
+}
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer theme {
+    /* TODO: Add colors for dark theme */
+    /* .dark { } */
+}
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-border);
+    }
+}

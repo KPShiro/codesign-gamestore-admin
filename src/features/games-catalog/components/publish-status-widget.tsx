@@ -1,4 +1,4 @@
-import StatusWidget from '@/components/ui/status-widget';
+import { FilledBadge } from '@/components/badge';
 import { Game } from '@features/games-catalog/models/game';
 import { useEffect, useState } from 'react';
 
@@ -8,12 +8,13 @@ type PublishStatusWidgetProps = {
 
 const PublishStatusWidget = ({ status }: PublishStatusWidgetProps) => {
     const [text, setText] = useState<string>('Unknown');
-    const [color, setColor] = useState<React.ComponentProps<typeof StatusWidget>['color']>('muted');
+    const [color, setColor] =
+        useState<React.ComponentProps<typeof FilledBadge>['color']>('neutral');
 
     useEffect(() => {
         switch (status) {
             case 'NOT_PUBLISHED':
-                setColor('muted');
+                setColor('neutral');
                 setText('Not Published');
                 break;
             case 'TESTING':
@@ -25,13 +26,13 @@ const PublishStatusWidget = ({ status }: PublishStatusWidgetProps) => {
                 setText('Published');
                 break;
             default:
-                setColor('muted');
+                setColor('neutral');
                 setText('Unknown');
                 break;
         }
     }, [status]);
 
-    return <StatusWidget variant={'outlined'} color={color} text={text} />;
+    return <FilledBadge color={color} text={text} />;
 };
 
 export default PublishStatusWidget;

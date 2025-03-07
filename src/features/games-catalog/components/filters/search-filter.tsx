@@ -1,4 +1,4 @@
-import Input from '@components/ui/input';
+import Input from '@/components/input/input';
 import { useGamesFilters } from '@features/games-catalog/hooks/use-games-filters';
 import React from 'react';
 

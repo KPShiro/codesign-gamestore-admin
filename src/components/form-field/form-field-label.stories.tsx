@@ -2,12 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FormFieldLabel } from './form-field-label';
 
 const meta = {
-    title: 'Forms/Form Field/Label',
+    title: 'Form Field/Label',
     component: FormFieldLabel,
     tags: ['autodocs'],
-    parameters: {
-        layout: 'centered',
-    },
     args: {
         children: 'Full Name',
     },

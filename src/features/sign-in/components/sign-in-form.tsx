@@ -1,5 +1,5 @@
-import { FilledButton } from '@/components/buttons';
-import Input from '@/components/ui/input';
+import { FilledButton } from '@/components/button';
+import Input from '@/components/input/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';

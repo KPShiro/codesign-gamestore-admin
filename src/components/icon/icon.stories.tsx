@@ -1,15 +1,11 @@
+import { Icon, IconSizes } from '@components/icon';
 import type { Meta, StoryObj } from '@storybook/react';
 import { SaveIcon } from 'lucide-react';
-import { Icon } from '.';
-import { IconSizes } from './icon';
 
 const meta = {
-    title: 'UI/Icon',
+    title: 'Icon',
     component: Icon,
     tags: ['autodocs'],
-    parameters: {
-        layout: 'centered',
-    },
     args: {
         icon: SaveIcon,
     },

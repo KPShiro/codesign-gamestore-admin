@@ -1,4 +1,4 @@
-import { FilledButton, OutlinedButton } from '@/components/buttons';
+import { FilledButton, OutlinedButton } from '@/components/button';
 import { Dialog, useDialog } from '@features/dialog';
 import { Stepper, StepperItem } from '@features/stepper';
 import { zodResolver } from '@hookform/resolvers/zod';

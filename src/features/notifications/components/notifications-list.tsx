@@ -17,7 +17,7 @@ const NotificationsList = ({ notifications }: NotificationsListProps) => {
         <div className="flex flex-col gap-1 p-1">
             {sortedNotifications.length === 0 ? (
                 <div className="flex h-32 items-center justify-center text-center">
-                    <span className="text-xs font-medium text-muted-foreground">
+                    <span className="text-on-surface/60 text-xs">
                         You don't have any notifications
                     </span>
                 </div>

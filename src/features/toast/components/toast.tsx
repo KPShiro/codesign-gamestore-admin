@@ -1,11 +1,11 @@
-import { OutlinedButton } from '@/components/buttons';
+import { OutlinedButton } from '@/components/button';
 import { cn } from '@/utils';
 import { ShowToastConfig } from '@features/toast/hooks/use-toast-context';
 import * as RadixToast from '@radix-ui/react-toast';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const variants = cva(
-    'flex flex-col gap-4 border border-l-4 rounded transition-all bg-background p-4 pr-6 shadow-xl data-[state=closed]:animate-slide-out-right data-[state=open]:animate-slide-in-left',
+    'flex flex-col gap-4 border border-l-4 rounded transition-all bg-surface p-4 pr-6 shadow-xl data-[state=closed]:animate-slide-out-right data-[state=open]:animate-slide-in-left',
     {
         variants: {
             variant: {
@@ -36,7 +36,7 @@ const Toast = ({ config, ...props }: ToastProps) => {
             <div className="space-y-1">
                 <RadixToast.Title className="text-sm font-medium">{config.title}</RadixToast.Title>
                 {config.description ? (
-                    <RadixToast.Description className="text-sm text-muted-foreground">
+                    <RadixToast.Description className="text-on-surface/60 text-sm">
                         {config.description}
                     </RadixToast.Description>
                 ) : null}

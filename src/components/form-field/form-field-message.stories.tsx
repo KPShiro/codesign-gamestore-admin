@@ -2,12 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { FormFieldMessage, FormFieldMessageTypes } from './form-field-message';
 
 const meta = {
-    title: 'Forms/Form Field/Message',
+    title: 'Form Field/Message',
     component: FormFieldMessage,
     tags: ['autodocs'],
-    parameters: {
-        layout: 'centered',
-    },
     args: {
         children: 'Lorem ipsum dolor sit amet',
     },

@@ -1,5 +1,5 @@
 import { formatNumber, formatPercent } from '@/utils';
-import GameThumbnail from '@features/games-catalog/components/game-thumbnail';
+import Thumbnail from '@features/games-catalog/components/game-thumbnail';
 import PublishStatusWidget from '@features/games-catalog/components/publish-status-widget';
 import SupportedCoinsWidget from '@features/games-catalog/components/supported-coins-widget';
 import { Game } from '@features/games-catalog/models/game';
@@ -14,10 +14,15 @@ const GamesTableItem = ({ game }: GamesTableItemProps) => {
         <tr>
             <td>
                 <div className="flex items-center gap-4">
-                    <GameThumbnail id={game.id} thumbnail={game.thumbnail} size={'sm'} />
+                    <Thumbnail
+                        id={game.id}
+                        title={game.title}
+                        thumbnail={game.thumbnail}
+                        size={'sm'}
+                    />
                     <div className="flex min-w-0 flex-col gap-0.5">
                         <div className="truncate font-medium">{game.title}</div>
-                        <div className="truncate text-xs uppercase text-muted-foreground">
+                        <div className="text-muted-foreground truncate text-xs uppercase">
                             {game.id}
                         </div>
                     </div>
@@ -29,7 +34,7 @@ const GamesTableItem = ({ game }: GamesTableItemProps) => {
             <td className="hidden lg:table-cell">
                 <div className="flex flex-col gap-0.5">
                     <div className="truncate">{game.provider.name}</div>
-                    <div className="truncate text-xs text-muted-foreground">{game.studio.name}</div>
+                    <div className="text-muted-foreground truncate text-xs">{game.studio.name}</div>
                 </div>
             </td>
             <td className="hidden text-right xl:table-cell">

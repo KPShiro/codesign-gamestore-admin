@@ -1,4 +1,4 @@
-import Select from '@/components/ui/select';
+import { Select } from '@/components/select';
 import { useGamesFilters } from '@features/games-catalog/hooks/use-games-filters';
 import {
     GamePublishStatus,

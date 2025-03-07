@@ -1,4 +1,4 @@
-import { OutlinedButton } from '@/components/buttons';
+import { OutlinedButton } from '@/components/button';
 import PageWrapper from '@/components/page-wrapper';
 import { Skeleton } from '@/components/skeleton';
 import { isNotDefined } from '@/utils';

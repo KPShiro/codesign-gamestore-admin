@@ -9,7 +9,7 @@ const variants = cva<{
 }>('text-xs', {
     variants: {
         variant: {
-            info: 'text-muted-foreground',
+            info: 'text-on-surface/60',
             error: 'text-danger',
         },
     },
