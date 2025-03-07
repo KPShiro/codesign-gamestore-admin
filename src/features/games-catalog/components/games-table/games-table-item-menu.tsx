@@ -1,6 +1,6 @@
-import { GhostButton } from '@/components/buttons';
+import { GhostButton } from '@/components/button';
+import { PopoverMenu } from '@/components/popover';
 import { Action } from '@/hooks/use-action';
-import PopoverMenu from '@components/popover-menu';
 import { useDeleteGameAction } from '@features/games-catalog/actions/use-delete-game';
 import { useEditGameAction } from '@features/games-catalog/actions/use-edit-game';
 import { usePlayNowAction } from '@features/games-catalog/actions/use-play-now';

@@ -19,7 +19,7 @@ const DialogOverlay = React.forwardRef<
     <DialogPrimitive.Overlay
         ref={ref}
         className={cn(
-            'fixed inset-0 z-50 bg-black/60 backdrop-blur-sm',
+            'bg-on-surface/80 fixed inset-0 z-50 backdrop-blur-sm',
             'data-[state=closed]:animate-fade-out data-[state=open]:animate-fade-in',
             className
         )}
@@ -44,7 +44,7 @@ const DialogContent = React.forwardRef<
             )}
             {...props}
         >
-            <div className="relative grid w-screen max-w-lg rounded-md border bg-background shadow-lg">
+            <div className="bg-surface relative grid w-screen max-w-lg rounded-md border shadow-lg">
                 {children}
             </div>
         </DialogPrimitive.Content>
@@ -67,7 +67,7 @@ DialogFooter.displayName = 'DialogFooter';
 
 const DialogBody = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
     <div
-        className={cn('flex max-h-[50vh] flex-col gap-3 overflow-y-auto border-t p-6', className)}
+        className={cn('flex max-h-[60vh] flex-col gap-3 overflow-y-auto border-t p-6', className)}
         {...props}
     />
 );
@@ -86,7 +86,7 @@ const DialogTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <DialogPrimitive.Title
         ref={ref}
-        className={cn('text-lg font-semibold leading-none tracking-tight', className)}
+        className={cn('text-lg leading-none font-semibold tracking-tight', className)}
         {...props}
     />
 ));
@@ -99,7 +99,7 @@ const DialogDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <DialogPrimitive.Description
         ref={ref}
-        className={cn('max-w-prose text-sm text-foreground/65', className)}
+        className={cn('text-on-surface/60 max-w-prose text-sm', className)}
         {...props}
     />
 ));

@@ -1,5 +1,5 @@
+import { Select } from '@/components/select';
 import { Skeleton } from '@/components/skeleton';
-import Select from '@/components/ui/select';
 import { isNotDefined } from '@/utils';
 import { useGamesStudios } from '@features/games-catalog/hooks/use-games-studios';
 

@@ -1,5 +1,5 @@
 import { FormField } from '@/components/form-field';
-import RangeInput from '@/components/range-input/range-input';
+import RangeInput from '@/components/input/range-input';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CreateGameFormData } from '../../schemas/create-game';
 

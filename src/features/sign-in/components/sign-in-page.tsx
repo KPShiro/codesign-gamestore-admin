@@ -1,5 +1,5 @@
-import { TonalButton } from '@/components/buttons';
-import Card from '@/components/card';
+import { TonalButton } from '@/components/button';
+import { Card } from '@/components/card';
 import { useAuth } from '@/hooks/use-auth';
 import { Icon } from '@components/icon';
 import { Loader2Icon } from 'lucide-react';
@@ -9,13 +9,13 @@ const SignInPage = () => {
     const { signIn, isAuthenticating } = useAuth();
 
     return (
-        <div className="flex h-dvh w-dvw flex-col items-center justify-center bg-foreground/5">
+        <div className="bg-foreground/5 flex h-dvh w-dvw flex-col items-center justify-center">
             {isAuthenticating ? (
-                <div className="flex items-center justify-center text-foreground/50">
+                <div className="text-foreground/50 flex items-center justify-center">
                     <Icon icon={Loader2Icon} size={20} strokeWidth={2} className="animate-spin" />
                 </div>
             ) : (
-                <Card className="w-full max-w-80 gap-2">
+                <Card className="w-full max-w-80 gap-2 p-6">
                     <SignInForm
                         loading={isAuthenticating}
                         onSubmit={(value) =>

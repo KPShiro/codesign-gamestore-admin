@@ -2,7 +2,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { NotificationsTrigger } from '@features/notifications';
 import { LogOutIcon, SettingsIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { OutlinedButton } from './buttons';
+import { OutlinedButton } from './button';
 
 const Navbar = () => {
     const { signOut } = useAuth();
@@ -12,10 +12,10 @@ const Navbar = () => {
         <nav className="border-b px-4 py-3">
             <div className="flex items-center justify-between">
                 <div
-                    className="flex cursor-pointer select-none items-center gap-1"
+                    className="flex cursor-pointer items-center gap-1 select-none"
                     onClick={() => navigate('/')}
                 >
-                    <div className="size-5 rounded-full border-[6px] border-b-primary/50 border-l-primary/25 border-r-transparent border-t-primary"></div>
+                    <div className="border-b-primary/50 border-l-primary/25 border-t-primary size-5 rounded-full border-[6px] border-r-transparent"></div>
                     <div className="font-bold">CODESIGN</div>
                 </div>
                 <div className="flex items-center gap-2">

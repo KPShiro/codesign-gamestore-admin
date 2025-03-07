@@ -1,7 +1,6 @@
 import { FormField } from '@/components/form-field';
-import ImageInput from '@/components/image-input';
+import { ImageInput, TextInput } from '@/components/input';
 import { useToast } from '@/features/toast';
-import { TextInput } from '@components/text-input';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CreateGameFormData } from '../../schemas/create-game';
 import GameProviderInput from './game-provider-input';

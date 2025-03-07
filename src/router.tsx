@@ -1,5 +1,4 @@
-import ErrorPage from '@components/error-page';
-import DefaultLayout from '@components/layouts/default-layout';
+import { DefaultLayout } from '@components/layout';
 import { GamesCatalogPage } from '@features/games-catalog';
 import AuthRoute from '@features/sign-in/components/auth-route';
 import SignInPage from '@features/sign-in/components/sign-in-page';
@@ -14,7 +13,6 @@ export const router = createBrowserRouter(
                     <DefaultLayout />
                 </AuthRoute>
             ),
-            errorElement: <ErrorPage />,
             children: [
                 {
                     index: true,

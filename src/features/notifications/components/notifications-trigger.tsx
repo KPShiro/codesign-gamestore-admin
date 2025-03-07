@@ -1,6 +1,6 @@
-import { OutlinedButton, TonalButton } from '@/components/buttons';
+import { OutlinedButton, TonalButton } from '@/components/button';
+import Popover from '@/components/popover/popover';
 import { cn } from '@/utils';
-import Popover from '@components/ui/popover';
 import { useNotificationsContext } from '@features/notifications/hooks/use-notifications-context';
 import { BellDotIcon, BellIcon } from 'lucide-react';
 import { useState } from 'react';

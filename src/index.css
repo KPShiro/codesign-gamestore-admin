@@ -1,42 +1,158 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@import './themes/default.css';
 
-@layer base {
-    :root {
-        --width-border: 1px;
-        --radius: 0.375rem;
+@theme {
+    --animate-fade-in: fade-in 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-fade-out: fade-out 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-scale-in: scale-in 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-scale-out: scale-out 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-slide-in-up: slide-in-up 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-slide-in-right: slide-in-right 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-slide-in-down: slide-in-down 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-slide-in-left: slide-in-left 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-slide-out-up: slide-out-up 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-slide-out-right: slide-out-right 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-slide-out-down: slide-out-down 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-slide-out-left: slide-out-left 0.3s cubic-bezier(0, 0, 0.2, 1);
+    --animate-ping-ring: ping-ring 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 
-        /* --------------------------------------- */
-
-        --opacity-disabled: 0.42;
-
-        /* --------------------------------------- */
-
-        --color-border: 240 6% 90%;
-
-        --color-background: 0 0% 98%;
-        --color-foreground: 240 4% 16%;
-
-        --color-muted: 220 14% 93%;
-        --color-muted-foreground: 220 14% 56%;
-
-        --color-primary: 272 72% 47%;
-        --color-primary-foreground: 251 91% 95%;
-
-        --color-success: 116 69% 29%;
-        --color-success-foreground: 95 75% 89%;
-
-        --color-warning: 39 97% 50%;
-        --color-warning-foreground: 48 96% 90%;
-
-        --color-danger: 7 77% 47%;
-        --color-danger-foreground: 26 88% 90%;
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
     }
 
-    /* .dark {
-        TODO: Find right colors for dark mode
-    } */
+    @keyframes fade-out {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes scale-in {
+        0% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes scale-out {
+        0% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        100% {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+    }
+
+    @keyframes slide-in-up {
+        0% {
+            opacity: 0;
+            transform: translateY(10%);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slide-in-right {
+        0% {
+            opacity: 0;
+            transform: translateX(-10%);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slide-in-down {
+        0% {
+            opacity: 0;
+            transform: translateY(-10%);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slide-in-left {
+        0% {
+            opacity: 0;
+            transform: translateX(10%);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slide-out-up {
+        0% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(-10%);
+        }
+    }
+
+    @keyframes slide-out-right {
+        0% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateX(10%);
+        }
+    }
+
+    @keyframes slide-out-down {
+        0% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(10%);
+        }
+    }
+
+    @keyframes slide-out-left {
+        0% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateX(-10%);
+        }
+    }
+
+    @keyframes ping-ring {
+        0% {
+            box-shadow: 0 0 0 0 var(--color-primary);
+        }
+        75%,
+        100% {
+            box-shadow: 0 0 0 8px transparent;
+        }
+    }
 }
 
 @layer base {
@@ -45,14 +161,14 @@
     }
 
     body {
-        @apply bg-background text-foreground;
+        @apply bg-surface text-on-surface;
         font-feature-settings:
             'rlig' 1,
             'calt' 1;
     }
 
     a {
-        @apply font-medium text-primary hover:underline;
+        @apply text-primary font-medium hover:underline;
     }
 
     table.card-table {
@@ -60,7 +176,7 @@
     }
 
     table.card-table th {
-        @apply h-8 px-4 text-left text-xs font-normal text-muted-foreground;
+        @apply text-on-surface/60 h-8 px-4 text-left text-xs font-normal;
     }
 
     table.card-table td {
@@ -68,11 +184,11 @@
     }
 
     table.card-table thead tr {
-        @apply bg-foreground/5;
+        @apply bg-surface;
     }
 
     table.card-table tr {
-        @apply rounded-md ring-1 ring-border;
+        @apply ring-border rounded-md ring-1;
     }
 
     table.card-table tr th:first-of-type,
@@ -86,6 +202,6 @@
     }
 
     table.card-table tbody tr {
-        @apply bg-background transition-all duration-300 hover:bg-foreground/5;
+        @apply bg-surface hover:bg-surface-container;
     }
 }

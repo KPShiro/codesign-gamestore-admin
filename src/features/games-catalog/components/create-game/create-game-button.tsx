@@ -1,4 +1,4 @@
-import { FilledButton } from '@/components/buttons';
+import { FilledButton } from '@/components/button';
 import { usePermissions } from '@/hooks/use-permissions';
 import { useDialog } from '@features/dialog';
 import React from 'react';

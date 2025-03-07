@@ -1,4 +1,4 @@
-import { FilledButton, OutlinedButton } from '@/components/buttons';
+import { FilledButton, OutlinedButton } from '@/components/button';
 import { Dialog } from '@/features/dialog';
 import { useMutationState } from '@tanstack/react-query';
 import { Game } from '../models/game';

@@ -1,8 +1,6 @@
-import { GhostButton } from '@/components/buttons';
 import { cn, formatDateTime } from '@/utils';
 import { useNotifications } from '@features/notifications/hooks/use-notifications';
 import { Notification } from '@features/notifications/hooks/use-notifications-context';
-import { CheckIcon } from 'lucide-react';
 
 type NotificationProps = {
     notification: Notification;
@@ -11,35 +9,35 @@ type NotificationProps = {
 const NotificationCard = ({ notification }: NotificationProps) => {
     const { markAsRead } = useNotifications();
 
+    const handleMarkAsRead = () => {
+        if (notification.isRead) {
+            return;
+        }
+
+        markAsRead(notification.id);
+    };
+
     return (
         <div
+            onClick={handleMarkAsRead}
             className={cn(
-                'group relative isolate flex cursor-default gap-4 rounded-sm border border-transparent p-3 text-sm',
-                notification.isRead ? 'hover:bg-foreground/5' : 'bg-primary/5'
+                'flex cursor-default flex-col gap-3 rounded-sm p-3 text-sm',
+                notification.isRead ? 'hover:bg-on-surface/5' : 'bg-primary/5 hover:bg-primary/10'
             )}
         >
-            <div className="absolute -top-4 right-3 z-10 hidden space-x-0.5 rounded-sm border bg-background p-0.5 shadow group-hover:block">
-                <GhostButton
-                    size="xs"
-                    icon={CheckIcon}
-                    title="Mark as read"
-                    onClick={() => markAsRead(notification.id)}
-                    disabled={notification.isRead}
-                />
+            <div className="space-y-1">
+                <h5 className={cn('font-medium', notification.isRead ? '' : 'text-primary')}>
+                    {notification.title}
+                </h5>
+                <h6 className="text-on-surface/60 text-xs">
+                    {formatDateTime(notification.timestamp)}
+                </h6>
             </div>
-            <div className="flex flex-col gap-3">
-                <div className="space-y-1">
-                    <h5>{notification.title}</h5>
-                    <h6 className="text-xs text-muted-foreground">
-                        {formatDateTime(notification.timestamp)}
-                    </h6>
+            {notification.description ? (
+                <div className="bg-surface text-on-surface/60 rounded-sm border border-dashed p-4">
+                    <p className="line-clamp-2 text-xs">{notification.description}</p>
                 </div>
-                {notification.description ? (
-                    <div className="rounded-sm border border-dashed bg-background p-4 text-muted-foreground">
-                        <p className="line-clamp-2">{notification.description}</p>
-                    </div>
-                ) : null}
-            </div>
+            ) : null}
         </div>
     );
 };
