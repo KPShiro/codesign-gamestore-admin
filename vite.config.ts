@@ -24,4 +24,7 @@ export default defineConfig({
             // Add more path aliases here, just remember to add them to the tsconfing as well...
         },
     },
+    server: {
+        host: true,
+    },
 });
